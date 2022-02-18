@@ -12,7 +12,7 @@ header = '<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">\
                     <a class="nav-link active" aria-current="page" href="index.html">Dalamud介紹</a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="plugins.html">插件介紹</a>\
+                    <a class="nav-link active" aria-current="page" href="plugins_ui.html">插件介紹</a>\
                 </li>\
             </ul>\
         </div>\

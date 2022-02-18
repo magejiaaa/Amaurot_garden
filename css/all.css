@@ -1,0 +1,9 @@
+:target:before {
+    content: "";
+    display: block;
+    height: 200px;
+    }
+
+::before{
+    margin-top: -150px;
+}

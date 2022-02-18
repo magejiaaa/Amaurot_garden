@@ -7,14 +7,9 @@ footer = '<div class="container-fluid py-5 mx-auto text-center bg-light">\
     </div>\
     <div class="col-sm-6 pl-3">\
         <h4 class="fw-bold">關於這東西</h4>\
-<<<<<<< HEAD
         <p class="mb-0">插件作者詳見Github。<br>\
         又懶又不想動腦裝了插件，順便練習上課的內容做了個網站，再順便筆記插件的功能！<br>\
         有問題可以DC<i class="fa-brands fa-discord"></i>秘境MJ#2897，或遊戲私訊 Big Yo(Gaia) ，翻譯錯誤也歡迎回報，很多機翻怕會錯意！</p>\
-=======
-        <p class="mb-0">因為又懶又不想動腦裝了插件，順便練習上課的內容做了個網站<br>\
-        有問題可以DC詢問：秘境MJ#2897，或遊戲私訊 Big Yo(Gaia) </p>\
->>>>>>> parent of 2da122c (footer微調)
     </div>\
 </div>\
 </div>';
