@@ -4,6 +4,6 @@
     height: 200px;
     }
 
-::before{
-    margin-top: -150px;
+.commonFormat::before{
+    margin-top: -200px;
 }
