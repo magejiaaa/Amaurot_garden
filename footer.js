@@ -1,4 +1,4 @@
-footer = '<div class="container-fluid py-5 mx-auto text-center bg-light">\
+footer = '<div class="container-fluid py-5 mx-auto text-center bg-light footer">\
 <h4 class="fw-bold">免責聲明</h4>\
 <p class="mb-4">您已知 XIVLauncher 並不符合 Square Enix 的服務條款。使用後果需自行負責。</p>\
 <div class="row mx-auto justify-content-center align-items-center text-start">\
