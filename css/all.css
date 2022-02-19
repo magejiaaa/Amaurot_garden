@@ -2,10 +2,12 @@
     content: "";
     display: block;
     height: 200px;
+    width: 100%;
     }
 
 .commonFormat::before{
     margin-top: -200px;
+    display: block;
 }
 
 .menulist li{
@@ -17,7 +19,7 @@
     width: 0%;
     height: 2px;
     background-color: #0d6efd;
-    transition: .3s .2s;
+    transition: .2s .1s;
 }
 .menulist li:hover::after{
     width: 100%;
@@ -27,9 +29,42 @@
     position: absolute;
     z-index: 2000;
 }
+.footer .footext{
+    text-align: left;
+}
 
 .secondmenu{
     overflow: auto ;
     height: 100%;
     margin-bottom: 360px;
+}
+
+
+.imagebig img{
+    max-height: 2000px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.imagebig .imagebigback{
+    max-height: 300px;
+}
+
+@media (max-width: 576px) {
+    .plugin .secondmenu{
+        position: relative;
+        margin-bottom: 0px;
+        z-index: 500;
+    }
+    .footer .footext{
+        text-align: center;
+    }
+    .footer img{
+        width: 50%;
+    }
+    .footer .d-flex{
+        justify-content: center;
+        margin-bottom: 10px;
+    }
 }

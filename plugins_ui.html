@@ -30,34 +30,42 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link href="css/all.css" rel="stylesheet">
+
+
 </head>
 
 <body>
     <!-- header -->
     <script src="head.js"></script>
     <!-- 內容 -->
-    <div class="container-fluid">
+    <div class="container-fluid plugin">
         <div class="row justify-content-end">
             <script src="plugins_menu.js"></script>
 
             <!-- 文章內容 -->
-            <div class="col-md-8 col-lg-9 my-5 px-5">
+            <div class="col-md-8 col-lg-9 my-sm-5 px-5 imagebig">
                 <div class="commonFormat mt-5" id="chatBubbles">
                     <h6 class="fs-4">Chat Bubbles</h6>
-                    <p>顯示玩家說話時頭頂的泡泡，也可用於RP店分辨誰在說話，設定可隱藏自己的泡泡</p>
+                    <p>顯示玩家說話時頭頂的泡泡，也可用於RP店分辨誰在說話，設定可隱藏自己的泡泡跟決定顯示的方式</p>
                     <img src="https://github.com/Haplo064/ChatBubbles/blob/main/ChatBubbles/images/image1.png?raw=true"
-                        alt="" class="img-fluid" width="500">
+                        alt="" class="img-fluid imagebigback">
                 </div>
                 <div class="commonFormat mt-5" id="BigPlayerDebuffs">
                     <h6 class="fs-4">BigPlayerDebuffs</h6>
                     <p>讓自己的Debuff變超大</p>
                     <img src="https://github.com/rgd87/BigPlayerDebuffs/blob/master/images/image1.png?raw=true" alt=""
-                        class="img-fluid">
+                        class="img-fluid imagebigback">
                 </div>
                 <div class="commonFormat mt-5" id="RezPls">
                     <h6 class="fs-4">RezPls</h6>
                     <p>能夠顯示地上屍體誰正在拉或已經被拉起</p>
-                    <img src="image/rez01.jpg" alt="" class="img-fluid">
+                    <img src="image/rez01.jpg" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="Visibility">
+                    <h6 class="fs-4">Visibility</h6>
+                    <p>取消顯示其他玩家、寵物、召喚獸或路型鳥(有中文介面)<br>
+                    "/pvis"呼叫設定介面</p>
+                    <img src="image/xl setting 03.jpg" alt="" class="img-fluid imagebigback">
                 </div>
             </div>
         </div>
@@ -73,7 +81,9 @@
     <script>
         AOS.init();
     </script>
-
+    <!-- jq -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/all.js"></script>
 </body>
 
 </html>

@@ -36,19 +36,35 @@
     <!-- header -->
     <script src="head.js"></script>
     <!-- 內容 -->
-    <div class="container-fluid">
+    <div class="container-fluid plugin">
         <div class="row justify-content-end">
             <script src="plugins_menu.js"></script>
 
             <!-- 文章內容 -->
-            <div class="col-md-8 col-lg-9 my-5 px-5">
+            <div class="col-md-8 col-lg-9 my-sm-5 px-5 imagebig">
                 <div class="commonFormat mt-5" id="ChatCoordinates">
                     <h6 class="fs-4">ChatCoordinates</h6>
                     <p>輸入座標後會自動在地圖立旗與聊天欄輸出座標
                         <br>
                         /coord x座標 y座標 [地圖名稱] 地圖名稱可省略
                     </p>
-                    <img src="image/chatcoordinates.jpg" alt="" class="img-fluid">
+                    <img src="image/chatcoordinates.jpg" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="Globetrotter">
+                    <h6 class="fs-4">Globetrotter</h6>
+                    <p>藏寶圖打開後自動標示點位，可以設定點開寶圖或滑鼠滑過道具標示
+                    </p>
+                    <img src="image/xl setting 07.jpg" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="MapLinker">
+                    <h6 class="fs-4">MapLinker</h6>
+                    <p>紀錄在聊天欄中的座標，可搭配<a href="#Teleporter">Teleporter</a>一起使用直接一鍵傳送最近的水晶</p>
+                    <img src="image/xl setting 08.jpg" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="Teleporter">
+                    <h6 class="fs-4">Teleporter</h6>
+                    <p>輸入地圖名稱或水晶名稱可直接傳送，並且可自訂地圖別名(Alias)，輸入別名即可傳送<br>
+                    上圖橫線下方兩個選項分別是使用各軍團傳送券與婚禮戒指</p>
                 </div>
             </div>
         </div>
@@ -64,7 +80,9 @@
     <script>
         AOS.init();
     </script>
-
+    <!-- jq -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/all.js"></script>
 </body>
 
 </html>

@@ -36,21 +36,70 @@
     <!-- header -->
     <script src="head.js"></script>
     <!-- 內容 -->
-    <div class="container-fluid">
+    <div class="container-fluid plugin">
         <div class="row justify-content-end">
             <script src="plugins_menu.js"></script>
 
             <!-- 文章內容 -->
-            <div class="col-md-8 col-lg-9 my-5 px-5">
+            <div class="col-md-8 col-lg-9 my-sm-5 px-5 imagebig">
                 <div class="commonFormat mt-5" id="simpleTweaks">
                     <h6 class="fs-4">Simple Tweaks</h6>
                     <p>便利小插件合集(待更新)</p>
-                    <img src="https://camo.githubusercontent.com/70f38df3ae6e9634ee26423624adb6bb2a7aaa5c21527375fa65f69b3c4a3979/68747470733a2f2f692e696d6775722e636f6d2f4f70684c7632452e706e67" alt="" class="img-fluid">
+                    <img src="https://camo.githubusercontent.com/70f38df3ae6e9634ee26423624adb6bb2a7aaa5c21527375fa65f69b3c4a3979/68747470733a2f2f692e696d6775722e636f6d2f4f70684c7632452e706e67" alt="" class="img-fluid imagebigback mb-2">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak01.jpg" target="_blank">
+                            <img src="image/tweak01.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak01.jpg" target="_blank">
+                            <img src="image/tweak02.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak01.jpg" target="_blank">
+                            <img src="image/tweak03.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak01.jpg" target="_blank">
+                            <img src="image/tweak04.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                    </div>
                 </div>
                 <div class="commonFormat mt-5" id="ezFauxHollows">
                     <h6 class="fs-4">ezFauxHollows</h6>
                     <p>幻想盤翻牌子提示</p>
-                    <img src="https://github.com/daemitus/FauxHollowsSolver/raw/master/res/demo.png" alt="" class="img-fluid">
+                    <img src="https://github.com/daemitus/FauxHollowsSolver/raw/master/res/demo.png" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="ezMiniCactpot">
+                    <h6 class="fs-4">ezMiniCactpot</h6>
+                    <p>金蝶刮刮樂明牌，但還是要看運氣，人雖起來連個789都沒有</p>
+                    <div class="row">
+                        <img src="https://github.com/daemitus/MiniCactpotSolver/raw/master/res/demo_tiles.png" alt="" class="img-fluid col-md-6 imagebigback">
+                        <img src="https://github.com/daemitus/MiniCactpotSolver/raw/master/res/demo_lines.png" alt="" class="img-fluid col-md-6 imagebigback">
+                    </div>
+                </div>
+                <div class="commonFormat mt-5" id="ezWondrousTails">
+                    <h6 class="fs-4">ezWondrousTails</h6>
+                    <p>空想帳機率提示</p>
+                    <img src="https://github.com/daemitus/WondrousTailsSolver/raw/master/res/demo.png" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="GoodMemory">
+                    <h6 class="fs-4">GoodMemory</h6>
+                    <p>在物品底部區域標註是否已解鎖，只會出現在如樂譜、寵物等可以解鎖物品中。</p>
+                    <img src="image/xl setting 04.jpg" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="market">
+                    <h6 class="fs-4">Market Board plugin</h6>
+                    <p>查詢物品價格，但需要玩家有打開板子更新價格，準確度取決於伺服器使用Dalamud的人數<br>
+                    "/pmb"打開查價介面，滑鼠移到物品上即可查詢價格</p>
+                    <img src="image/xl setting 05.jpg" alt="" class="img-fluid imagebigback">
+                </div>
+                <div class="commonFormat mt-5" id="combo">
+                    <h6 class="fs-4">XIV Combo Plugin</h6>
+                    <p>讓連續的技能放在同一個技能欄中，改成combo模式<br>
+                    職業分開設定，可自行勾選哪個技能要使用這個效果<br>
+                    例如Draw on Play可以讓抽牌跟發牌使用同一個按鍵，快捷欄圖案會變成5抽牌的圖案。</p>
+                    <img src="image/xl setting 06.jpg" alt="" class="img-fluid imagebigback">
                 </div>
             </div>
         </div>
@@ -66,7 +115,9 @@
     <script>
         AOS.init();
     </script>
-
+    <!-- jq -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/all.js"></script>
 </body>
 
 </html>

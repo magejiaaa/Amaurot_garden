@@ -36,16 +36,36 @@
     <!-- header -->
     <script src="head.js"></script>
     <!-- 內容 -->
-    <div class="container-fluid">
+    <div class="container-fluid plugin">
         <div class="row justify-content-end">
             <script src="plugins_menu.js"></script>
 
             <!-- 文章內容 -->
-            <div class="col-md-8 col-lg-9 my-5 px-5">
+            <div class="col-md-8 col-lg-9 my-sm-5 px-5 imagebig">
                 <div class="commonFormat mt-5" id="sonar">
                     <h6 class="fs-4">Sonar</h6>
-                    <p>fjdkslfjdkslfjlds</p>
-                    <img src="" alt="" class="img-fluid">
+                    <p>提示玩家回報的S/A怪物狩獵，支持FATE回報，並且可設定接收整個大區的通知還是當前的伺服器<br>
+                    ▶可選擇收到指定FATE通知
+                    </p>
+                    <img src="image/xl setting 09.jpg" alt="" class="img-fluid imagebigback">
+                    <P>座標會顯示在指定聊天欄</P>
+                    <img src="image/xl setting 10.jpg" alt="" class="img-fluid imagebigback">
+                    <P>設定視窗</P>
+                    <img src="image/xl setting 11.jpg" alt="" class="img-fluid imagebigback">
+                    <P>▶視窗"/sonar"可直接看到剩餘血量或進度<br>
+                        ▶按鈕分別是傳送座標至聊天欄/在地圖插旗/刪除這則通知<br>
+                        ▶視窗可點開詳細地圖座標<br>
+                        ▶在當前伺服器的話直接點視窗內要打的怪即可傳送</P>
+                </div>
+                <div class="commonFormat mt-5" id="TriadBuddy">
+                    <h6 class="fs-4">Triad Buddy</h6>
+                    <p>幻卡小抄</p>
+                    <img src="https://github.com/MgAl2O4/FFTriadBuddyDalamud/raw/main/assets/image1.png" alt="" class="img-fluid imagebigback">
+                    <P>告訴你下一步該何去何從</P>
+                    <img src="https://github.com/MgAl2O4/FFTriadBuddyDalamud/raw/main/assets/image2.png" alt="" class="img-fluid imagebigback">
+                    <P>使用你現有的卡牌幫你組合最優選</P>
+                    <img src="https://github.com/MgAl2O4/FFTriadBuddyDalamud/raw/main/assets/image3.png" alt="" class="img-fluid imagebigback">
+                    <P>告訴你卡片要去哪裡拿，點選按鈕幫你插旗</P>
                 </div>
             </div>
         </div>
@@ -61,6 +81,9 @@
     <script>
         AOS.init();
     </script>
+    <!-- jq -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/all.js"></script>
 
 </body>
 

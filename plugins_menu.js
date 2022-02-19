@@ -1,4 +1,4 @@
-pluginMenu = '<div class="col-md-4 col-lg-3 ps-5 mt-5 accordion accordion-flush pt-5 fixed-top secondmenu "\
+pluginMenu = '<div class="col-md-4 col-lg-3 ps-sm-5 mt-5 accordion accordion-flush pt-5 fixed-top secondmenu "\
 id="accordionFlushExample">\
 <div class="accordion-item">\
     <h2 class="accordion-header" id="flush-headingOne">\
@@ -51,13 +51,12 @@ id="accordionFlushExample">\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page"\
                         href="plugins_song.html#ezMiniCactpot">\
-                        ezMiniCactpot\
-                    </a>\
+                        ezMiniCactpot                    </a>\
                 </li>\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page"\
-                        href="plugins_song.html#ezMWondrousTails">\
-                        ezMWondrousTails\
+                        href="plugins_song.html#ezWondrousTails">\
+                        ezWondrousTails\
                     </a>\
                 </li>\
                 <li class="nav-item">\
@@ -105,6 +104,11 @@ id="accordionFlushExample">\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page" href="plugins_map.html#MapLinker">\
                         MapLinker\
+                    </a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link active" aria-current="page" href="plugins_map.html#Teleporter">\
+                    Teleporter\
                     </a>\
                 </li>\
             </ul>\
