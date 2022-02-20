@@ -18,7 +18,7 @@
     display: block;
     width: 0%;
     height: 2px;
-    background-color: #0d6efd;
+    background-color: #92a7c7;
     transition: .2s .1s;
 }
 .menulist li:hover::after{
