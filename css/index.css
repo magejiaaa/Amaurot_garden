@@ -49,3 +49,16 @@
 .cn{
     background-image: linear-gradient(38deg, #c9c9c9 0%, #b1b1b1 100%);
 }
+
+@media (max-width: 576px) {
+    .btnfather{
+        margin: 0;
+    }
+    .downloadbtn{
+        width: 100%;
+        margin: 0;
+    }
+    .cn{
+        margin-bottom: 10px;
+    }
+}
