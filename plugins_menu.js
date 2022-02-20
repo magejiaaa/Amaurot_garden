@@ -14,14 +14,39 @@ id="accordionFlushExample">\
                     Chat Bubbles</a>\
             </li>\
             <li class="nav-item">\
-                <a class="nav-link active" aria-current="page" href="plugins_ui.html#BigPlayerDebuffs">\
-                    BigPlayerDebuffs</a></li>\
-            <li class="nav-item">\
-                <a class="nav-link active" aria-current="page" href="plugins_ui.html#RezPls">\
-                    RezPls</a></li>\
-            <li class="nav-item">\
                 <a class="nav-link active" aria-current="page" href="plugins_ui.html#Visibility">\
                     Visibility</a></li>\
+            <li class="nav-item">\
+            <a class="nav-link active" aria-current="page" href="plugins_ui.html#Glamaholic">\
+                Glamaholic</a></li>\
+        </ul>\
+    </div>\
+</div>\
+<div class="accordion-item">\
+    <h2 class="accordion-header" id="flush-headingFive">\
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"\
+            data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">\
+            戰鬥相關</button>\
+    </h2>\
+    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive"\
+        data-bs-parent="#accordionFlushExample">\
+        <ul class="nav flex-column accordion-body">\
+            <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_att.html#combo">\
+                    XIV Combo Plugin\
+                </a></li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_att.html#BigPlayerDebuffs">\
+                    BigPlayerDebuffs</a></li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_att.html#RezPls">\
+                    RezPls</a></li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_att.html#Waymark">\
+                    WaymarkPresetPlugin</a></li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_att.html#GentleTouch">\
+                    GentleTouch</a></li>\
         </ul>\
     </div>\
 </div>\
@@ -70,8 +95,8 @@ id="accordionFlushExample">\
                     </a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="plugins_song.html#combo">\
-                        XIV Combo Plugin\
+                    <a class="nav-link active" aria-current="page" href="plugins_song.html#Housemate">\
+                        Housemate\
                     </a>\
                 </li>\
             </ul>\
@@ -135,6 +160,11 @@ id="accordionFlushExample">\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page" href="plugins_cup.html#TriadBuddy">\
                         Triad Buddy\
+                    </a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link active" aria-current="page" href="plugins_cup.html#Tourist">\
+                    Tourist\
                     </a>\
                 </li>\
             </ul>\
