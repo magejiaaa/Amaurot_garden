@@ -2,8 +2,50 @@
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
+.btnfather{
+    position: relative;
+    margin-right: 3em;
+    margin-bottom: 10px;
+}
+
 .downloadbtn{
     background-image:linear-gradient(274deg, #9cb3d7 0%, #c3cfe2 100%);
     border: 0;
     border-radius: 0%;
+    margin: 5px;
+}
+
+.downloadbtn::before,
+.downloadbtn::after {
+    position: absolute;
+    content: "";
+    background: transparent;
+    z-index: 2;
+}
+
+.downloadbtn::before,
+.downloadbtn::after {
+  width: 0%; height: 0%;
+  opacity: 0;
+  transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
+}
+.downloadbtn::before {
+  top: 0; right: 0;
+  border-top: 1px solid rgb(28, 31, 30);
+  border-left: 1px solid rgb(28, 31, 30);
+}
+.downloadbtn::after {
+  bottom: 0; left: 0;
+  border-bottom: 1px solid rgb(28, 31, 30);
+  border-right: 1px solid rgb(28, 31, 30);
+}
+.downloadbtn:hover::before,
+.downloadbtn:hover::after {
+  width: 100%; height: 99%;
+  opacity: 1;
+  transition: width 0.2s linear, height 0.15s 0.2s linear, opacity 0s;   
+}
+
+.cn{
+    background-image: linear-gradient(38deg, #c9c9c9 0%, #b1b1b1 100%);
 }
