@@ -63,6 +63,31 @@
     display: block;
 }
 
+.card{
+    padding: 0;
+    border: none ;
+}
+.card i, .card-title{
+    color: #6781a9;
+}
+.card-header{
+    background-color: transparent;
+}
+.card .list-group-item a:hover{
+    background-color: #c3cfe2;
+    color: white;
+}
+.card .list-group-item a{
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #5a5a5a;
+    font-size: 0.8rem;
+}
+.card .list-group-item{
+    padding: 0;
+}
+
 @media (max-width: 576px) {
     .btnfather{
         margin: 0;
@@ -73,5 +98,12 @@
     }
     .cn{
         margin-bottom: 10px;
+    }
+    .card .list-group-item a{
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: #5a5a5a;
+        font-size: 1rem;
     }
 }

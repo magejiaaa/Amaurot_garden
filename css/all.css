@@ -55,6 +55,16 @@
     margin-top: 100px;
 }
 
+.plugintitle .btn-outline-secondary{
+    border-color: #92a7c7;
+    border-radius: 0;
+    color: #92a7c7;
+}
+.plugintitle .btn-outline-secondary:hover{
+    background-color: #92a7c7;
+    color: aliceblue;
+}
+
 @media (max-width: 576px) {
     .plugin .secondmenu{
         position: relative;
