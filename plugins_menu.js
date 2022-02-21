@@ -19,6 +19,11 @@ id="accordionFlushExample">\
             <li class="nav-item">\
             <a class="nav-link active" aria-current="page" href="plugins_ui.html#Glamaholic">\
                 Glamaholic</a></li>\
+            <li class="nav-item">\
+            <a class="nav-link active" aria-current="page" href="plugins_ui.html#GoodMemory">\
+                Good Memory\
+            </a>\
+        </li>\
         </ul>\
     </div>\
 </div>\
@@ -85,18 +90,23 @@ id="accordionFlushExample">\
                     </a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="plugins_song.html#GoodMemory">\
-                        Good Memory\
-                    </a>\
-                </li>\
-                <li class="nav-item">\
                     <a class="nav-link active" aria-current="page" href="plugins_song.html#market">\
                         Market Board plugin\
                     </a>\
                 </li>\
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">\
+                 <span>房屋裝修</span>\
+                  <a class="link-secondary" href="#" aria-label="Add a new report">\
+                 </a>\
+                </h6>\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page" href="plugins_song.html#Housemate">\
                         Housemate\
+                    </a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link active" aria-current="page" href="plugins_song.html#BDTH">\
+                    BDTHPlugin\
                     </a>\
                 </li>\
             </ul>\
