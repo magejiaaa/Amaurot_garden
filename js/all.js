@@ -3,11 +3,11 @@ $(document).ready(function () {
         mouseenter: function () {
             //stuff to do on mouse enter
             $(this).removeClass("imagebigback")
-            $(this).attr("max-width","100%")
+            $(this).attr("max-height","100%")
         },
         mouseleave: function () {
             //stuff to do on mouse leave
-            $(this).removeAttr("max-width")
+            $(this).removeAttr("max-height")
             $(this).addClass("imagebigback")
         }
     });

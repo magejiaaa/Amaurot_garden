@@ -22,8 +22,11 @@ id="accordionFlushExample">\
             <li class="nav-item">\
             <a class="nav-link active" aria-current="page" href="plugins_ui.html#GoodMemory">\
                 Good Memory\
-            </a>\
-        </li>\
+            </a></li>\
+            <li class="nav-item">\
+            <a class="nav-link active" aria-current="page" href="plugins_ui.html#qolbar">\
+                QoL bar\
+            </a></li>\
         </ul>\
     </div>\
 </div>\
