@@ -20,6 +20,8 @@ header = '<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">\
             </ul>\
         </div>\
     </div>\
-    </nav>';
+    </nav>\
+    <a href="#" class="scroll_top" data-aos="fade-up"\
+    data-aos-anchor-placement="top-center"><i class="bi bi-arrow-up-circle"></i></a>';
 document.write(header);
 

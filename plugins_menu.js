@@ -180,6 +180,11 @@ id="accordionFlushExample">\
                     Tourist\
                     </a>\
                 </li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_cup.html#DailyDuty">\
+                DailyDuty\
+                </a>\
+            </li>\
             </ul>\
         </div>\
     </div>\
