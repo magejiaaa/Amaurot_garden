@@ -52,7 +52,7 @@
     background-image: linear-gradient(38deg, #c9c9c9 0%, #b1b1b1 100%);
 }
 
-:target:before {
+.commonFormat:target:before {
     content: "";
     display: block;
     height: 0px;
@@ -63,29 +63,65 @@
     display: block;
 }
 
-.card{
+.function .card{
     padding: 0;
     border: none ;
 }
 .card i, .card-title{
     color: #6781a9;
 }
-.card-header{
+.function .card-header{
     background-color: transparent;
 }
-.card .list-group-item a:hover{
+.function .card .list-group-item a:hover{
     background-color: #c3cfe2;
     color: white;
 }
-.card .list-group-item a{
+.function .card .list-group-item a{
     display: block;
     padding: 0.5rem 1rem;
     text-decoration: none;
     color: #5a5a5a;
     font-size: 0.8rem;
 }
-.card .list-group-item{
+.function .card .list-group-item{
     padding: 0;
+}
+
+.share-link .card a{
+    text-decoration: none;
+    color: #5a5a5a;
+}
+.share-link .card a:hover{
+    background: #f1f1f1;
+    mix-blend-mode: multiply;
+}
+.smalltitle{
+    position: relative;
+}
+.smalltitle::before{
+    content: "";
+    display: block;
+    height: 20px;
+    width: 20%;
+    background-color: #e2e9f3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+
+}
+.share-link-img{
+    height: 15rem;
+}
+.baha01{
+    background:url("https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png") center/cover no-repeat;
+}
+.baha02{
+    background:url("https://p2.bahamut.com.tw/HOME/creationCover/38/0005363938_B.JPG") center/cover no-repeat;
+}
+.baha03{
+    background:url("https://blog.littlenightmare.top/img/post-bg-hacker.jpg") center/cover no-repeat;
 }
 
 @media (max-width: 576px) {
