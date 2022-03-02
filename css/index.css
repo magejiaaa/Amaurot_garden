@@ -143,4 +143,18 @@
         color: #5a5a5a;
         font-size: 1rem;
     }
+    .function .card{
+        margin: 0.5rem;
+    }
+    .smalltitle{
+        width: 90%;
+    }
+    .smalltitle::before{
+        width: 50%;
+    }
+    .share-link .col-md-4{
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        width: 95%;
+    }
 }
