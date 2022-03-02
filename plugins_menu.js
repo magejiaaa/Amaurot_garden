@@ -189,5 +189,31 @@ id="accordionFlushExample">\
         </div>\
     </div>\
 </div>\
+<div class="accordion-item">\
+    <h2 class="accordion-header" id="flush-headingSix">\
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"\
+            data-bs-target="#flush-collapseSix" aria-expanded="false"\
+            aria-controls="flush-collapseSix">\
+            無用小功能\
+        </button>\
+    </h2>\
+    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix"\
+        data-bs-parent="#accordionFlushExample">\
+        <div class="accordion-body">\
+            <ul class="nav flex-column">\
+                <li class="nav-item">\
+                    <a class="nav-link active" aria-current="page" href="plugins_cool.html#potato">\
+                    Oops,All Lalafells!\
+                    </a>\
+                </li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_cool.html#Orchestrion">\
+                Orchestrion\
+                </a>\
+            </li>\
+            </ul>\
+        </div>\
+    </div>\
+</div>\
 </div>';
 document.write(pluginMenu);

@@ -66,6 +66,7 @@
 .function .card{
     padding: 0;
     border: none ;
+    margin: 1rem;
 }
 .card i, .card-title{
     color: #6781a9;
