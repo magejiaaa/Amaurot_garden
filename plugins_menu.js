@@ -73,7 +73,7 @@ id="accordionFlushExample">\
             <ul class="nav flex-column">\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page"\
-                        href="plugins_song.html#simpleTweaks">\
+                        href="plugins_tweak.html">\
                         Simple Tweaks                    </a>\
                 </li>\
                 <li class="nav-item">\

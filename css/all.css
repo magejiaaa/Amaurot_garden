@@ -18,7 +18,7 @@
     width: 100%;
     }
 
-.commonFormat::before{
+.commonFormat::before ,.tweakFormat::before{
     margin-top: -200px;
     display: block;
 }
@@ -77,6 +77,12 @@
 .plugintitle .btn-outline-secondary:hover{
     background-color: #92a7c7;
     color: aliceblue;
+}
+.tweaktitle{
+    color: #6781a9;
+}
+.tweak_table table tr td:nth-child(2){
+    color: #6781a9;
 }
 
 @media (max-width: 576px) {

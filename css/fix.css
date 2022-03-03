@@ -1,0 +1,12 @@
+.accordion-button:not(.collapsed) {
+  background-color: #f6f8fb;
+  color: #6781a9;
+}
+
+.secondmenu .nav-link {
+  color: #92a7c7;
+}
+
+.secondmenu .nav-link:hover {
+  color: #6781a9;
+}

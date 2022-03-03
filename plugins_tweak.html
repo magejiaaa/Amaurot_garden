@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4GK80CEHHB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4GK80CEHHB');
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Dalamud的各種研究筆記">
+    <meta name="keywords" content="FF14,Dalamud,FF14插件">
+    <meta name="author" content="BigYo">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magejiaaa.github.io/Amaurot_garden/">
+    <meta property="og:title" content="亞馬烏羅提後花園">
+    <meta property="og:description" content="Dalamud的各種研究筆記">
+    <meta property="og:site_name" content="亞馬烏羅提後花園">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://magejiaaa.github.io/Amaurot_garden/">
+    <meta property="twitter:title" content="亞馬烏羅提後花園">
+    <meta property="twitter:description" content="Dalamud的各種研究筆記">
+    <meta property="twitter:image" content="https://i.imgur.com/tcf5eaU.png">
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fix.css">
+    <link href="css/all.css" rel="stylesheet">
+
+    <title>亞馬烏羅提後花園｜Simple Tweaks</title>
+</head>
+
+
+<body>
+    <!-- header -->
+    <script src="head.js"></script>
+
+    <!-- 內容 -->
+    <div class="container-fluid plugin">
+        <div class="row justify-content-end">
+            <script src="plugins_menu.js"></script>
+
+            <!-- 文章內容 -->
+            <div class="col-md-8 col-lg-9 my-sm-5 px-5 imagebig">
+                <div class="commonFormat mt-5" id="simpleTweaks">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3">Simple Tweaks</h6>
+                        <a href="https://github.com/Caraxi/SimpleTweaksPlugin" class="btn btn-outline-secondary"
+                            target="_blank" role="button">插件原網址</a>
+                    </div>
+                    <label for="basic-url" class="form-label">防止亂碼可以添加Akira的第三方插件庫URL</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control"
+                            value="https://raw.githubusercontent.com/akira0245/DalamudPlugins/api4/pluginmaster.json"
+                            id="myInput" aria-describedby="basic-addon2">
+                        <button onclick="myFunction()" class="input-group-text " id="basic-addon2">複製</button>
+                    </div>
+                    <p><a href="index.html#headingThree" target="_blank">安裝方法</a>，安裝後搜尋列表DalamudFontReplacer<br>
+                        便利小插件合集，<a href="https://github.com/Caraxi/SimpleTweaksPlugin">部分使用說明(插件網址)</a></p>
+                    <p></p>
+
+                    <div class="tweak_table py-4">
+                        <h5 class="tweaktitle">插件功能總覽✦一般調整</h5>
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">功能</th>
+                                    <th scope="col">介紹</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Auto Lock Action Bars</td>
+                                    <td>自動鎖定快捷欄</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>角色文件夾命令</td>
+                                    <td>添加命令以顯示或打開本地角色文件夾</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Character Window Job Switcher</td>
+                                    <td>角色職業等級介面可點擊切換裝備，生產系不生效</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>自定義同義命令</td>
+                                    <td>創建聊天欄命令的別稱以方便輸入</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td><a href="#tweak05">Data Center on Title Screen</a></td>
+                                    <td>在標題畫面顯示當前大區</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td>禁用目標選中</td>
+                                    <td>可以禁用滑鼠左/右鍵點擊選中目標的功能</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td>Disable Mount Music Volume Change</td>
+                                    <td>坐騎沒有移動時繼續撥放音樂</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">8</th>
+                                    <td>禁用開場動畫</td>
+                                    <td>禁用在主界面閒置過久時會撥放的開場動畫</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9</th>
+                                    <td>修復/target 命令</td>
+                                    <td>允許使用/target 命令選中玩家角色或NPC</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">10</th>
+                                    <td>固定影子距離</td>
+                                    <td>設定影子距離的值以防止其在飛行中變化</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">11</th>
+                                    <td>Hide Mouse Cursor After Inactivity</td>
+                                    <td>不活動時隱藏滑鼠</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">12</th>
+                                    <td>Improved Crafting Log</td>
+                                    <td>增加試穿、角色頁面縮放距離</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">13</th>
+                                    <td>增加角色預覽縮放距離</td>
+                                    <td>增加角色預覽的縮放距離，比如“試穿”和“調查”</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">14</th>
+                                    <td>顯示婚禮長頭紗</td>
+                                    <td>婚禮頭紗顯示加長版本</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">15</th>
+                                    <td>快捷指令命令</td>
+                                    <td>在宏和聊天頻道中，使用'/maincommand[name]來執行任意的快捷指令</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">16</th>
+                                    <td>更多套装槽位</td>
+                                    <td>增加可儲存的裝備套裝數量到100</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">17</th>
+                                    <td>Open commendation window automatically</td>
+                                    <td>副本結束自動打開點讃畫面</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">18</th>
+                                    <td>自動打開戰利品分配窗口</td>
+                                    <td>當在副本內有獲得新物品時,自動打開戰利品分配窗口。</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">19</th>
+                                    <td>聊天框快捷指令</td>
+                                    <td>添加數個聊天框指令以快速修改遊戲設置</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">20</th>
+                                    <td>Show process id Command</td>
+                                    <td>顯示當前進程ID</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">21</th>
+                                    <td>Sync Crafter Bars</td>
+                                    <td>讓相同效果的生產系技能放同一位置</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">22</th>
+                                    <td>Sync Gatherer Bars</td>
+                                    <td>讓相同效果的礦工園藝技能放同一位置</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 tweakFormat" id="tweak05">
+                                <img src="image/data center on title.png" alt="" class="img-fluid mb-2 imgnoJq">
+                            <p>#5 Data Center on Title Screen</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak02.jpg" target="_blank">
+                                <img src="image/tweak02.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak03.jpg" target="_blank">
+                                <img src="image/tweak03.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak07.jpg" target="_blank">
+                                <img src="image/tweak07.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak04.jpg" target="_blank">
+                                <img src="image/tweak04.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak05.jpg" target="_blank">
+                                <img src="image/tweak05.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="image/tweak06.jpg" target="_blank">
+                                <img src="image/tweak06.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <script src="footer.js"></script>
+
+    <!-- JS插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- jq -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/all.js"></script>
+</body>
+
+</html>
