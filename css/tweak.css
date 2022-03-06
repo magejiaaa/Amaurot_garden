@@ -1,0 +1,11 @@
+.number {
+    counter-reset: rowNumber;
+}
+
+.number tr > th {
+    counter-increment: rowNumber;
+}
+
+.number tr th::before {
+    content: counter(rowNumber);
+}

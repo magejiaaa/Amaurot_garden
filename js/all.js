@@ -11,13 +11,16 @@ $(document).ready(function () {
             $(this).addClass("imagebigback")
         }
     });
+});
 
-    window.onload = function () {
-        var tableLine = document.getElementById("number");
-        for (var i = 0; i < tableLine.rows.length; i++) {
-            tableLine.rows[i].cells[0].innerHTML = (i + 1);
-        }
-    }
+
+    //表格自動編號
+    // window.onload = function () {
+    //     const tableLine = $(id='number');
+    //     for (let i = 0; i < tableLine.row.length; i++) {
+    //         tableLine.rows[i].cells[0].innerHTML = (i + 1);
+    //     }
+    // }
 
     // 剪貼簿
     function myFunction() {
@@ -31,4 +34,3 @@ $(document).ready(function () {
         /* Copy the text inside the text field */
         navigator.clipboard.writeText(copyText.value);
     }
-}
