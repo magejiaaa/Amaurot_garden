@@ -184,7 +184,12 @@ id="accordionFlushExample">\
                 <a class="nav-link active" aria-current="page" href="plugins_cup.html#DailyDuty">\
                 DailyDuty\
                 </a>\
-            </li>\
+                </li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_cup.html#Gather">\
+                GatherBuddy\
+                </a>\
+                </li>\
             </ul>\
         </div>\
     </div>\

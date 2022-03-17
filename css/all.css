@@ -45,6 +45,9 @@
 .footer .footext{
     text-align: left;
 }
+.footer .rounded-circle{
+    width: 150px;
+}
 
 .secondmenu{
     overflow: auto ;
@@ -92,25 +95,6 @@
     overflow: auto;
     height: 8rem;
 }
-.codeclip{
-    position: relative;
-}
-.codeclip button{
-    position: absolute;
-    top: 1px;
-    right: 17px;
-    background: #ffffffc9;
-    border: none;
-    display: none;
-
-}
-.codeclip button .bi{
-    font-size: 1.5em;
-}
-.codeclip .clipicon_show{
-    display: flex;
-    align-items: center;
-}
 
 @media (max-width: 576px) {
     .plugin .secondmenu{
@@ -121,8 +105,8 @@
     .footer .footext{
         text-align: center;
     }
-    .footer img{
-        width: 50%;
+    .footer .rounded-circle{
+        width: 100px;
     }
     .footer .d-flex{
         justify-content: center;
