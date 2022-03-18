@@ -27,6 +27,10 @@ id="accordionFlushExample">\
             <a class="nav-link active" aria-current="page" href="plugins_ui.html#qolbar">\
                 QoL bar\
             </a></li>\
+            <li class="nav-item">\
+            <a class="nav-link active" aria-current="page" href="plugins_ui.html#ping">\
+                PingPlugin\
+            </a></li>\
         </ul>\
     </div>\
 </div>\
