@@ -1,4 +1,4 @@
-header = '<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">\
+header = '<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light tooTop">\
     <div class="container-fluid">\
         <a class="navbar-brand mx-md-5" href="index.html">亞馬烏羅提後花園</a>\
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"\
@@ -8,8 +8,12 @@ header = '<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">\
         </button>\
         <div class="collapse navbar-collapse" id="navbarSupportedContent">\
             <ul class="menulist navbar-nav me-auto mb-2 mb-lg-0">\
-                <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="index.html">Dalamud介紹</a>\
+                <li class="nav-item dropdown">\
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dalamud介紹</a>\
+                    <ul class="dropdown-menu">\
+                        <li><a class="dropdown-item" href="index.html#card_menu">功能概覽</a></li>\
+                        <li><a class="dropdown-item" href="index.html#install">基本安裝</a></li>\
+                    </ul>\
                 </li>\
                 <li class="nav-item">\
                     <a class="nav-link active" aria-current="page" href="plugins_ui.html">插件介紹</a>\

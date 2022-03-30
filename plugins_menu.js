@@ -59,6 +59,9 @@ id="accordionFlushExample">\
                 <li class="nav-item">\
                 <a class="nav-link active" aria-current="page" href="plugins_att.html#GentleTouch">\
                     GentleTouch</a></li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_att.html#jobBars">\
+                    JobBars</a></li>\
         </ul>\
     </div>\
 </div>\

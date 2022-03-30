@@ -17,12 +17,20 @@
     height: 200px;
     width: 100%;
     }
-
-.commonFormat::before ,.tweakFormat::before{
+.commonFormat::before ,.tweakFormat::before ,.indexFixFormat::before{
     margin-top: -200px;
-    display: block;
+}
+#card_menu::before{
+    height: 0;
 }
 
+/* 選單CSS */
+.tooTop{
+    z-index: 2000;
+}
+.menulist{
+    z-index: 2000;
+}
 .menulist li{
     padding: 0 1rem;
 }
@@ -37,10 +45,24 @@
 .menulist li:hover::after{
     width: 100%;
 }
+.menulist .dropdown::after{
+    content: none;
+}
+.menulist .dropdown-menu{
+    border: none;
+    background: #f8f9fa;
+    padding: 0;
+    padding-top: 9px;
+}
+.menulist .dropdown-menu li{
+    padding: 0;
+}
+.menulist .dropdown-item{
+    padding: 0.7em 1em;
+}
 
 .footer{
     position: absolute;
-    z-index: 2000;
 }
 .footer .footext{
     text-align: left;

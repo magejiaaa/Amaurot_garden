@@ -1,4 +1,15 @@
 $(document).ready(function () {
+    $(".menulist").find(".dropdown").on({
+        mouseenter: function () {
+            //stuff to do on mouse enter
+            $(this).find(".dropdown-menu").addClass("show")
+        },
+        mouseleave: function () {
+            //stuff to do on mouse leave
+            $(this).find(".dropdown-menu").removeClass("show")
+        }
+    });
+    
     $(".imagebig").find("img:not(.imgnoJq").on({
         mouseenter: function () {
             //stuff to do on mouse enter
@@ -22,6 +33,7 @@ $(document).ready(function () {
             $(this).find("button").removeClass("clipicon_show")
         }
     });
+
 
     window.onload = function () {
         var tableLine = document.getElementById("number");
