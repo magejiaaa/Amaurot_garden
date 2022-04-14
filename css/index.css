@@ -1,3 +1,12 @@
+.alert-primary{
+    color: #ffffff;
+    background-color: #9cb3d7;
+    border-color: #829ac1;
+}
+.alert-primary a{
+    color: #ffffff;
+}
+
 .indexbanner{
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
