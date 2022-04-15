@@ -1,10 +1,6 @@
 .alert-primary{
-    color: #ffffff;
-    background-color: #9cb3d7;
+    background: none;
     border-color: #829ac1;
-}
-.alert-primary a{
-    color: #ffffff;
 }
 
 .indexbanner{
@@ -72,11 +68,6 @@
     display: block;
 }
 
-.function .card{
-    padding: 0;
-    border: none ;
-    margin: 1rem;
-}
 .card i, .card-title{
     color: #6781a9;
 }
