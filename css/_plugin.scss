@@ -1,0 +1,27 @@
+// 插件頁面圖片
+.imagebig{
+    img{
+        max-width: 100%;
+        max-height: 2000px;
+        transition: all 0.5s ease;
+    }
+    .imagebigback{
+        max-height: 300px;
+    }
+} 
+
+// Simple Tweak
+.tweaktitle{
+    color: #6781a9;
+}
+.tweak_table table tr td:nth-child(2){
+    color: #6781a9;
+}
+
+/* 插件code */
+.table code{
+    word-break: break-all;
+    display: block;
+    overflow: auto;
+    height: 8rem;
+}

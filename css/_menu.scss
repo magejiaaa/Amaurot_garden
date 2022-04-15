@@ -1,0 +1,116 @@
+// menu
+.tooTop{
+    z-index: 2000;
+}
+.menulist{
+    z-index: 2000;
+    li{
+        padding: 0 1rem;
+    }
+    li::after{
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: #92a7c7;
+        transition: .2s .1s;
+    }
+    li:hover::after{
+        width: 100%;
+    }
+    .dropdown::after{
+        content: none;
+    }
+    .dropdown-menu{
+        border: none;
+        background: #f8f9fa;
+        padding: 0;
+        padding-top: 9px;
+        li{
+            padding: 0;
+        }
+    }
+    .dropdown-item{
+        padding: 0.7em 1em;
+    }
+}
+@media (max-width: 991px){
+    .tooTop{
+        box-shadow: 0px 2px 3px 0px #8b8b8b8f;
+    }
+    .menulist{
+        .dropdown-menu{
+            padding-top: 0;
+        }
+        .nav-link{
+            padding: 1rem 0;
+        }
+        .dropdown-item{
+            padding: 0.5em 1em;
+        }
+    }
+}
+// 插件頁面次選單
+$accordion-button-active-color:#6781a9;
+$accordion-button-active-bg: #f6f8fb;
+
+.accordion-button:not(.collapsed){
+    background-color: $accordion-button-active-bg ;
+    color: $accordion-button-active-color;
+}
+
+.secondmenu .nav-link{
+    color: #92a7c7;
+}
+.secondmenu .nav-link:hover{
+    color: #6781a9;
+}
+.secondmenu{
+    overflow: auto ;
+    height: 100%;
+    margin-bottom: 360px;
+}
+
+// 頁尾
+.footer{
+    position: absolute;
+    .footext{
+        text-align: left;
+    }
+    .rounded-circle{
+        width: 150px;
+    }
+}
+@media (max-width: 576px){
+    .footer{
+        .footext{
+            text-align: center;
+        }
+        .rounded-circle{
+            width: 100px;
+        }
+        .d-flex{
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+    } 
+    .plugin .secondmenu{
+        position: relative;
+        margin-bottom: 0px;
+        z-index: 500;
+    }
+}
+
+// Scroll to Top
+.scroll_top{
+    display: block;
+    position: fixed;
+    z-index: 2500;
+    right: 1.5rem;
+    bottom: 1rem;
+    font-size: 3rem;
+    color: #c7c7c7;
+}
+.scroll_top:hover{
+    color: #92a7c7;
+}

@@ -39,7 +39,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="css/all.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+    <link href="css/all-sc.css" rel="stylesheet">
 
     <title>Dalamud / FF14插件－亞馬烏羅提後花園</title>
 
@@ -52,6 +52,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="px-4 pt-5 mt-5 text-center indexbanner">
+                <!-- 支援下方形狀 -->
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                     <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
                         <path
@@ -62,8 +63,8 @@
                             d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </symbol>
                 </svg>
-
                 <div class="col-lg-8 mx-auto py-2">
+                    <!-- 最新狀態 -->
                     <div class="alert alert-primary d-flex align-items-center justify-content-center mb-4 fs-6 fw-bold"
                         role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
@@ -75,6 +76,7 @@
                             <a class="" href="https://discord.gg/3NMcUV5">更新通知可以加入Dalamud DC</a> -->
                         </div>
                     </div>
+                    <!-- banner -->
                     <h1 class="display-4 fw-bold">Dalamud</h1>
                     <p class="lead mb-4">所有插件的基底，功能包含快速啟動與更新、第三方插件管理、記憶多組帳號密碼、上傳交易板價格資料至Universalis等多項功能</p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
@@ -96,7 +98,7 @@
                         國際服需至github下載，且插件功能不支援中文化後的國際服
                     </div>
                 </div>
-                <div class="container px-sm-5" data-aos="fade-in">
+                <div class="container px-0" data-aos="fade-in">
                     <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png"
                         class="img-fluid border rounded-3 shadow mb-5" alt="登陸器介面" width="700" height="500"
                         loading="lazy">
@@ -105,9 +107,9 @@
             <!-- 固定寬度col-lg-10 -->
             <div class="col-lg-10 mx-auto">
                 <!-- 功能介紹卡片 -->
-                <div class="row justify-content-center py-5 function indexFormat" id="card_menu">
-                    <div class="col-md-3 col-5 mb-3">
-                        <div class="card shadow-sm" data-aos="zoom-in">
+                <div class="row justify-content-md-center py-5 function indexFormat" id="card_menu">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in">
                             <i class="bi bi-menu-button-wide-fill text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">UI優化</h5>
@@ -122,8 +124,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-5 mb-3">
-                        <div class="card shadow-sm" data-aos="zoom-in">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in">
                             <i class="bi bi-shield-shaded text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">戰鬥輔助</h5>
@@ -134,29 +136,25 @@
                                 </li>
                                 <li class="list-group-item"><a href="plugins_att.html#RezPls">屍體有誰拉★</a></li>
                                 <li class="list-group-item"><a href="plugins_att.html#Waymark">標點儲存★★★</a></li>
-                                <li class="list-group-item"><a href="plugins_att.html#GentleTouch">手把震動</a></li>
                                 <li class="list-group-item"><a href="plugins_att.html#jobBars">技能監控</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-5 mb-3">
-                        <div class="card shadow-sm" data-aos="zoom-in">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in">
                             <i class="bi bi-ui-checks text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">改善遊戲體驗</h5>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><a href="plugins_tweak.html">實用設定合集★★★★</a></li>
-                                <li class="list-group-item"><a href="plugins_song.html#ezFauxHollows">幻想盤、刮刮樂明牌</a></li>
-                                <li class="list-group-item"><a href="plugins_song.html#ezWondrousTails">空想帳機率計算</a></li>
-                                <li class="list-group-item"><a href="plugins_song.html#market">交易版查價★</a></li>
-                                <li class="list-group-item"><a href="plugins_song.html#Housemate">顯示家具名稱</a></li>
-                                <li class="list-group-item"><a href="plugins_song.html#BDTH">自訂家具位置</a></li>
+                                <li class="list-group-item"><a href="plugins_convenient.html#ChillFrames">限制遊戲FPS</a></li>
+                                <li class="list-group-item"><a href="plugins_convenient.html#GentleTouch">手把震動</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-5 mb-3">
-                        <div class="card shadow-sm" data-aos="zoom-in" data-aos-offset="10">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in">
                             <i class="bi bi-pin-map-fill text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">地圖輔助</h5>
@@ -169,8 +167,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-5">
-                        <div class="card shadow-sm" data-aos="zoom-in" data-aos-offset="10">
+                    <div class="col-md-3 col-6 mb-3 mb-md-0">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in" data-aos-offset="10">
                             <i class="bi bi-trophy-fill text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">成就懶人</h5>
@@ -184,21 +182,23 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-5">
-                        <div class="card shadow-sm" data-aos="zoom-in" data-aos-offset="10">
+                    <div class="col-md-3 col-6 mb-3 mb-md-0">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in" data-aos-offset="10">
                             <i class="bi bi-lightbulb text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">便利小功能</h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><a href="plugins_cool.html#potato">全村拉拉肥</a></li>
-                                <li class="list-group-item"><a href="plugins_cool.html#Orchestrion">更換地圖BGM</a></li>
-
+                                <li class="list-group-item"><a href="plugins_song.html#ezFauxHollows">幻想盤、刮刮樂明牌</a></li>
+                                <li class="list-group-item"><a href="plugins_song.html#ezWondrousTails">空想帳機率計算</a></li>
+                                <li class="list-group-item"><a href="plugins_song.html#market">交易版查價★</a></li>
+                                <li class="list-group-item"><a href="plugins_song.html#Housemate">顯示家具名稱</a></li>
+                                <li class="list-group-item"><a href="plugins_song.html#BDTH">自訂家具位置</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-5">
-                        <div class="card shadow-sm" data-aos="zoom-in" data-aos-offset="10">
+                    <div class="col-md-3 col-6 mb-3 mb-md-0">
+                        <div class="card shadow-sm h-100" data-aos="zoom-in" data-aos-offset="10">
                             <i class="bi bi-hand-thumbs-up-fill text-center mt-3 fs-1"></i>
                             <div class="card-header">
                                 <h5 class="card-title my-2">有點廢但很酷的小功能</h5>

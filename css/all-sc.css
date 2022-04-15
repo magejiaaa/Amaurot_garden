@@ -1,0 +1,341 @@
+@charset "UTF-8";
+.tooTop {
+  z-index: 2000;
+}
+
+.menulist {
+  z-index: 2000;
+}
+.menulist li {
+  padding: 0 1rem;
+}
+.menulist li::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: #92a7c7;
+  -webkit-transition: 0.2s 0.1s;
+  transition: 0.2s 0.1s;
+}
+.menulist li:hover::after {
+  width: 100%;
+}
+.menulist .dropdown::after {
+  content: none;
+}
+.menulist .dropdown-menu {
+  border: none;
+  background: #f8f9fa;
+  padding: 0;
+  padding-top: 9px;
+}
+.menulist .dropdown-menu li {
+  padding: 0;
+}
+.menulist .dropdown-item {
+  padding: 0.7em 1em;
+}
+
+@media (max-width: 991px) {
+  .tooTop {
+    -webkit-box-shadow: 0px 2px 3px 0px #8b8b8b8f;
+            box-shadow: 0px 2px 3px 0px #8b8b8b8f;
+  }
+
+  .menulist .dropdown-menu {
+    padding-top: 0;
+  }
+  .menulist .nav-link {
+    padding: 1rem 0;
+  }
+  .menulist .dropdown-item {
+    padding: 0.5em 1em;
+  }
+}
+.accordion-button:not(.collapsed) {
+  background-color: #f6f8fb;
+  color: #6781a9;
+}
+
+.secondmenu .nav-link {
+  color: #92a7c7;
+}
+
+.secondmenu .nav-link:hover {
+  color: #6781a9;
+}
+
+.secondmenu {
+  overflow: auto;
+  height: 100%;
+  margin-bottom: 360px;
+}
+
+.footer {
+  position: absolute;
+}
+.footer .footext {
+  text-align: left;
+}
+.footer .rounded-circle {
+  width: 150px;
+}
+
+@media (max-width: 576px) {
+  .footer .footext {
+    text-align: center;
+  }
+  .footer .rounded-circle {
+    width: 100px;
+  }
+  .footer .d-flex {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .plugin .secondmenu {
+    position: relative;
+    margin-bottom: 0px;
+    z-index: 500;
+  }
+}
+.scroll_top {
+  display: block;
+  position: fixed;
+  z-index: 2500;
+  right: 1.5rem;
+  bottom: 1rem;
+  font-size: 3rem;
+  color: #c7c7c7;
+}
+
+.scroll_top:hover {
+  color: #92a7c7;
+}
+
+:target:before {
+  content: "";
+  display: block;
+  height: 200px;
+  width: 100%;
+}
+
+.commonFormat::before, .tweakFormat::before, .indexFixFormat::before {
+  margin-top: -200px;
+}
+
+#card_menu::before {
+  height: 0;
+}
+
+.btnfather {
+  position: relative;
+  margin-right: 3em;
+  margin-bottom: 10px;
+}
+
+.downloadbtn {
+  background-image: linear-gradient(274deg, #9cb3d7 0%, #c3cfe2 100%);
+  border: 0;
+  border-radius: 0%;
+  margin: 5px;
+}
+
+.downloadbtn::before,
+.downloadbtn::after {
+  position: absolute;
+  content: "";
+  background: transparent;
+  z-index: 2;
+  width: 0%;
+  height: 0%;
+  opacity: 0;
+  -webkit-transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
+  transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
+}
+
+.downloadbtn::before {
+  top: 0;
+  right: 0;
+  border-top: 1px solid rgba(28, 31, 30, 0.36);
+  border-left: 1px solid rgba(28, 31, 30, 0.36);
+  mix-blend-mode: multiply;
+}
+
+.downloadbtn::after {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(28, 31, 30, 0.36);
+  border-right: 1px solid rgba(28, 31, 30, 0.36);
+  mix-blend-mode: multiply;
+}
+
+.downloadbtn:hover::before,
+.downloadbtn:hover::after {
+  width: 100%;
+  height: 99%;
+  opacity: 1;
+  -webkit-transition: width 0.2s linear, height 0.15s 0.2s linear, opacity 0s;
+  transition: width 0.2s linear, height 0.15s 0.2s linear, opacity 0s;
+}
+
+.cn {
+  background-image: linear-gradient(38deg, #c9c9c9 0%, #b1b1b1 100%);
+}
+
+@media (max-width: 576px) {
+  .btnfather {
+    margin: 0;
+  }
+
+  .downloadbtn {
+    width: 100%;
+    margin: 0;
+  }
+
+  .cn {
+    margin-bottom: 10px;
+  }
+}
+.plugintitle .btn-outline-secondary {
+  border-color: #92a7c7;
+  border-radius: 0;
+  color: #92a7c7;
+}
+
+.plugintitle .btn-outline-secondary:hover {
+  background-color: #92a7c7;
+  color: aliceblue;
+}
+
+.alert-primary {
+  background: none;
+  border-color: #829ac1;
+}
+
+.indexbanner {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.card i, .card-title {
+  color: #6781a9;
+}
+
+.function .card-header {
+  background-color: transparent;
+}
+.function .card .list-group-item {
+  padding: 0;
+}
+.function .card .list-group-item a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #5a5a5a;
+  font-size: 0.8rem;
+}
+.function .card .list-group-item a:hover {
+  background-color: #c3cfe2;
+  color: white;
+}
+
+.share-link .card a {
+  text-decoration: none;
+  color: #5a5a5a;
+}
+
+.share-link .card a:hover {
+  background: #f1f1f1;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 576px) {
+  .card .list-group-item a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #5a5a5a;
+    font-size: 1rem;
+  }
+}
+.smalltitle {
+  position: relative;
+  padding-left: 1em;
+}
+
+.smalltitle::before {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20%;
+  background-color: #e2e9f3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -2;
+}
+
+@media (max-width: 576px) {
+  .smalltitle {
+    width: 90%;
+  }
+
+  .smalltitle::before {
+    width: 50%;
+  }
+}
+.share-link-img {
+  height: 15rem;
+}
+
+.baha01 {
+  background: url("https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png") center/cover no-repeat;
+}
+
+.baha02 {
+  background: url("https://p2.bahamut.com.tw/HOME/creationCover/38/0005363938_B.JPG") center/cover no-repeat;
+}
+
+.baha03 {
+  background: url("https://blog.littlenightmare.top/img/post-bg-hacker.jpg") center/cover no-repeat;
+}
+
+@media (max-width: 576px) {
+  .share-link .col-md-4 {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    width: 95%;
+  }
+}
+.imagebig img {
+  max-width: 100%;
+  max-height: 2000px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.imagebig .imagebigback {
+  max-height: 300px;
+}
+
+.tweaktitle {
+  color: #6781a9;
+}
+
+.tweak_table table tr td:nth-child(2) {
+  color: #6781a9;
+}
+
+/* 插件code */
+.table code {
+  word-break: break-all;
+  display: block;
+  overflow: auto;
+  height: 8rem;
+}
+
+.google iframe {
+  margin-top: 100px;
+}

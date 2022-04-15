@@ -57,9 +57,6 @@ id="accordionFlushExample">\
                 <a class="nav-link active" aria-current="page" href="plugins_att.html#Waymark">\
                     WaymarkPresetPlugin</a></li>\
                 <li class="nav-item">\
-                <a class="nav-link active" aria-current="page" href="plugins_att.html#GentleTouch">\
-                    GentleTouch</a></li>\
-                <li class="nav-item">\
                 <a class="nav-link active" aria-current="page" href="plugins_att.html#jobBars">\
                     JobBars</a></li>\
         </ul>\
@@ -69,7 +66,7 @@ id="accordionFlushExample">\
     <h2 class="accordion-header" id="flush-headingTwo">\
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"\
             data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">\
-            便利功能\
+            改善遊戲體驗\
         </button>\
     </h2>\
 \
@@ -84,41 +81,13 @@ id="accordionFlushExample">\
                         Simple Tweaks                    </a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page"\
-                        href="plugins_song.html#ezFauxHollows">\
-                        ezFauxHollows                    </a>\
+                <a class="nav-link active" aria-current="page"\
+                    href="plugins_convenient.html#ChillFrames">\
+                    ChillFrames                 </a>\
                 </li>\
                 <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page"\
-                        href="plugins_song.html#ezMiniCactpot">\
-                        ezMiniCactpot                    </a>\
-                </li>\
-                <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page"\
-                        href="plugins_song.html#ezWondrousTails">\
-                        ezWondrousTails\
-                    </a>\
-                </li>\
-                <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="plugins_song.html#market">\
-                        Market Board plugin\
-                    </a>\
-                </li>\
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">\
-                 <span>房屋裝修</span>\
-                  <a class="link-secondary" href="#" aria-label="Add a new report">\
-                 </a>\
-                </h6>\
-                <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="plugins_song.html#Housemate">\
-                        Housemate\
-                    </a>\
-                </li>\
-                <li class="nav-item">\
-                    <a class="nav-link active" aria-current="page" href="plugins_song.html#BDTH">\
-                    BDTHPlugin\
-                    </a>\
-                </li>\
+                <a class="nav-link active" aria-current="page" href="plugins_convenient.html#GentleTouch">\
+                    GentleTouch</a></li>\
             </ul>\
         </div>\
     </div>\
@@ -197,6 +166,58 @@ id="accordionFlushExample">\
                 GatherBuddy\
                 </a>\
                 </li>\
+            </ul>\
+        </div>\
+    </div>\
+</div>\
+<div class="accordion-item">\
+    <h2 class="accordion-header" id="flush-headingSeven">\
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"\
+            data-bs-target="#flush-collapseSeven" aria-expanded="false"\
+            aria-controls="flush-collapseSeven">\
+            便利小功能\
+        </button>\
+    </h2>\
+    <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven"\
+        data-bs-parent="#accordionFlushExample">\
+        <div class="accordion-body">\
+            <ul class="nav flex-column">\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page"\
+                    href="plugins_song.html#ezFauxHollows">\
+                    ezFauxHollows                    </a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link active" aria-current="page"\
+                        href="plugins_song.html#ezMiniCactpot">\
+                        ezMiniCactpot                    </a>\
+                </li>\
+                <li class="nav-item">\
+                    <a class="nav-link active" aria-current="page"\
+                        href="plugins_song.html#ezWondrousTails">\
+                        ezWondrousTails\
+                    </a>\
+                </li>\
+                <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="plugins_song.html#market">\
+                    Market Board plugin\
+                </a>\
+                </li>\
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">\
+                <span>房屋裝修</span>\
+                 <a class="link-secondary" href="#" aria-label="Add a new report">\
+                </a>\
+               </h6>\
+               <li class="nav-item">\
+                   <a class="nav-link active" aria-current="page" href="plugins_song.html#Housemate">\
+                       Housemate\
+                   </a>\
+               </li>\
+               <li class="nav-item">\
+                   <a class="nav-link active" aria-current="page" href="plugins_song.html#BDTH">\
+                   BDTHPlugin\
+                   </a>\
+               </li>\
             </ul>\
         </div>\
     </div>\
