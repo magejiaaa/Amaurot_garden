@@ -19,6 +19,9 @@ header = '<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light to
                     <a class="nav-link active" aria-current="page" href="plugins_ui.html">插件介紹</a>\
                 </li>\
                 <li class="nav-item">\
+                <a class="nav-link active" aria-current="page" href="question.html">常見問題</a>\
+                </li>\
+                <li class="nav-item">\
                     <a class="nav-link active" aria-current="page" href="report.html">意見回報</a>\
                 </li>\
             </ul>\
