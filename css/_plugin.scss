@@ -25,3 +25,25 @@
     overflow: auto;
     height: 8rem;
 }
+
+//次選單scroll bar
+.secondmenu{
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-button {
+        background: transparent;
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-track-piece {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: #92a7c76e;
+        border: none;
+    }
+    &::-webkit-scrollbar-track {
+        box-shadow: transparent;
+    }
+}

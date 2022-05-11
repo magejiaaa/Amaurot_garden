@@ -9,7 +9,7 @@ footer = '<div class="container-fluid py-3 mx-auto text-center bg-light footer">
         <p class="mb-0 footext">插件作者詳見各插件介紹連結。<br>\
         有問題可以DC\
         <i class="bi bi-discord"></i>\
-        秘境MJ#2897，或遊戲私訊 Big Yo(Gaia) ，翻譯錯誤也歡迎回報，很多機翻怕會錯意！</p>\
+        秘境MJ#2897，翻譯錯誤也歡迎回報，很多機翻怕會錯意！</p>\
     </div>\
 </div>\
 </div>';

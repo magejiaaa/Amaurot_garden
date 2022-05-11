@@ -66,19 +66,20 @@ $accordion-button-active-bg: #f6f8fb;
     color: #6781a9;
 }
 .secondmenu{
-    overflow: auto ;
+    overflow-y: overlay;
     height: 100%;
-    margin-bottom: 360px;
+    background-color: #FFF;
 }
 
 // 頁尾
 .footer{
     position: absolute;
+    z-index: 2000;
     .footext{
         text-align: left;
     }
     .rounded-circle{
-        width: 150px;
+        width: 80px;
     }
 }
 @media (max-width: 576px){

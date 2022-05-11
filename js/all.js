@@ -9,7 +9,7 @@ $(document).ready(function () {
             $(this).find(".dropdown-menu").removeClass("show")
         }
     });
-    
+
     $(".imagebig").find("img:not(.imgnoJq").on({
         mouseenter: function () {
             //stuff to do on mouse enter
@@ -34,35 +34,38 @@ $(document).ready(function () {
         }
     });
 
-
-    window.onload = function () {
-        var tableLine = document.getElementById("number");
-        for (var i = 0; i < tableLine.rows.length; i++) {
-            tableLine.rows[i].cells[0].innerHTML = (i + 1);
+    //試做次選單不要超出footer
+    $(window).scroll(function() {
+        if ($(document).scrollTop() >= $(document).height() - $(window).height()- $(".footer").outerHeight(true)) {
+            $(".secondmenu").css("padding-bottom", "260px");
         }
-    }
+        else {
+            $(".secondmenu").css("padding-bottom", "60px");
+        }
+    });
 });
-    // 剪貼簿
-    function myFunction() {
-        /* Get the text field */
-        var copyText = document.getElementById("myInput");
 
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+// 剪貼簿
+function myFunction() {
+    /* Get the text field */
+    var copyText = document.getElementById("myInput");
 
-        /* Copy the text inside the text field */
-        navigator.clipboard.writeText(copyText.value);
-    }
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
-    function myFunction2() {
-        /* Get the text field */
-        var copyText = document.getElementById("myInput2");
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
+}
 
-        /* Select the text field */
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+function myFunction2() {
+    /* Get the text field */
+    var copyText = document.getElementById("myInput2");
 
-        /* Copy the text inside the text field */
-        navigator.clipboard.writeText(copyText.value);
-    }
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
+}

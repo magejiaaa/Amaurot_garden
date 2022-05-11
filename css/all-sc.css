@@ -67,19 +67,20 @@
 }
 
 .secondmenu {
-  overflow: auto;
+  overflow-y: overlay;
   height: 100%;
-  margin-bottom: 360px;
+  background-color: #FFF;
 }
 
 .footer {
   position: absolute;
+  z-index: 2000;
 }
 .footer .footext {
   text-align: left;
 }
 .footer .rounded-circle {
-  width: 150px;
+  width: 80px;
 }
 
 @media (max-width: 576px) {
@@ -334,6 +335,26 @@
   display: block;
   overflow: auto;
   height: 8rem;
+}
+
+.secondmenu::-webkit-scrollbar {
+  width: 5px;
+}
+.secondmenu::-webkit-scrollbar-button {
+  background: transparent;
+  border-radius: 4px;
+}
+.secondmenu::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+.secondmenu::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #92a7c76e;
+  border: none;
+}
+.secondmenu::-webkit-scrollbar-track {
+  -webkit-box-shadow: transparent;
+          box-shadow: transparent;
 }
 
 .google iframe {
