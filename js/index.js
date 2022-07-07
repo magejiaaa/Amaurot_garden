@@ -10,4 +10,8 @@ $(document).ready(function () {
             $(this).find(".dropdown-menu").removeClass("show")
         }
     });
+
+    $(".hamburger1").click(function(){
+        $(this).toggleClass("is-active");
+    });
 });

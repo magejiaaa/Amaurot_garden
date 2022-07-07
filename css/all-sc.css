@@ -52,6 +52,64 @@
   .menulist .dropdown-item {
     padding: 0.5em 1em;
   }
+
+  .hamburger1 .line {
+    width: 35px;
+    height: 3px;
+    background-color: #6781a9;
+    border: none;
+    display: block;
+    margin: 8px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hamburger1:hover {
+    cursor: pointer;
+  }
+
+  .navbar-light .navbar-toggler {
+    border: none;
+    color: transparent;
+  }
+
+  .navbar-light .navbar-toggler:focus {
+    -webkit-box-shadow: 0 0 0 0.1rem;
+            box-shadow: 0 0 0 0.1rem;
+  }
+
+  #hamburger {
+    position: relative;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #hamburger.is-active {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  #hamburger.is-active:before {
+    border: 3px solid #ecf0f1;
+  }
+
+  #hamburger.is-active .line {
+    width: 35px;
+  }
+
+  #hamburger.is-active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  #hamburger.is-active .line:nth-child(1) {
+    -webkit-transform: translateY(11px);
+            transform: translateY(11px);
+  }
+
+  #hamburger.is-active .line:nth-child(3) {
+    -webkit-transform: translateY(-11px) rotate(90deg);
+            transform: translateY(-11px) rotate(90deg);
+  }
 }
 .accordion-button:not(.collapsed) {
   background-color: #f6f8fb;

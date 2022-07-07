@@ -10,6 +10,11 @@ $(document).ready(function () {
         }
     });
 
+    //漢堡選單樣式
+    $(".hamburger1").click(function(){
+        $(this).toggleClass("is-active");
+    });
+
     $(".imagebig").find("img:not(.imgnoJq").on({
         mouseenter: function () {
             //stuff to do on mouse enter
