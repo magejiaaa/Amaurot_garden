@@ -39,6 +39,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="css/all-sc.css" rel="stylesheet">
+    <script src="js/include.js"></script>
 
     <title>Dalamud｜戰鬥相關－亞馬烏羅提後花園</title>
 
@@ -48,7 +49,7 @@
 
 <body>
     <!-- header -->
-    <script src="head.js"></script>
+    <div w3-include-html="head.html"></div>
     
     <!-- 內容 -->
     <div class="container-fluid plugin">
@@ -132,7 +133,7 @@
         </div>
     </div>
     <!-- footer -->
-    <script src="footer.js"></script>
+    <div w3-include-html="footer.html"></div>
 
     <!-- JS插件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -145,6 +146,9 @@
     <!-- jq -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/all.js"></script>
+    <script>
+        includeHTML();
+    </script>
 </body>
 
 </html>
