@@ -39,18 +39,22 @@
     <link href="css/all.css" rel="stylesheet">
     <link href="css/all-sc.css" rel="stylesheet">
 
+    <!-- js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script> -->
+    <script src="js/include.js"></script>
+
     <title>Dalamud｜Simple Tweaks－亞馬烏羅提後花園</title>
 </head>
 
 
 <body>
     <!-- header -->
-    <script src="head.js"></script>
+    <div w3-include-html="head.html"></div>
 
     <!-- 內容 -->
     <div class="container-fluid plugin">
         <div class="row justify-content-end">
-            <script src="plugins_menu.js"></script>
+            <div w3-include-html="plugins_menu.html"></div>
 
             <!-- 文章內容 -->
             <div class="col-md-8 col-lg-9 my-sm-5 px-4 px-sm-5 imagebig">
@@ -60,7 +64,9 @@
                         <a href="https://github.com/Caraxi/SimpleTweaksPlugin" class="btn btn-outline-secondary"
                             target="_blank" role="button">插件原網址</a>
                     </div>
-                    <label for="basic-url" class="form-label">防止亂碼可以添加Akira的第三方插件庫URL(更新6.1後無法使用)</label>
+
+                    <!-- 中文補丁無法使用 -->
+                    <!-- <label for="basic-url" class="form-label">防止亂碼可以添加Akira的第三方插件庫URL(更新6.1後無法使用)</label>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control"
                             value="https://raw.githubusercontent.com/akira0245/DalamudPlugins/api4/pluginmaster.json"
@@ -74,12 +80,12 @@
                         <div>
                           已知問題：跟Dalamud設定頁面、ping插件存在衝突，可以試試獺爹的連結
                         </div>
-                      </div>
+                    </div> -->
 
-                    <p><a href="index.html#headingThree" target="_blank">安裝方法</a>，安裝後搜尋列表DalamudFontReplacer<br>
+                    <p>
                         便利小插件合集，<a href="https://github.com/Caraxi/SimpleTweaksPlugin">部分使用說明(插件網址)</a><br>
-                        這插件怎麼一直在更新阿更新不完！！</p>
-                    <p></p>
+                        這插件怎麼一直在更新阿更新不完！！
+                    </p>
 
                     <div class="tweak_table py-4">
                         <h5 class="tweaktitle mb-4">插件功能總覽✦一般調整</h5>
@@ -96,7 +102,12 @@
                                     <th scope="row">1</th>
                                     <td>Auto Lock Action Bars</td>
                                     <td>自動鎖定快捷欄
-                                        <img src="image/normal-1.jpg" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/normal-1.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -113,21 +124,36 @@
                                     <th scope="row">4</th>
                                     <td>自定義同義命令</td>
                                     <td>創建聊天欄命令的別稱以方便輸入
-                                        <img src="image/normal-4.png" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/normal-4.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">5</th>
                                     <td>Data Center on Title Screen</td>
                                     <td>在標題畫面顯示當前大區
-                                        <img src="image/normal-5.png" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/normal-5.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">6</th>
                                     <td>禁用目標選中</td>
                                     <td>可以禁用滑鼠左/右鍵點擊選中目標的功能
-                                        <img src="image/normal-6.png" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/normal-6.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -214,7 +240,12 @@
                                     <th scope="row">23</th>
                                     <td>Try On Correct Item</td>
                                     <td>按住Shift試穿投影前的物品
-                                        <img src="image/normal-23.jpg" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/normal-23.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -225,12 +256,24 @@
                         <div class="col-md-6">
                             <p class="mb-1">選單翻譯01</p>
                             <a href="image/tweak01.jpg" target="_blank">
-                                <img src="image/tweak01.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak01.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-6">
                             <p class="mb-1">選單翻譯02</p>
                             <a href="image/tweak02.jpg" target="_blank">
-                                <img src="image/tweak02.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak02.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="tweak_table py-4">
@@ -281,7 +324,13 @@
                         <div class="col-md-6">
                             <p class="mb-1">選單翻譯</p>
                             <a href="image/tweak03.jpg" target="_blank">
-                                <img src="image/tweak03.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak03.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="tweak_table py-4">
@@ -299,14 +348,24 @@
                                     <th scope="row">1</th>
                                     <td>物品快捷鍵</td>
                                     <td>當顯示物品詳情時可以使用快捷鍵進行一系列操作
-                                        <img src="image/hint-1.png" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/hint-1.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>魔晶石状態</td>
                                     <td>展示屬性時，顯示物品上已鑲嵌的魔品石。
-                                        <img src="image/hint-2.png" alt="" class="img-fluid mb-2 imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/hint-2.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -335,7 +394,13 @@
                     <div class="row mb-4">
                         <div class="col-md-6 text-center">
                             <a href="image/tweak07.jpg" target="_blank">
-                                <img src="image/tweak07.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak07.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="tweak_table py-4">
@@ -353,14 +418,24 @@
                                     <th scope="row"></th>
                                     <td>Accurate Venture Times</td>
                                     <td>雇員探險倒計時
-                                        <img src="image/UIgood-1.png" alt="" class="img-fluid imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/UIgood-1.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row"></th>
                                     <td>Adjust Equipment Positions</td>
                                     <td>重新定位角色菜單中的裝備位置並進行檢查以減少總體佈局。
-                                        <img src="image/UIgood-2.png" alt="" class="img-fluid imgnoJq">
+                                        <div class="mix d-flex">
+                                            <div class="spinner-border m-3" role="status" visibility="visible">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <img data-src="image/UIgood-2.png" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -550,15 +625,33 @@
                     <div class="row mb-4">
                         <div class="col-md-6 text-center">
                             <a href="image/tweak04.jpg" target="_blank">
-                                <img src="image/tweak04.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak04.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-6 text-center">
                             <a href="image/tweak05.jpg" target="_blank">
-                                <img src="image/tweak05.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak05.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-6 text-center">
                             <a href="image/tweak06.jpg" target="_blank">
-                                <img src="image/tweak06.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/tweak06.jpg" alt="" class="img-fluid mb-2 imgnoJq lazyload">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -566,7 +659,7 @@
         </div>
     </div>
     <!-- footer -->
-    <script src="footer.js"></script>
+    <div w3-include-html="footer.html"></div>
 
     <!-- JS插件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -579,6 +672,13 @@
     <!-- jq -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/all.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <!-- <script>
+        let images = document.querySelectorAll(".lazyload");
+        lazyload(images);
+    </script> -->
 </body>
 
 </html>

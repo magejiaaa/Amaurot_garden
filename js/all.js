@@ -74,3 +74,47 @@ function myFunction2() {
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(copyText.value);
 }
+
+//LAZYLOAD
+const selector = ".lazyload";
+const dataSrc = "data-src";
+const observerConfig = {
+    root: null,
+    rootMargin: '0px',
+    threshold: [0]
+};
+
+
+const callback = function(entries, selfObserver) {
+    Array.prototype.forEach.call(entries, function (entry) {
+        if (entry.isIntersecting) {
+            selfObserver.unobserve(entry.target);
+            // if (entry.onload = true) {
+            //     entry.target.previousElementSibling.style.display = "none";
+            // }
+            // 取得 data-src 之前藏放的圖片連結資料
+            let src = entry.target.getAttribute(dataSrc);
+            if ("img" === entry.target.tagName.toLowerCase()) {
+                if (src) {
+                    // 改放入到 img src 終讓頁面可以讀取
+                    entry.target.src = src;
+                }
+                entry.target.style.display = "none";
+            };
+            entry.target.onload = function () {
+                entry.target.previousElementSibling.style.display = "none";
+                entry.target.style.display = "";
+            }
+        }
+    });
+};
+
+let $images = document.querySelectorAll(selector);
+let observer = new IntersectionObserver(callback, observerConfig);
+
+let spinner = document.querySelector(".spinner-border");
+
+
+Array.prototype.forEach.call($images, function (image) {
+    observer.observe(image);
+});

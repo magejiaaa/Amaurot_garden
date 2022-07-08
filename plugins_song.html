@@ -38,6 +38,7 @@
     
     <link href="css/all.css" rel="stylesheet">
     <link href="css/all-sc.css" rel="stylesheet">
+    <script src="js/include.js"></script>
 
     <title>Dalamud｜便利功能－亞馬烏羅提後花園</title>
 </head>
@@ -45,12 +46,12 @@
 
 <body>
     <!-- header -->
-    <script src="head.js"></script>
+    <div w3-include-html="head.html"></div>
    
     <!-- 內容 -->
     <div class="container-fluid plugin">
         <div class="row justify-content-end">
-            <script src="plugins_menu.js"></script>
+            <div w3-include-html="plugins_menu.html"></div>
 
             <!-- 文章內容 -->
             <div class="col-md-8 col-lg-9 my-sm-5 px-4 px-sm-5 imagebig">
@@ -137,7 +138,7 @@
         </div>
     </div>
     <!-- footer -->
-    <script src="footer.js"></script>
+    <div w3-include-html="footer.html"></div>
 
     <!-- JS插件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
@@ -150,6 +151,9 @@
     <!-- jq -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/all.js"></script>
+    <script>
+        includeHTML();
+    </script>
 </body>
 
 </html>

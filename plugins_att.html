@@ -54,7 +54,7 @@
     <!-- 內容 -->
     <div class="container-fluid plugin">
         <div class="row justify-content-end">
-            <script src="plugins_menu.js"></script>
+            <div w3-include-html="plugins_menu.html"></div>
 
             <!-- 文章內容 -->
             <div class="col-md-8 col-lg-9 my-sm-5 px-4 px-sm-5 imagebig">
@@ -68,7 +68,12 @@
                     職業分開設定，可自行勾選哪個技能要使用這個效果。<br>
                     例如Draw on Play可以讓抽牌跟發牌使用同一個按鍵，快捷欄圖案會變成5抽牌的圖案。</p>
                     <p>需要更懶人的版本可以參照<a href="https://docs.google.com/spreadsheets/d/1hCwuz1hUmH5cnN1o0zLA3nxRR6w9f6ltpWv3JNkE8VI/edit?usp=sharing" target="_blank">這裡</a></p>
-                    <img src="image/xl setting 06.jpg" alt="" class="img-fluid imagebigback">
+                    <div class="mix d-flex ">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/xl setting 06.jpg" alt="" class="img-fluid mb-2 lazyload imagebigback">
+                    </div>
                 </div>
                 <div class="commonFormat mt-5" id="BigPlayerDebuffs">
                     <div class="plugintitle d-flex align-items-center mb-3">
@@ -77,8 +82,12 @@
                             role="button">插件原網址</a>
                     </div>
                     <p>讓自己的Debuff變超大</p>
-                    <img src="https://github.com/rgd87/BigPlayerDebuffs/blob/master/images/image1.png?raw=true" alt=""
-                        class="img-fluid imagebigback">
+                    <div class="mix d-flex ">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="https://github.com/rgd87/BigPlayerDebuffs/blob/master/images/image1.png?raw=true" alt="" class="img-fluid mb-2 lazyload imagebigback">
+                    </div>
                 </div>
                 <div class="commonFormat mt-5" id="RezPls">
                     <div class="plugintitle d-flex align-items-center mb-3">
@@ -87,7 +96,12 @@
                             role="button">插件原網址</a>
                     </div>
                     <p>能夠顯示地上屍體誰正在拉或已經被拉起</p>
-                    <img src="image/rez01.jpg" alt="" class="img-fluid imagebigback">
+                    <div class="mix d-flex ">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/rez01.jpg" alt="" class="img-fluid mb-2 lazyload imagebigback">
+                    </div>
                 </div>
                 <div class="commonFormat mt-5" id="Waymark">
                     <div class="plugintitle d-flex align-items-center mb-3">
@@ -97,7 +111,12 @@
                     </div>
                     <p>解除場地標點只能儲存五個的限制<br>
                     "/pwaymark"呼叫標點儲存視窗</p>
-                    <img src="image/pwaymark.jpg" alt="" class="img-fluid imagebigback">
+                    <div class="mix d-flex ">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/pwaymark.jpg" alt="" class="img-fluid mb-2 lazyload imagebigback">
+                    </div>
                 </div>
                 <div class="commonFormat mt-5" id="jobBars">
                     <div class="plugintitle d-flex align-items-center mb-3">
@@ -107,17 +126,34 @@
                     </div>
                     <p>監控技能Buff、冷卻時間、隊友的技能CD<br>
                     原網址有詳細示範影片，這邊就介面稍微介紹一下</p>
-                    <img src="image/jobbars01.jpg" alt=""  class="img-fluid imagebigback">
+                    <div class="mix d-flex ">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/jobbars01.jpg" alt="" class="img-fluid mb-2 lazyload imagebigback">
+                    </div>
                     <div class="row my-4">
                         <div class="col-md-4">
                             <p class="mb-1">buff監控，可設秒數</p>
                             <a href="image/jobbars02.jpg" target="_blank">
-                                <img src="image/jobbars02.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex ">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/jobbars02.jpg" alt="" class="img-fluid mb-2 lazyload imgnoJq">
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-4">
                             <p class="mb-1">監控技能CD</p>
                             <a href="image/jobbars03.jpg" target="_blank">
-                                <img src="image/jobbars03.jpg" alt="" class="img-fluid mb-2 imgnoJq" width="100%"></a>
+                                <div class="mix d-flex ">
+                                    <div class="spinner-border m-3" role="status" visibility="visible">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <img data-src="image/jobbars03.jpg" alt="" class="img-fluid mb-2 lazyload imgnoJq">
+                                </div>
+                            </a>
                         </div>
                         <div class="col-md-4">
                             <p class="mb-1">隊友技能監控</p>
@@ -127,7 +163,12 @@
                         </div>
                     </div>
                     <p>隊友的冷卻時間設定</p>
-                    <img src="image/jobbars04.jpg" alt=""  class="img-fluid imagebigback">
+                    <div class="mix d-flex ">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/jobbars04.jpg" alt="" class="img-fluid mb-2 lazyload imagebigback">
+                    </div>
                 </div>
             </div>
         </div>
