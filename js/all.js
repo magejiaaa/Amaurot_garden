@@ -75,23 +75,24 @@ function myFunction2() {
     navigator.clipboard.writeText(copyText.value);
 }
 
+
+
 //LAZYLOAD
 const selector = ".lazyload";
 const dataSrc = "data-src";
+//觀察器參數
 const observerConfig = {
     root: null,
     rootMargin: '0px',
     threshold: [0]
 };
 
-
 const callback = function(entries, selfObserver) {
+    //有方法的陣列 entries=call出來的參數
     Array.prototype.forEach.call(entries, function (entry) {
+        //是否進入畫面
         if (entry.isIntersecting) {
             selfObserver.unobserve(entry.target);
-            // if (entry.onload = true) {
-            //     entry.target.previousElementSibling.style.display = "none";
-            // }
             // 取得 data-src 之前藏放的圖片連結資料
             let src = entry.target.getAttribute(dataSrc);
             if ("img" === entry.target.tagName.toLowerCase()) {
@@ -102,7 +103,9 @@ const callback = function(entries, selfObserver) {
                 entry.target.style.display = "none";
             };
             entry.target.onload = function () {
+                //呼叫img同層的前一個元素
                 entry.target.previousElementSibling.style.display = "none";
+                //圖片載入完成前不要出來==
                 entry.target.style.display = "";
             }
         }
@@ -110,11 +113,8 @@ const callback = function(entries, selfObserver) {
 };
 
 let $images = document.querySelectorAll(selector);
+//觀察器建立
 let observer = new IntersectionObserver(callback, observerConfig);
-
-let spinner = document.querySelector(".spinner-border");
-
-
 Array.prototype.forEach.call($images, function (image) {
     observer.observe(image);
 });
