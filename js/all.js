@@ -14,7 +14,7 @@ $(document).ready(function () {
     $(".hamburger1").click(function(){
         $(this).toggleClass("is-active");
     });
-
+    //圖片滑鼠移入放大
     $(".imagebig").find("img:not(.imgnoJq").on({
         mouseenter: function () {
             //stuff to do on mouse enter
@@ -27,7 +27,7 @@ $(document).ready(function () {
             $(this).addClass("imagebigback")
         }
     });
-
+    //這啥 但跟滑鼠移入移出有關
     $(".codeclip").on({
         mouseenter: function () {
             //stuff to do on mouse enter
@@ -38,7 +38,6 @@ $(document).ready(function () {
             $(this).find("button").removeClass("clipicon_show")
         }
     });
-
     //試做次選單不要超出footer
     $(window).scroll(function() {
         if ($(document).scrollTop() >= $(document).height() - $(window).height()- $(".footer").outerHeight(true)) {
@@ -48,6 +47,12 @@ $(document).ready(function () {
             $(".secondmenu").css("padding-bottom", "60px");
         }
     });
+    //表格自動編號
+    $(document).ready(function(){
+        $(".a").each(function(index){
+            $(this).html(index+1,index++); 
+        });
+    })
 });
 
 // 剪貼簿
