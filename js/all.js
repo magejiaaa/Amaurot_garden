@@ -48,11 +48,18 @@ $(document).ready(function () {
         }
     });
     //表格自動編號
-    $(document).ready(function(){
-        $(".a").each(function(index){
-            $(this).html(index+1,index++); 
-        });
-    })
+    $(".normalTW").each(function(index){
+        $(this).html(index+1,index++); 
+    });
+    $(".speakTW").each(function(index){
+        $(this).html(index+1,index++); 
+    });
+    $(".hintTW").each(function(index){
+        $(this).html(index+1,index++); 
+    });
+    $(".uiTW").each(function(index){
+        $(this).html(index+1,index++); 
+    });
 });
 
 // 剪貼簿
