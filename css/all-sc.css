@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #6781a9;
+}
+
 .tooTop {
   z-index: 2000;
 }
@@ -39,8 +43,8 @@
 
 @media (max-width: 991px) {
   .tooTop {
-    -webkit-box-shadow: 0px 2px 3px 0px #8b8b8b8f;
-            box-shadow: 0px 2px 3px 0px #8b8b8b8f;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(139, 139, 139, 0.5607843137);
+            box-shadow: 0px 2px 3px 0px rgba(139, 139, 139, 0.5607843137);
   }
 
   .menulist .dropdown-menu {
@@ -407,7 +411,7 @@
 }
 .secondmenu::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: #92a7c76e;
+  background-color: rgba(146, 167, 199, 0.431372549);
   border: none;
 }
 .secondmenu::-webkit-scrollbar-track {

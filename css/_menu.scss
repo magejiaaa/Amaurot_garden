@@ -1,4 +1,7 @@
 // menu
+.dropdown-item.active, .dropdown-item:active{
+    background-color: #6781a9;
+}
 .tooTop{
     z-index: 2000;
 }

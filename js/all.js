@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(".menulist").find(".dropdown").on({
-        mouseenter: function () {
+        mouseenter() {
             //stuff to do on mouse enter
             $(this).find(".dropdown-menu").addClass("show")
         },

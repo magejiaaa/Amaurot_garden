@@ -11,6 +11,7 @@ $(document).ready(function () {
         }
     });
 
+
     $(".hamburger1").click(function(){
         $(this).toggleClass("is-active");
     });
