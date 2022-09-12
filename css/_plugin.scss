@@ -1,3 +1,7 @@
+body {
+    position: relative;
+}
+
 // 插件頁面圖片
 .imagebig{
     img{
@@ -46,4 +50,17 @@
     &::-webkit-scrollbar-track {
         box-shadow: transparent;
     }
+}
+@media (max-width: 767px){
+    .secondmenu{
+        height: auto;
+        position: unset;
+    }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #4c72ad;
+}
+.nav-link{
+    color: #629ffa;
 }

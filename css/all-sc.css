@@ -186,7 +186,7 @@
   width: 100%;
 }
 
-.commonFormat::before, .tweakFormat::before, .indexFixFormat::before {
+.commonFormat::before, .tweakFormat::before, .indexFixFormat::before, .thirdplugin::before {
   margin-top: -200px;
 }
 
@@ -373,6 +373,10 @@
     width: 95%;
   }
 }
+body {
+  position: relative;
+}
+
 .imagebig img {
   max-width: 100%;
   max-height: 2000px;
@@ -417,6 +421,20 @@
 .secondmenu::-webkit-scrollbar-track {
   -webkit-box-shadow: transparent;
           box-shadow: transparent;
+}
+
+@media (max-width: 767px) {
+  .secondmenu {
+    height: auto;
+    position: unset;
+  }
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #4c72ad;
+}
+
+.nav-link {
+  color: #629ffa;
 }
 
 .google iframe {

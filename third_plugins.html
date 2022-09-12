@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4GK80CEHHB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4GK80CEHHB');
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Dalamud的各種研究筆記，包含FF14的第三方插件介紹與界面粗略翻譯。">
+    <meta name="author" content="BigYo">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magejiaaa.github.io/Amaurot_garden/">
+    <meta property="og:title" content="Dalamud｜第三方插件－亞馬烏羅提後花園">
+    <meta property="og:description" content="Dalamud的各種研究筆記，包含FF14的第三方插件介紹與界面粗略翻譯。">
+    <meta property="og:site_name" content="Dalamud｜第三方插件－亞馬烏羅提後花園">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://magejiaaa.github.io/Amaurot_garden/">
+    <meta property="twitter:title" content="Dalamud｜第三方插件－亞馬烏羅提後花園">
+    <meta property="twitter:description" content="Dalamud的各種研究筆記，包含FF14的第三方插件介紹與界面粗略翻譯。">
+    <meta property="twitter:image" content="https://i.imgur.com/tcf5eaU.png">
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="css/all.css" rel="stylesheet">
+    <link href="css/all-sc.css" rel="stylesheet">
+
+    <!-- js -->
+    <script src="js/include.js"></script>
+
+    <title>Dalamud｜第三方插件－亞馬烏羅提後花園</title>
+</head>
+
+
+<body data-bs-spy="scroll">
+    <!-- header -->
+    <div w3-include-html="head.html"></div>
+
+    <!-- 內容 -->
+    <div class="container-fluid thirdplugin">
+        <div class="row justify-content-end">
+            <nav class="col-md-4 col-lg-3 
+            navbar navbar-light bg-light flex-column align-items-stretch justify-content-start
+            ps-md-5 | mt-5 | pt-5 | px-2 fixed-top secondmenu"
+            id="third_pluginsMenu">
+                <a class="navbar-brand" href="#">第三方插件</a>
+                <nav class="nav nav-pills flex-column">
+                <a class="nav-link" href="#cammy">視距解鎖</a>
+                <a class="nav-link" href="#">戰鬥相關</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#SlothCombo">超猛連擊</a>
+                        <a class="nav-link ms-3 my-1" href="#XIVAuras">buff CD增強</a>
+                    </nav>
+                <a class="nav-link" href="#">Mod相關</a>
+                <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ms-3 my-1" href="#Penumbra">Penumbra</a>
+                    <a class="nav-link ms-3 my-1" href="#Glamourer">Glamourer</a>
+                </nav>
+                </nav>
+            </nav>
+            <!-- 文章內容 -->
+            <div class="col-md-8 col-lg-9 my-sm-5 px-4 px-sm-5 imagebig" 
+            data-bs-spy="scroll" data-bs-target="#third_pluginsMenu" data-bs-offset="-430" tabindex="0">
+                <div class="commonFormat mt-5" id="cammy">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3" >Cammy</h6>
+                        <a href="https://github.com/UnknownX7/Cammy" class="btn btn-outline-secondary"
+                            role="button">插件原網址</a>
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        https://raw.githubusercontent.com/UnknownX7/DalamudPluginRepo/master/pluginmaster.json
+                    </div>
+                    <p>QoL Bar的部分是設定條件，可以設定職業、地區、是否進入戰鬥來綁定要用哪個視角的設定</p>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/cammy.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                </div>
+                <div class="commonFormat mt-5" id="SlothCombo">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3">XIVSlothCombo</h6>
+                        <a href="https://github.com/Nik-Potokar/XIVSlothCombo" class="btn btn-outline-secondary"
+                            role="button">插件原網址</a>
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        https://raw.githubusercontent.com/Nik-Potokar/MyDalamudPlugins/main/pluginmaster.json
+                    </div>
+                    <p>更多功能的combo，<a href="https://docs.qq.com/sheet/DVURCZmhwc1pFbUt6?tab=BB08J2">詳細翻譯請參照這裡</a>
+                    </br>
+                    有空再合併到網頁來</p>
+                    <div class="mix d-flex flex-wrap">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/SlothCombo01.gif" alt="" class="img-fluid mb-2 imagebigback lazyload me-2">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/SlothCombo02.gif" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/SlothCombo03.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                </div>
+                <div class="commonFormat mt-5" id="XIVAuras">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3">XIVAuras</h6>
+                        <a href="https://github.com/lichie567/XIVAuras" class="btn btn-outline-secondary"
+                            role="button">插件原網址</a>
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        https://raw.githubusercontent.com/lichie567/XIVAuras/main/repo.json
+                    </div>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/XIVAuras.gif" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                    <p>buff增益增強、CD顯示增強</p>
+                </div>
+                <div class="commonFormat mt-5" id="Penumbra">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3">Penumbra</h6>
+                        <a href="https://github.com/xivdev/Penumbra" class="btn btn-outline-secondary"
+                            role="button">插件原網址</a>
+                    </div>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/penumbra01.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                    <p>第三方庫，安裝路徑參見原網址 </br>
+                    在不退出遊戲的情況下打上mod，同時也可以關閉mod，支援導入mod包並可勾選選項(如果有的話)</p>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/penumbra02.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                    <p>配合Glamourer使用可以點右鍵直接遊戲內預覽mod後的樣子</p>
+                </div>
+                <div class="commonFormat mt-5" id="Glamourer">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3">Glamourer</h6>
+                        <a href="https://github.com/Ottermandias/Glamourer" class="btn btn-outline-secondary"
+                            role="button">插件原網址</a>
+                    </div>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/Glamourer.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                    <p>插件版CMTool，但不支援移動鏡頭＆調整動作。<br>
+                    移動鏡頭可以配合cammy使用<br>
+                    對物品（髮型）右鍵可以直接套在自己身上而不是試穿視窗，可保存套裝一鍵套用。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+    <div w3-include-html="footer.html"></div>
+
+    <!-- JS插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- jq -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        includeHTML();
+    </script>
+    <script src="js/all.js"></script>
+</body>
+</html>
