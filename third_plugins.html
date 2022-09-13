@@ -45,7 +45,7 @@
 </head>
 
 
-<body data-bs-spy="scroll">
+<body data-bs-spy="scroll" data-bs-target="#third_pluginsMenu" data-bs-offset="180" tabindex="0">
     <!-- header -->
     <div w3-include-html="head.html"></div>
 
@@ -65,15 +65,15 @@
                         <a class="nav-link ms-3 my-1" href="#XIVAuras">buff CD增強</a>
                     </nav>
                 <a class="nav-link" href="#">Mod相關</a>
-                <nav class="nav nav-pills flex-column">
-                    <a class="nav-link ms-3 my-1" href="#Penumbra">Penumbra</a>
-                    <a class="nav-link ms-3 my-1" href="#Glamourer">Glamourer</a>
-                </nav>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#Penumbra">Penumbra</a>
+                        <a class="nav-link ms-3 my-1" href="#Glamourer">Glamourer</a>
+                    </nav>
+                <a class="nav-link" href="#autohook">自動釣魚</a>
                 </nav>
             </nav>
             <!-- 文章內容 -->
-            <div class="col-md-8 col-lg-9 my-sm-5 px-4 px-sm-5 imagebig" 
-            data-bs-spy="scroll" data-bs-target="#third_pluginsMenu" data-bs-offset="-430" tabindex="0">
+            <div class="col-md-8 col-lg-9 my-sm-5 px-4 px-sm-5 imagebig">
                 <div class="commonFormat mt-5" id="cammy">
                     <div class="plugintitle d-flex align-items-center mb-3">
                         <h6 class="fs-4 d-inline mb-0 me-3" >Cammy</h6>
@@ -141,19 +141,21 @@
                         <a href="https://github.com/xivdev/Penumbra" class="btn btn-outline-secondary"
                             role="button">插件原網址</a>
                     </div>
-                    <div class="mix d-flex">
-                        <div class="spinner-border m-3" role="status" visibility="visible">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                        <img data-src="image/penumbra01.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    <div class="alert alert-secondary" role="alert">
+                        https://raw.githubusercontent.com/xivdev/Penumbra/master/repo.json
                     </div>
-                    <p>第三方庫，安裝路徑參見原網址 </br>
-                    在不退出遊戲的情況下打上mod，同時也可以關閉mod，支援導入mod包並可勾選選項(如果有的話)</p>
                     <div class="mix d-flex">
                         <div class="spinner-border m-3" role="status" visibility="visible">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                        <img data-src="image/penumbra02.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                        <img data-src="image/Penumbra01.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                    <p>在不退出遊戲的情況下打上mod，同時也可以關閉mod，支援導入mod包並可勾選選項(如果有的話)</p>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="image/Penumbra02.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
                     </div>
                     <p>配合Glamourer使用可以點右鍵直接遊戲內預覽mod後的樣子</p>
                 </div>
@@ -163,11 +165,40 @@
                         <a href="https://github.com/Ottermandias/Glamourer" class="btn btn-outline-secondary"
                             role="button">插件原網址</a>
                     </div>
+                    <div class="alert alert-secondary" role="alert">
+                        https://raw.githubusercontent.com/Ottermandias/Glamourer/main/repo.json
+                    </div>
                     <div class="mix d-flex">
                         <div class="spinner-border m-3" role="status" visibility="visible">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                         <img data-src="image/Glamourer.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                    </div>
+                    <p>插件版CMTool，但不支援移動鏡頭＆調整動作。<br>
+                    移動鏡頭可以配合cammy使用<br>
+                    對物品（髮型）右鍵可以直接套在自己身上而不是試穿視窗，可保存套裝一鍵套用。</p>
+                </div>
+                <div class="commonFormat mt-5" id="autohook">
+                    <div class="plugintitle d-flex align-items-center mb-3">
+                        <h6 class="fs-4 d-inline mb-0 me-3">AutoHook</h6>
+                        <a href="https://github.com/InitialDet/AutoHook" class="btn btn-outline-secondary"
+                            role="button">插件原網址</a>
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        https://raw.githubusercontent.com/InitialDet/MyDalamudPlugins/main/pluginmaster.json
+                    </div>
+                    <p class="fs-5 fw-bold">特色</p>
+                    <ul>
+                        <li>根據當前的餌/以小釣大進行有條件的收鉤</li>
+                        <li>收鉤前可配置的最大/最小等待時間</li>
+                        <li>在有直感buff下進行有條件收鉤</li>
+                        <li>自動放線、自動以小釣大、自動GP藥...等更多</li>
+                    </ul>
+                    <div class="mix d-flex">
+                        <div class="spinner-border m-3" role="status" visibility="visible">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <img data-src="https://user-images.githubusercontent.com/13919114/176052358-5ba44b80-6be3-4890-9826-1c4b4f7c60a9.png" alt="" class="img-fluid mb-2 imagebigback lazyload">
                     </div>
                     <p>插件版CMTool，但不支援移動鏡頭＆調整動作。<br>
                     移動鏡頭可以配合cammy使用<br>

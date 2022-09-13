@@ -39,14 +39,25 @@ $(document).ready(function () {
         }
     });
     //試做次選單不要超出footer
-    $(window).scroll(function() {
-        if ($(document).scrollTop() >= $(document).height() - $(window).height()- $(".footer").outerHeight(true)) {
-            $(".secondmenu").css("padding-bottom", "260px");
-        }
-        else {
-            $(".secondmenu").css("padding-bottom", "60px");
-        }
-    });
+    var $window = $(window);
+    function checkWidth() {
+        var windowsize = $window.width();
+        $window.scroll(function() {
+            if (windowsize > 767 && 
+                $(document).scrollTop() >= $(document).height() - $window.height()- $(".footer").outerHeight(true)
+                ) 
+            {
+                $(".secondmenu").css("padding-bottom", "260px");
+            }
+            else {
+                $(".secondmenu").css("padding-bottom", "60px");
+            }
+        });
+    }
+    checkWidth();
+    // Bind event listener
+    $(window).resize(checkWidth);
+
     //表格自動編號
     $(".normalTW").each(function(index){
         $(this).html(index+1,index++); 
