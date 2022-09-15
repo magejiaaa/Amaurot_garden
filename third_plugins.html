@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4GK80CEHHB"></script>
@@ -56,23 +57,22 @@
             <!-- 選單 -->
             <nav class="col-md-4 col-lg-3 
             navbar navbar-light bg-light flex-column align-items-stretch justify-content-start
-            ps-md-5 | mt-5 | pt-5 | px-2 fixed-top secondmenu"
-            id="third_pluginsMenu">
+            ps-md-5 | mt-5 | pt-5 | px-2 fixed-top secondmenu" id="third_pluginsMenu">
                 <a class="navbar-brand" href="#">第三方插件</a>
                 <nav class="nav nav-pills flex-column">
-                <a class="nav-link" href="#cammy">視距解鎖</a>
-                <a class="nav-link" href="#">戰鬥相關</a>
+                    <a class="nav-link" href="#cammy">視距解鎖</a>
+                    <a class="nav-link" href="#">戰鬥相關</a>
                     <nav class="nav nav-pills flex-column">
                         <a class="nav-link ms-3 my-1" href="#SlothCombo">超猛連擊</a>
                         <a class="nav-link ms-3 my-1" href="#XIVAuras">buff CD增強</a>
                     </nav>
-                <a class="nav-link" href="#">Mod相關</a>
+                    <a class="nav-link" href="#">Mod相關</a>
                     <nav class="nav nav-pills flex-column">
                         <a class="nav-link ms-3 my-1" href="#Penumbra">Penumbra</a>
                         <a class="nav-link ms-3 my-1" href="#Glamourer">Glamourer</a>
                         <a class="nav-link ms-3 my-1" href="#Material">Material UI</a>
                     </nav>
-                <a class="nav-link" href="#autohook">自動釣魚</a>
+                    <a class="nav-link" href="#autohook">自動釣魚</a>
                 </nav>
             </nav>
 
@@ -82,7 +82,7 @@
                 <!-- Cammy -->
                 <div class="commonFormat mt-5" id="cammy">
                     <div class="plugintitle d-flex align-items-center mb-3">
-                        <h6 class="fs-4 d-inline mb-0 me-3" >Cammy</h6>
+                        <h6 class="fs-4 d-inline mb-0 me-3">Cammy</h6>
                         <a href="https://github.com/UnknownX7/Cammy" class="btn btn-outline-secondary"
                             role="button">插件原網址</a>
                     </div>
@@ -107,10 +107,51 @@
                     <div class="alert alert-secondary" role="alert">
                         https://raw.githubusercontent.com/Nik-Potokar/MyDalamudPlugins/main/pluginmaster.json
                     </div>
-                    <p>更多功能的combo，<a href="https://docs.qq.com/sheet/DVURCZmhwc1pFbUt6?tab=BB08J2">詳細翻譯請參照這裡</a>
-                    </br>
-                    有空再合併到網頁來</p>
-                    <div class="mix d-flex flex-wrap">
+                    <p>更多功能的combo，<a
+                            href="https://docs.google.com/spreadsheets/d/1hCwuz1hUmH5cnN1o0zLA3nxRR6w9f6ltpWv3JNkE8VI/edit?usp=sharing">詳細翻譯請參照這裡</a>
+                        </br>
+                        有空再合併到網頁來
+                    </p>
+
+                    <!-- 各職業翻譯 -->
+                    <!-- 占星術師 -->
+                    <button type="button" class="btn btn-primary healer" data-bs-toggle="modal" data-bs-target="#Astrologian">
+                        占星術師
+                    </button>
+                    <div class="modal fade" id="Astrologian" tabindex="-1" aria-labelledby="AstrologianTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="AstrologianTitle">占星術師</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <iframe class="modal-body" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQao_rNTBpiq9SV2gkDNU3L_jnEcceQQ6FoUqjIhmdUjEMg3AUiCNbpWPdsyb6CQZOPk1klGsinSzl9/pubhtml?gid=1844204102&single=true" height="700">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 學者 -->
+                    <button type="button" class="btn btn-primary healer" data-bs-toggle="modal" data-bs-target="#Scholar">
+                        學者
+                    </button>
+                    <div class="modal fade" id="Scholar" tabindex="-1" aria-labelledby="ScholarTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ScholarTitle">學者</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <iframe class="modal-body" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQao_rNTBpiq9SV2gkDNU3L_jnEcceQQ6FoUqjIhmdUjEMg3AUiCNbpWPdsyb6CQZOPk1klGsinSzl9/pubhtml?gid=717722577&single=true" height="700">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mix d-flex flex-wrap mt-3">
                         <div class="spinner-border m-3" role="status" visibility="visible">
                             <span class="visually-hidden">Loading...</span>
                         </div>
@@ -185,8 +226,8 @@
                         <img data-src="image/Glamourer.jpg" alt="" class="img-fluid mb-2 imagebigback lazyload">
                     </div>
                     <p>插件版CMTool，但不支援移動鏡頭＆調整動作。<br>
-                    移動鏡頭可以配合cammy使用<br>
-                    對物品（髮型）右鍵可以直接套在自己身上而不是試穿視窗，可保存套裝一鍵套用。</p>
+                        移動鏡頭可以配合cammy使用<br>
+                        對物品（髮型）右鍵可以直接套在自己身上而不是試穿視窗，可保存套裝一鍵套用。</p>
                 </div>
                 <!-- Material UI -->
                 <div class="commonFormat mt-5" id="Material">
@@ -202,24 +243,27 @@
                         <div class="spinner-border m-3" role="status" visibility="visible">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                        <img data-src="https://github.com/Sevii77/ffxiv_materialui_accent/raw/master/images/preview.png" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                        <img data-src="https://github.com/Sevii77/ffxiv_materialui_accent/raw/master/images/preview.png"
+                            alt="" class="img-fluid mb-2 imagebigback lazyload">
                     </div>
                     <p>有用過textool版本的人很熟悉了，設定都一樣，只是移植成了Penumbra版本，設定畫面都有預覽圖可以查看樣式<br>
-                    但涉及UI更改建議重新登入以確保所有UI變更成Material版本。
+                        但涉及UI更改建議重新登入以確保所有UI變更成Material版本。
                     </p>
                     <p class="fs-5 fw-bold">需設置4K分辨率(不是螢幕分辨率)</p>
                     <div class="mix d-flex">
                         <div class="spinner-border m-3" role="status" visibility="visible">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                        <img data-src="https://github.com/skotlex/ffxiv-material-ui/raw/master/ModPacks/Resources/Preview/guide1.png" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                        <img data-src="https://github.com/skotlex/ffxiv-material-ui/raw/master/ModPacks/Resources/Preview/guide1.png"
+                            alt="" class="img-fluid mb-2 imagebigback lazyload">
                     </div>
                     <p>顏色需為黑暗模式</p>
                     <div class="mix d-flex">
                         <div class="spinner-border m-3" role="status" visibility="visible">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                        <img data-src="https://github.com/skotlex/ffxiv-material-ui/raw/master/ModPacks/Resources/Preview/guide2.png" alt="" class="img-fluid mb-2 imagebigback lazyload">
+                        <img data-src="https://github.com/skotlex/ffxiv-material-ui/raw/master/ModPacks/Resources/Preview/guide2.png"
+                            alt="" class="img-fluid mb-2 imagebigback lazyload">
                     </div>
                 </div>
                 <!-- AutoHook -->
@@ -264,8 +308,8 @@
 
     <!-- JS插件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-    crossorigin="anonymous"></script>
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
@@ -274,7 +318,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         includeHTML();
+        var myModal = new bootstrap.Modal(document.getElementById('Astrologian'))
+        myModal.handleUpdate();
     </script>
     <script src="js/all.js"></script>
 </body>
+
 </html>

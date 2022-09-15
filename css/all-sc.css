@@ -4,11 +4,11 @@
 }
 
 .tooTop {
-  z-index: 2000;
+  z-index: 1000;
 }
 
 .menulist {
-  z-index: 2000;
+  z-index: 1000;
 }
 .menulist li {
   padding: 0 1rem;
@@ -43,8 +43,8 @@
 
 @media (max-width: 991px) {
   .tooTop {
-    -webkit-box-shadow: 0px 2px 3px 0px #8b8b8b8f;
-            box-shadow: 0px 2px 3px 0px #8b8b8b8f;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(139, 139, 139, 0.5607843137);
+            box-shadow: 0px 2px 3px 0px rgba(139, 139, 139, 0.5607843137);
   }
 
   .menulist .dropdown-menu {
@@ -415,7 +415,7 @@ body {
 }
 .secondmenu::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: #92a7c76e;
+  background-color: rgba(146, 167, 199, 0.431372549);
   border: none;
 }
 .secondmenu::-webkit-scrollbar-track {
@@ -433,6 +433,27 @@ body {
 
 .alert-secondary {
   word-wrap: break-word;
+}
+
+#third_pluginsMenu {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.healer {
+  background-color: #6fa982;
+  border-color: #5a9b70;
+}
+
+.healer:hover {
+  background-color: #377e4f;
+}
+
+.healer:focus {
+  background-color: #377e4f;
+  border-color: #137333;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(132, 197, 131, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(132, 197, 131, 0.25);
 }
 
 @media (max-width: 767px) {

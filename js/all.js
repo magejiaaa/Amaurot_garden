@@ -15,6 +15,11 @@ $(document).ready(function () {
         $(this).toggleClass("is-active");
     });
     //圖片滑鼠移入放大
+    // $(".imagebig").find("img:not(.imgnoJq").click(function(){
+    //     $(this).removeClass("imagebigback")
+    //     $(this).attr("max-height", "100%")
+    // });
+
     $(".imagebig").find("img:not(.imgnoJq").on({
         mouseenter: function () {
             //stuff to do on mouse enter
@@ -27,6 +32,7 @@ $(document).ready(function () {
             $(this).addClass("imagebigback")
         }
     });
+    
     //這啥 但跟滑鼠移入移出有關
     $(".codeclip").on({
         mouseenter: function () {

@@ -60,6 +60,23 @@ body {
 .alert-secondary{
     word-wrap: break-word;
 }
+#third_pluginsMenu{
+    flex-wrap: nowrap;
+}
+
+// 職業按鈕分色
+.healer{
+    background-color: #6fa982;
+    border-color: #5a9b70;
+}
+.healer:hover{
+    background-color: #377e4f;
+}
+.healer:focus{
+    background-color: #377e4f;
+    border-color: #137333;
+    box-shadow: 0 0 0 0.25rem rgb(132 197 131 / 25%);
+}
 
 
 @media (max-width: 767px){
