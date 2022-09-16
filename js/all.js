@@ -20,18 +20,18 @@ $(document).ready(function () {
     //     $(this).attr("max-height", "100%")
     // });
 
-    $(".imagebig").find("img:not(.imgnoJq").on({
-        mouseenter: function () {
-            //stuff to do on mouse enter
-            $(this).removeClass("imagebigback")
-            $(this).attr("max-height", "100%")
-        },
-        mouseleave: function () {
-            //stuff to do on mouse leave
-            $(this).removeAttr("max-height")
-            $(this).addClass("imagebigback")
-        }
-    });
+    // $(".imagebig").find("img:not(.imgnoJq").on({
+    //     mouseenter: function () {
+    //         //stuff to do on mouse enter
+    //         $(this).removeClass("imagebigback")
+    //         $(this).attr("max-height", "100%")
+    //     },
+    //     mouseleave: function () {
+    //         //stuff to do on mouse leave
+    //         $(this).removeAttr("max-height")
+    //         $(this).addClass("imagebigback")
+    //     }
+    // });
     
     //這啥 但跟滑鼠移入移出有關
     $(".codeclip").on({

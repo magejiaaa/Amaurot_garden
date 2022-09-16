@@ -10,7 +10,8 @@ body {
         transition: all 0.5s ease;
     }
     .imagebigback{
-        max-height: 300px;
+        // max-height: 300px;
+        max-height: auto;
     }
 } 
 
@@ -71,11 +72,25 @@ body {
 }
 .healer:hover{
     background-color: #377e4f;
+    border-color: #5a9b70;
 }
 .healer:focus{
     background-color: #377e4f;
     border-color: #137333;
     box-shadow: 0 0 0 0.25rem rgb(132 197 131 / 25%);
+}
+.dps{
+    background-color: #db4848;
+    border-color: #b71919;
+}
+.dps:hover{
+    background-color: #c92626;
+    border-color: #bd1d1d;
+}
+.dps:focus{
+    background-color: #c92626;
+    border-color: #bd1d1d;
+    box-shadow: 0 0 0 0.25rem rgba(197, 131, 131, 0.25);
 }
 
 
