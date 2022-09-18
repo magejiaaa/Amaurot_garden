@@ -33,6 +33,7 @@ body {
 
 //次選單scroll bar
 .secondmenu{
+    z-index: 500;
     &::-webkit-scrollbar {
         width: 5px;
     }

@@ -37,6 +37,12 @@
     background: #f1f1f1;
     mix-blend-mode: multiply;
 }
+// 更新日誌
+.update{
+    color: #6781a9;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
 
 @media (max-width: 576px){
     .card .list-group-item a{

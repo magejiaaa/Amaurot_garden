@@ -315,6 +315,12 @@
   mix-blend-mode: multiply;
 }
 
+.update {
+  color: #6781a9;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
 @media (max-width: 576px) {
   .card .list-group-item a {
     display: block;
@@ -403,6 +409,9 @@ body {
   height: 8rem;
 }
 
+.secondmenu {
+  z-index: 500;
+}
 .secondmenu::-webkit-scrollbar {
   width: 5px;
 }
