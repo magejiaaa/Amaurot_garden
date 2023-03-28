@@ -1,0 +1,30 @@
+{
+  "name": "amaurot_garden",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest --environment jsdom",
+    "vitest:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitest/ui": "^0.29.8",
+    "@vue/test-utils": "^2.3.2",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.36.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "jsdom": "^21.1.1",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.2.0",
+    "vitest": "^0.29.8",
+    "vue-jest": "^5.0.0-alpha.10"
+  }
+}
