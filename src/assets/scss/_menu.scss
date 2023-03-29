@@ -1,0 +1,26 @@
+.tooTop{
+    z-index: 1000;
+}
+.menulist{
+    z-index: 1000;
+    li {
+        position: relative;
+    }
+    a::after{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: #92a7c7;
+        transition: .2s .1s;
+    }
+    a:hover::after{
+        width: 100%;
+    }
+    .dropdown::after {
+        content: none;
+    }
+}

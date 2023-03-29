@@ -11,7 +11,8 @@
     "vitest:ui": "vitest --ui"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
@@ -22,6 +23,7 @@
     "eslint-plugin-vue": "^9.10.0",
     "jsdom": "^21.1.1",
     "postcss": "^8.4.21",
+    "sass": "^1.60.0",
     "tailwindcss": "^3.2.7",
     "vite": "^4.2.0",
     "vitest": "^0.29.8",
