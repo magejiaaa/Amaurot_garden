@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-default;
+    }
+    a {
+        @apply text-grayBlue-500 transition;
+    }
+    a:hover {
+        @apply text-grayBlue-800;
+    }
+    h1 {
+        @apply text-4xl;
+    }
+};
