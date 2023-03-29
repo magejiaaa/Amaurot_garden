@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply font-default;
+        @apply font-default tracking-wide;
     }
     a {
         @apply text-grayBlue-500 transition;
@@ -14,5 +14,8 @@
     }
     h1 {
         @apply text-4xl;
+    }
+    .btn {
+        @apply px-6 py-4;
     }
 };

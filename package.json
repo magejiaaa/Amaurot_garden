@@ -11,6 +11,8 @@
     "vitest:ui": "vitest --ui"
   },
   "dependencies": {
+    "firebase": "^9.18.0",
+    "pinia": "^2.0.33",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

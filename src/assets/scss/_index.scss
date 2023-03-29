@@ -1,21 +1,26 @@
 .banner {
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    .font-bold {
+        background: linear-gradient(to left, #221c71 , #5e64a3);
+        background-clip: text;
+        color: transparent;
+    }
 }
 
 // banner按鈕
-.btnfather {
-    position: relative;
-}
-
-.downloadbtn {
+.downloadBtn {
     background-image: linear-gradient(274deg, #9cb3d7 0%, #c3cfe2 100%);
     border: 0;
     border-radius: 0%;
     margin: 5px;
+    color: #fff;
+    &:hover {
+        color: #fff;
+    }
 }
 
-.downloadbtn::before,
-.downloadbtn::after {
+.downloadBtn::before,
+.downloadBtn::after {
     position: absolute;
     content: "";
     background: transparent;
@@ -26,7 +31,7 @@
     transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
 }
 
-.downloadbtn::before {
+.downloadBtn::before {
     top: 0;
     right: 0;
     border-top: 1px solid rgba(28, 31, 30, 0.36);
@@ -34,7 +39,7 @@
     mix-blend-mode: multiply;
 }
 
-.downloadbtn::after {
+.downloadBtn::after {
     bottom: 0;
     left: 0;
     border-bottom: 1px solid rgba(28, 31, 30, 0.36);
@@ -42,8 +47,8 @@
     mix-blend-mode: multiply;
 }
 
-.downloadbtn:hover::before,
-.downloadbtn:hover::after {
+.downloadBtn:hover::before,
+.downloadBtn:hover::after {
     width: 100%;
     height: 99%;
     opacity: 1;

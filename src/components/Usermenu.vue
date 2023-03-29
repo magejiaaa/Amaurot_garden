@@ -1,14 +1,14 @@
 <template>
     <nav class="fixed top-0 right-0 w-full flex justify-between items-center bg-white h-20 | tooTop">
         <router-link to="/" class="flex items-center p-4">
-            <img src="../assets/images/logo.png" alt="" class="w-20 mr-3 h-auto">
+            <img src="../assets/images/logo.png" alt="" class="w-16 mr-3 h-auto">
             <h1 class="text-black text-xl">亞馬烏羅提後花園</h1>
         </router-link>
 
         <div>
             <ul class="flex mr-4 | menulist">
                 <li class="group">
-                    <a class="p-4 inline-flex items-center | dropdown" href="#" role="button">
+                    <a class="p-4 inline-flex items-center group-hover:text-grayBlue-800 | dropdown" href="#" role="button">
                         Dalamud介紹
                         <svg class="-mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd"

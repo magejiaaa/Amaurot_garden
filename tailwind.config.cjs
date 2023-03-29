@@ -12,7 +12,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        default: [ " 'M PLUS Rounded 1c' ", "Nunito", " 'Noto Sans TC' ", "sans-serif",],
+        default: [ 'Rubik', '"Noto Sans TC"', '"M PLUS Rounded 1c"', 'sans-serif'],
       },
     },
   },
