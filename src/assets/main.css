@@ -16,6 +16,12 @@
         @apply text-4xl;
     }
     .btn {
-        @apply px-6 py-4;
+        @apply px-6 py-3 rounded-xl transition;
+    }
+    .listGroup {
+        @apply bg-white border border-solid border-gray-300 rounded divide-y;
+    }
+    .list {
+        @apply grid transition cursor-pointer hover:bg-gray-100 first:rounded-t last:rounded-b;
     }
 };

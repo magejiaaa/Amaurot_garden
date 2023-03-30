@@ -1,7 +1,7 @@
 <template>
     <menuNav></menuNav>
 
-    <div class="container-none mx-auto pt-20 h-screen">
+    <div class="container-none mx-auto pt-20">
         <!-- banner -->
         <div class="text-center py-16 h-full | banner">
             <div class="w-8/12 mx-auto">
@@ -38,35 +38,19 @@
 
 <script>
 import menuNav from '../components/Usermenu.vue';
-// import { usePluginsStore } from '../stores/pluginStore';
-import { ref, child, get } from 'firebase/database';
-import { database } from '../stores/firebasedb';
+import { usePluginsStore } from '../stores/pluginStore';
 import { onMounted } from 'vue';
 
 export default {
     setup() {
-        // const plugins = usePluginsStore();
-        // plugins.getFirebasePlugins();
-
-        function getPlugin() {
-            const dbRef = ref(database);
-            get(child(dbRef, 'plugins')).then((snapshot) => {
-                if (snapshot.exists()) {
-                    console.log(snapshot.val());
-                } else {
-                    console.log("No data available");
-                }
-            }).catch((error) => {
-                console.error(error);
-            });
-        }
-
+        const plugins = usePluginsStore();
+        
         onMounted(() => {
-            getPlugin();
+            plugins.getPlugin();
         })
 
         return {
-            getPlugin
+
         }
     },
     components: {

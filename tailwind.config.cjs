@@ -9,6 +9,11 @@ module.exports = {
           300: '#92a7c7',
           500: '#5d7dac',
           800: '#374c6c',
+        },
+        blueGreen: {
+          300: '#B4D0CC',
+          500: '#8EB8B2',
+          800: '#4F7D76',
         }
       },
       fontFamily: {
