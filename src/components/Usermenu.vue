@@ -28,15 +28,15 @@
                 <li>
                     <a class="p-4 block" href="plugins_ui.html">插件介紹</a>
                 </li>
-                <li class="p-4">
-                    <a class="nav-link active" data-bs-toggle="page" href="third_plugins.html">第三方插件</a>
+                <li>
+                    <a class="p-4 block" data-bs-toggle="page" href="third_plugins.html">第三方插件</a>
                 </li>
-                <li class="p-4">
-                    <a class="nav-link active" aria-current="page" href="question.html">常見問題</a>
+                <li>
+                    <a class="p-4 block" aria-current="page" href="question.html">常見問題</a>
                 </li>
                 <li class="p-4">登入</li>
-                <li class="p-4">
-                    <a class="nav-link active" aria-current="page" href="report.html">意見回報</a>
+                <li>
+                    <a class="p-4 block" aria-current="page" href="report.html">意見回報</a>
                 </li>
             </ul>
         </div>
