@@ -34,7 +34,9 @@
                 <li>
                     <a class="p-4 block" aria-current="page" href="question.html">常見問題</a>
                 </li>
-                <li class="p-4">登入</li>
+                <li>
+                    <router-link to="/dashboard/pluginsList" class="p-4 block">登入</router-link>
+                </li>
                 <li>
                     <a class="p-4 block" aria-current="page" href="report.html">意見回報</a>
                 </li>
