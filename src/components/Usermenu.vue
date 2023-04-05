@@ -32,13 +32,10 @@
                     <a class="p-4 block" data-bs-toggle="page" href="third_plugins.html">第三方插件</a>
                 </li>
                 <li>
-                    <a class="p-4 block" aria-current="page" href="question.html">常見問題</a>
-                </li>
-                <li>
-                    <router-link to="/dashboard/pluginsList" class="p-4 block">登入</router-link>
-                </li>
-                <li>
-                    <a class="p-4 block" aria-current="page" href="report.html">意見回報</a>
+                    <router-link to="/dashboard/pluginsList" class="p-4 block" v-if="isLogin"
+                    @click="$emit('signOut')">登出</router-link>
+                    <router-link to="/dashboard/pluginsList" class="p-4 block" v-else
+                    @click="loginPush">登入</router-link>
                 </li>
             </ul>
         </div>
@@ -46,7 +43,29 @@
 </template>
 
 <script>
-export default {
+import { useRouter } from 'vue-router'
 
+export default {
+    props: {
+        isLogin: {
+            type: Boolean,
+            default: false,
+        }
+    },
+    setup(props) {
+        const router = useRouter()
+        // 點登入跳轉
+        function loginPush() {
+            if (props.isLogin) {
+                router.push('/dashboard/pluginsList');
+            } else {
+                router.push('/login');
+            }
+        }
+
+        return {
+            loginPush,
+        }
+    }
 }
 </script>
