@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply font-default tracking-wide;
+        @apply font-default font-normal tracking-wide;
     }
     a {
         @apply text-grayBlue-500 transition;
@@ -14,6 +14,15 @@
     }
     h1 {
         @apply text-4xl;
+    }
+    h3 {
+        @apply text-2xl;
+    }
+    input, select, textarea {
+        @apply block h-9 w-full py-1.5 pl-7 pr-20 rounded-md border-0 
+        ring-1 ring-grayBlue-300
+        focus:ring-2 focus:ring-grayBlue-500
+        focus-visible:outline-none;
     }
     .btn {
         @apply px-6 py-3 rounded-xl transition;

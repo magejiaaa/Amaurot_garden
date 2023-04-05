@@ -11,8 +11,17 @@
     "vitest:ui": "vitest --ui"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@headlessui/vue": "^1.7.12",
+    "@tinymce/tinymce-vue": "^4.0.7",
     "firebase": "^9.18.0",
     "pinia": "^2.0.33",
+    "tinymce": "^5.10.7",
+    "tinymce-i18n": "^23.1.23",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

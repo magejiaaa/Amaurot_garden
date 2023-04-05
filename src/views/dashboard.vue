@@ -1,6 +1,6 @@
 <template>
     <Usermenu></Usermenu>
-    <router-view class="container-none mt-20"></router-view>
+    <router-view></router-view>
 </template>
 
 <script>

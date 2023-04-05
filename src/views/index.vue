@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
-                    <i class="fa-solid fa-triangle-exclamation text-2xl align-text-bottom"></i>
+                    <font-awesome-icon icon="fa-solid fa-triangle-exclamation" 
+                    class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
                 <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png"
