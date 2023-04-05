@@ -46,7 +46,7 @@
                     leave="ease-in duration-200"
                     leave-from="opacity-100 translate-y-0 sm:scale-100"
                     leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                    <DialogPanel class="fixed w-full top-20">
+                    <DialogPanel class="fixed w-full top-20 h-screen">
                         <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal"></pluginModel>
                     </DialogPanel>
                 </TransitionChild>
@@ -85,6 +85,7 @@ export default {
 
         // 控制 Modal 開關
         let isOpen = ref(false);
+        // TODO: 新增插件的函式
         // 帶入當前插件資料至Model
         const tempPlugin = ref({});
         function pluginContent(item) {

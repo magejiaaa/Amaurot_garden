@@ -1,6 +1,6 @@
 <template>
     <!-- 插件視窗 -->
-    <div class="bg-white w-8/12 mx-auto rounded-lg p-8">
+    <div class="bg-white w-8/12 mx-auto rounded-lg p-8 h-4/5 overflow-auto">
         <div class="flex items-center justify-between text-grayBlue-500 mb-8">
             <h3>插件編輯</h3>
             <font-awesome-icon icon="fa-solid fa-xmark" class="h-6 fill-current cursor-pointer p-2" @click="closeModal" />
@@ -21,8 +21,11 @@
             </div>
             <div class="col-span-2">
                 <label for="describe">插件功能簡稱(不超過10個字)</label>
-                <input type="text" placeholder="請輸入插件功能簡稱" id="describe" v-model="tempPlugin.describe"
-                class="w-full">
+                <input type="text" placeholder="請輸入插件功能簡稱" id="describe" v-model="tempPlugin.describe" class="w-full">
+            </div>
+            <div class="col-span-2">
+                <label for="pluginHTML">插件介紹</label>
+                <tinycme-editor v-model="editorData"></tinycme-editor>
             </div>
         </div>
         <div class="flex text-center">
@@ -33,10 +36,14 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { usePluginsStore } from '../stores/pluginStore';
+import TinycmeEditor from '../components/TinyMCE.vue';
 
 export default {
+    components: {
+        TinycmeEditor,
+    },
     props: {
         plugin: {
             type: Object,
@@ -53,11 +60,20 @@ export default {
         const updateModal = () => {
             emit("updateModal", tempPlugin);
         };
+
+        // 編輯器
+        const editorData = ref(tempPlugin.value.content);
+
+        watch(editorData, (newValue) => {
+            console.log(newValue);
+        });
+
         return {
             closeModal,
             tempPlugin,
             updateModal,
-            pluginStore
+            pluginStore,
+            editorData,
         };
     }
 }

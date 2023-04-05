@@ -18,8 +18,8 @@
     h3 {
         @apply text-2xl;
     }
-    input, select {
-        @apply block py-1.5 pl-7 pr-20 rounded-md border-0 
+    input, select, textarea {
+        @apply block h-9 w-full py-1.5 pl-7 pr-20 rounded-md border-0 
         ring-1 ring-grayBlue-300
         focus:ring-2 focus:ring-grayBlue-500
         focus-visible:outline-none;

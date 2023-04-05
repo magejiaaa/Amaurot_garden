@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, child, get } from 'firebase/database';
+import { ref, child, get, set } from 'firebase/database';
 import { database } from '../stores/firebasedb';
 
 export const usePluginsStore = defineStore('plugins', {
@@ -24,6 +24,10 @@ export const usePluginsStore = defineStore('plugins', {
             }).catch((error) => {
                 console.error(error);
             });
+        },
+        setPlugin(plugin) {
+            const dbRef = ref(database);
+            set(ref(child(dbRef, 'plugins/')), plugin);
         }
     }
 })
