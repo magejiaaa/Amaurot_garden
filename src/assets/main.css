@@ -33,4 +33,7 @@
     .list {
         @apply grid transition cursor-pointer hover:bg-gray-100 first:rounded-t last:rounded-b;
     }
+    .card {
+        @apply bg-white border border-solid border-gray-300 rounded divide-y;
+    }
 };

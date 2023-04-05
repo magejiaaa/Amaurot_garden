@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, child, get, set } from 'firebase/database';
+import { ref, child, get, update, push } from 'firebase/database';
 import { database } from '../stores/firebasedb';
 
 export const usePluginsStore = defineStore('plugins', {
@@ -16,8 +16,16 @@ export const usePluginsStore = defineStore('plugins', {
             get(child(dbRef, 'plugins')).then((snapshot) => {
                 if (snapshot.exists()) {
                     console.log(snapshot.val());
+                    const plugins = snapshot.val();
+                    // 遍歷每個插件
+                    for (const key of Object.keys(plugins)) {
+                        const plugin = plugins[key];
+
+                        // 將插件的 ID 添加到插件物件中
+                        plugin.ID = key;
+                    }
                     // 物件轉陣列
-                    this.plugins = Object.values(snapshot.val());
+                    this.plugins = Object.values(plugins);
                 } else {
                     console.log("No data available");
                 }
@@ -26,8 +34,20 @@ export const usePluginsStore = defineStore('plugins', {
             });
         },
         setPlugin(plugin) {
-            const dbRef = ref(database);
-            set(ref(child(dbRef, 'plugins/')), plugin);
+            const dbRef = database;
+            const value = plugin._value;
+            const newPluginKey = push(child(ref(dbRef), 'plugins')).key;
+            const updates = {};
+            updates[`plugins/` + newPluginKey] = value;
+            return update(ref(dbRef), updates);
+        },
+        updatePlugin(plugin) {
+            const dbRef = database;
+            const value = plugin._value;
+            const ID = plugin._value.ID;
+            const updates = {};
+            updates[`plugins/` + ID] = value;
+            return update(ref(dbRef), updates);
         }
     }
 })

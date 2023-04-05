@@ -18,7 +18,8 @@
             <div class="w-8/12 py-10 px-5 mx-auto">
                 <div class="mb-5 flex justify-between items-center">
                     <h3 class="text-2xl">插件列表</h3>
-                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500">新增插件</button>
+                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500"
+                    @click="newPlugin()">新增插件</button>
                 </div>
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list grid-cols-4 "
@@ -33,20 +34,20 @@
         </div>
         <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100"
             leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
-            <Dialog class="z-50">
+            <Dialog>
                 <!-- Modal背景 -->
                 <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
                     leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-30" />
                 </TransitionChild>
                 <!-- Modal內容 -->
-                <TransitionChild as="template" enter="ease-out duration-300"
-                    enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                <TransitionChild as="template" enter="ease-out duration-5000"
+                    enter-from="opacity-0 sm:translate-y-0 sm:scale-95"
                     enter-to="opacity-100 translate-y-0 sm:scale-100" 
                     leave="ease-in duration-200"
                     leave-from="opacity-100 translate-y-0 sm:scale-100"
-                    leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                    <DialogPanel class="fixed w-full top-20 h-screen">
+                    leave-to="opacity-0 sm:translate-y-0 sm:scale-95">
+                    <DialogPanel class="fixed w-full top-20 h-screen z-40">
                         <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal"></pluginModel>
                     </DialogPanel>
                 </TransitionChild>
@@ -86,21 +87,34 @@ export default {
         // 控制 Modal 開關
         let isOpen = ref(false);
         // TODO: 新增插件的函式
-        // 帶入當前插件資料至Model
+        let isNew = ref(false);
         const tempPlugin = ref({});
+        // 新增插件判別
+        function newPlugin() {
+            isNew.value = true;
+            isOpen.value = true;
+        }
+        // 獲取當前插件資料
         function pluginContent(item) {
             tempPlugin.value = { ...item };
             isOpen.value = true;
         }
-
         // 關閉 Modal 
         function closeModal() {
             isOpen.value = false;
             tempPlugin.value = {};
         }
-
-        function updateModal() {
-            // TODO: 預計將更改的部分移到審核中
+        function updateModal(item) {
+            if (isNew.value === true) {
+                // TODO: 新增插件不用審核
+                pluginStore.setPlugin(item);
+                closeModal();
+                pluginStore.getPlugin();
+            } else {
+                pluginStore.updatePlugin(item);
+                closeModal();
+                pluginStore.getPlugin();
+            }
         }
 
         return {
@@ -111,7 +125,8 @@ export default {
             tempPlugin,
             pluginContent,
             updateModal,
-            closeModal
+            closeModal,
+            newPlugin
         }
     },
     components: {

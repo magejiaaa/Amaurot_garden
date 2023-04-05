@@ -22,8 +22,7 @@
                     </div>
                 </div>
                 <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
-                    <font-awesome-icon icon="fa-solid fa-triangle-exclamation" 
-                    class="h-5" />
+                    <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
                 <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png"
@@ -31,8 +30,16 @@
             </div>
         </div>
         <!-- 功能卡片 -->
-        <div class="col-lg-10 mx-auto px-4">
-
+        <div class="mx-auto my-8 px-8 grid grid-cols-4 gap-4">
+            <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
+                <ul class="divide-y">
+                    <li class="text-grayBlue-500 px-6 py-2 text-lg">{{ item }}</li>
+                    <li class="px-6 py-2 text-gray-500 text-sm"
+                    v-for="(plugin, index) in categories(item)" :key="index">
+                        {{ plugin }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -44,14 +51,24 @@ import { onMounted } from 'vue';
 
 export default {
     setup() {
-        const plugins = usePluginsStore();
-        
+        const pluginStore = usePluginsStore();
         onMounted(() => {
-            plugins.getPlugin();
+            pluginStore.getPlugin();
         })
+        // 篩選插件種類
+        function categories(category) {
+            const categories = new Set();
+            pluginStore.plugins.forEach(plugin => {
+                if (plugin.category === category) {
+                    categories.add(plugin.describe);
+                }
+            });
+            return Array.from(categories);
+        }
 
         return {
-
+            pluginStore,
+            categories,
         }
     },
     components: {
