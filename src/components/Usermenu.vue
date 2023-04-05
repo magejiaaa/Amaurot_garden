@@ -1,5 +1,5 @@
 <template>
-    <nav class="fixed top-0 right-0 w-full flex justify-between items-center bg-white h-20 | tooTop">
+    <nav class="fixed top-0 right-0 w-full flex justify-between items-center bg-white h-20 z-10 | tooTop">
         <router-link to="/" class="flex items-center p-4">
             <img src="../assets/images/logo.png" alt="" class="w-16 mr-3 h-auto">
             <h1 class="text-black text-xl">亞馬烏羅提後花園</h1>

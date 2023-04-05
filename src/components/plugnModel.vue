@@ -24,6 +24,10 @@
                 <input type="text" placeholder="請輸入插件功能簡稱" id="describe" v-model="tempPlugin.describe" class="w-full">
             </div>
             <div class="col-span-2">
+                <label for="website">插件原網址</label>
+                <input type="url" placeholder="請輸入插件原網址" id="website" v-model="tempPlugin.website" class="w-full">
+            </div>
+            <div class="col-span-2">
                 <label for="pluginHTML">插件介紹</label>
                 <tinycme-editor v-model="editorData"></tinycme-editor>
             </div>
@@ -65,7 +69,7 @@ export default {
         const editorData = ref(tempPlugin.value.content);
 
         watch(editorData, (newValue) => {
-            console.log(newValue);
+            tempPlugin.value.content = newValue;
         });
 
         return {
