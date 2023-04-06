@@ -5,6 +5,7 @@ import { database } from '../stores/firebasedb';
 export const usePluginsStore = defineStore('plugins', {
     // 其他配置...
     state: () => ({
+        isLogin: false,
         plugins: [],
         category: [
             'UI優化相關', '戰鬥相關', '改善遊戲體驗', '座標地圖相關', '成就相關', '金蝶房屋交易版', '外觀、BGM'

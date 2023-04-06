@@ -8,9 +8,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import 使用的 icon */
-import { faUserSecret, faXmark, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-library.add(faUserSecret, faXmark, faGithub, faTriangleExclamation)
+library.add(faUserSecret, faXmark, faGithub, faTriangleExclamation, faLink, faPenToSquare)
 
 const pinia = createPinia();
 const app = createApp(App);

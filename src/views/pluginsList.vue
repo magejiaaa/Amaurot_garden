@@ -8,13 +8,12 @@
                         <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = ''">顯示全部</button>
                     </li>
                     <li v-for="(item, index) in pluginStore.category" :key="index">
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = item">{{ item
-                        }}</button>
+                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = item">{{ item }}</button>
                     </li>
                 </ul>
             </div>
 
-            <!-- 插件列表 -->
+            <!-- 插件列表（管理版） -->
             <div class="w-8/12 py-10 px-5 mx-auto">
                 <div class="mb-5 flex justify-between items-center">
                     <h3 class="text-2xl">插件列表</h3>
@@ -86,7 +85,6 @@ export default {
 
         // 控制 Modal 開關
         let isOpen = ref(false);
-        // TODO: 新增插件的函式
         let isNew = ref(false);
         const tempPlugin = ref({});
         // 新增插件判別
