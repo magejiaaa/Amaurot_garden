@@ -1,5 +1,5 @@
 <template>
-    <menuNav></menuNav>
+    <menuNav :isLogin="pluginStore.isLogin"></menuNav>
 
     <div class="container-none mx-auto pt-20">
         <!-- banner -->
