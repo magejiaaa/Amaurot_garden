@@ -26,14 +26,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="p-4 block" href="plugins_ui.html">插件介紹</a>
+                    <router-link to="/dashboard/pluginsList" class="p-4 block">插件介紹</router-link>
                 </li>
                 <li>
                     <a class="p-4 block" data-bs-toggle="page" href="third_plugins.html">第三方插件</a>
                 </li>
                 <li>
-                    <router-link to="/dashboard/pluginsList" class="p-4 block" v-if="isLogin"
-                    @click="$emit('signOut')">登出</router-link>
+                    <button class="p-4 block" v-if="isLogin"
+                    @click="$emit('signOut')">登出</button>
                     <router-link to="/dashboard/pluginsList" class="p-4 block" v-else
                     @click="loginPush">登入</router-link>
                 </li>
@@ -57,7 +57,7 @@ export default {
         // 點登入跳轉
         function loginPush() {
             if (props.isLogin) {
-                router.push('/dashboard/pluginsList');
+                console.log('已登入');
             } else {
                 router.push('/login');
             }

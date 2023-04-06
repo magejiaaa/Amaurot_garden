@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref, child, get, update, push } from 'firebase/database';
+import { ref, child, update, push, onValue } from 'firebase/database';
 import { database } from '../stores/firebasedb';
 
 export const usePluginsStore = defineStore('plugins', {
     // 其他配置...
     state: () => ({
         isLogin: false,
+        isLoading: false,
         plugins: [],
         category: [
             'UI優化相關', '戰鬥相關', '改善遊戲體驗', '座標地圖相關', '成就相關', '金蝶房屋交易版', '外觀、BGM'
@@ -13,25 +14,19 @@ export const usePluginsStore = defineStore('plugins', {
     }),
     actions: {
         getPlugin() {
-            const dbRef = ref(database);
-            get(child(dbRef, 'plugins')).then((snapshot) => {
-                if (snapshot.exists()) {
-                    console.log(snapshot.val());
-                    const plugins = snapshot.val();
-                    // 遍歷每個插件
-                    for (const key of Object.keys(plugins)) {
-                        const plugin = plugins[key];
-
-                        // 將插件的 ID 添加到插件物件中
-                        plugin.ID = key;
-                    }
-                    // 物件轉陣列
-                    this.plugins = Object.values(plugins);
-                } else {
-                    console.log("No data available");
+            this.isLoading = true;
+            const onPlugin = ref(database, 'plugins/');
+            onValue(onPlugin, (snapshot) => {
+                const plugins = snapshot.val();
+                // 遍歷每個插件
+                for (const key of Object.keys(plugins)) {
+                    const plugin = plugins[key];
+                    // 將插件的 ID 添加到插件物件中
+                    plugin.ID = key;
                 }
-            }).catch((error) => {
-                console.error(error);
+                // 物件轉陣列
+                this.plugins = Object.values(plugins);
+                this.isLoading = false;
             });
         },
         setPlugin(plugin) {

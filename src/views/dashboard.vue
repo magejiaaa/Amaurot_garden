@@ -17,7 +17,7 @@ export default {
         // 驗證登入
         onAuthStateChanged(auth, (user) => {
             if (user != null) {
-                console.log(user);
+                // console.log(user);
                 pluginStore.isLogin = true;
             } else {
                 console.log('not logged in');

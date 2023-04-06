@@ -8,18 +8,20 @@
                         <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = ''">顯示全部</button>
                     </li>
                     <li v-for="(item, index) in pluginStore.category" :key="index">
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = item">{{ item }}</button>
+                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = item">{{ item
+                        }}</button>
                     </li>
                 </ul>
             </div>
-
+            <loading-plugin :active="pluginStore.isLoading"></loading-plugin>
             <!-- 插件列表（管理版） -->
             <div class="w-8/12 py-10 px-5 mx-auto">
                 <div class="mb-5 flex justify-between items-center">
                     <h3 class="text-2xl">插件列表</h3>
-                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500"
-                    @click="newPlugin()">新增插件</button>
+                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()"
+                        v-if="pluginStore.isLogin">新增插件</button>
                 </div>
+
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list grid-cols-4 "
                         @click="pluginContent(item)">
@@ -28,6 +30,7 @@
                         <p class="col-span-2">{{ item.describe }}</p>
                     </li>
                 </ul>
+
                 <p v-else class="text-center">本分類下沒有插件</p>
             </div>
         </div>
@@ -41,13 +44,11 @@
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <TransitionChild as="template" enter="ease-out duration-5000"
-                    enter-from="opacity-0 sm:translate-y-0 sm:scale-95"
-                    enter-to="opacity-100 translate-y-0 sm:scale-100" 
-                    leave="ease-in duration-200"
-                    leave-from="opacity-100 translate-y-0 sm:scale-100"
+                    enter-from="opacity-0 sm:translate-y-0 sm:scale-95" enter-to="opacity-100 translate-y-0 sm:scale-100"
+                    leave="ease-in duration-200" leave-from="opacity-100 translate-y-0 sm:scale-100"
                     leave-to="opacity-0 sm:translate-y-0 sm:scale-95">
                     <DialogPanel class="fixed w-full top-20 h-screen z-40">
-                        <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal"></pluginModel>
+                        <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal" :isNew="isNew"></pluginModel>
                     </DialogPanel>
                 </TransitionChild>
             </Dialog>
@@ -100,6 +101,7 @@ export default {
         // 關閉 Modal 
         function closeModal() {
             isOpen.value = false;
+            isNew.value = false;
             tempPlugin.value = {};
         }
         function updateModal(item) {
@@ -124,7 +126,8 @@ export default {
             pluginContent,
             updateModal,
             closeModal,
-            newPlugin
+            newPlugin,
+            isNew
         }
     },
     components: {
