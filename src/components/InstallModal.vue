@@ -27,10 +27,10 @@
         <!-- 遊戲內設定 -->
         <div class="mx-auto text-center" v-if="installType === 'setting'">
             <p class="mx-5">一般設定</p>
-            <a href="../assets/images/xl setting 01.jpg" target="_blank"><img src="../assets/images/xl setting 01.jpg"
+            <a href="../assets/images/xlsetting01.jpg" target="_blank"><img src="../assets/images/xlsetting01.jpg"
                     class="mx-auto border rounded-3 mb-3" alt="" loading="lazy" width="700"></a>
             <p class="mx-5">外觀設定</p>
-            <a href="../assets/images/xl setting 02.jpg" target="_blank"><img src="../assets/images/xl setting 02.jpg"
+            <a href="../assets/images/xlsetting02.jpg" target="_blank"><img src="../assets/images/xlsetting02.jpg"
                     class="mx-auto border rounded-3 mb-3" alt="" loading="lazy" width="700"></a>
             <p class="mx-sm-5">
                 後面兩個一個是頂部的bar，遊戲內可使用"/xldev"呼叫出一個頂部控制bar，最後一個標籤是使用正在測試中未上架的插件。</p>
