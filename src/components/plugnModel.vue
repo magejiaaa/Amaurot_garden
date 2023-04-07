@@ -16,7 +16,7 @@
                     </span>
                     <!-- 編輯按鈕 -->
                     <button type="button" class="ml-4 text-gray-500 cursor-pointer px-3 py-1 rounded align-middle transition
-                    hover:bg-gray-200" @click="handleClick">
+                            hover:bg-gray-200" @click="handleClick">
                         <font-awesome-icon icon="fa-solid fa-pen-to-square" class="w-5 h-5" />
                         編輯
                     </button>
@@ -32,11 +32,20 @@
                     {{ tempPlugin.describe }}
                 </p>
                 <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 ml-4 text-center cursor-pointer
-                        hover:bg-grayBlue-100">插件原網址
+                                hover:bg-grayBlue-100">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
             </div>
             <div v-html="tempPlugin.content"></div>
+            <p v-if="isReview === true" class="mt-4 text-gray-500">編輯人員：{{ tempPlugin.editMember.name }}</p>
+            <div class="mt-4">
+                <span>感謝熱心民眾編輯</span>
+                <button v-for="user in tempPlugin.allEditMember" :key="user.uid"
+                class="mx-2 px-4 py-1 bg-grayBlue-100"
+                @click="openUserLink(user)">
+                    {{ user.name }}
+                </button>
+            </div>
         </div>
         <!-- 有登入的可編輯內容 -->
         <div v-else>
@@ -69,9 +78,14 @@
             </div>
             <div class="flex justify-end mt-6">
                 <button class="btn text-gray-500 border border-gray-500 mr-4
-                                        hover:bg-gray-500 hover:text-white" type="button" @click="handleClick">取消</button>
+                            hover:bg-gray-500 hover:text-white" type="button" @click="handleClick">取消
+                </button>
                 <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800
-                                        hover:bg-grayBlue-800" type="button" @click="updateModal">確定</button>
+                            hover:bg-grayBlue-800" type="button" @click="updateModal" v-if="isReview === false">確定
+                </button>
+                <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800
+                            hover:bg-grayBlue-800" type="button" @click="checkModal" v-else>審核通過
+                </button>
             </div>
         </div>
     </div>
@@ -82,6 +96,7 @@ import { ref, watch } from 'vue';
 import { usePluginsStore } from '../stores/pluginStore';
 import { useStateStore } from '../stores/stateStore';
 import TinycmeEditor from '../components/TinyMCE.vue';
+import { useRouter } from 'vue-router'
 
 export default {
     components: {
@@ -95,9 +110,14 @@ export default {
         isNew: {
             type: Boolean,
             required: false,
+        },
+        isReview: {
+            type: Boolean,
+            required: false,
         }
     },
     setup(props, { emit }) {
+        const router = useRouter();
         const pluginStore = usePluginsStore();
         const stateStore = useStateStore();
         // 點擊編輯按鈕
@@ -106,10 +126,14 @@ export default {
             if (props.isNew === true) {
                 closeModal();
             } else {
-                isEdit.value = !isEdit.value;
+                if (stateStore.userID == '') {
+                    alert('請先登入')
+                } else {
+                    isEdit.value = !isEdit.value;
+                }
             }
         }
-
+        // 傳入外層指定資料
         const tempPlugin = ref(props.plugin);
         const closeModal = () => {
             emit("close");
@@ -117,9 +141,22 @@ export default {
         };
         // 送出時備註編輯人員
         const updateModal = () => {
-            tempPlugin.value.editMember = stateStore.userID;
+            tempPlugin.value.editMember = {
+                name: stateStore.userName,
+                uid: stateStore.userID
+            };
             emit("updateModal", tempPlugin);
         };
+        // 審核用
+        const checkModal = () => {
+            if (!tempPlugin.value.allEditMember) {
+                tempPlugin.value.allEditMember = [];
+            }
+            const set = new Set(tempPlugin.value.allEditMember);
+            set.add(tempPlugin.value.editMember);
+            tempPlugin.value.allEditMember = [...set];
+            emit("checkModal", tempPlugin);
+        }
 
         // 編輯器
         const editorData = ref(tempPlugin.value.content);
@@ -127,10 +164,15 @@ export default {
         watch(editorData, (newValue) => {
             tempPlugin.value.content = newValue;
         });
-
-        // const isNewLocal = ref(props.isNew);
+        // 新增插件開放編輯
         if (props.isNew === true) {
             isEdit.value = true;
+        }
+
+        // 點擊感謝名單連結使用者頁面
+        function openUserLink(user) {
+            const id = user.uid; 
+            router.push(`/dashboard/user/${id}`);
         }
 
         return {
@@ -141,7 +183,9 @@ export default {
             editorData,
             isEdit,
             handleClick,
-            stateStore
+            stateStore,
+            checkModal,
+            openUserLink
         };
     }
 }

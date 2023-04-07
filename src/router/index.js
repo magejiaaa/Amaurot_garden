@@ -17,17 +17,26 @@ const routes = [
         children: [
             {
                 path: 'pluginsList',
+                name: 'pluginsList',
                 component: () => import('../views/pluginsList.vue'),
             },
             {
                 path: 'user/:uid',
+                name: 'user',
                 component: () => import('../views/user.vue'),
             },
             {
                 path: 'review',
+                name: 'review',
                 component: () => import('../views/review.vue'),
             },
         ],
+    },
+    // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下
+    { 
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('../views/404.vue'),
     },
 ]
 

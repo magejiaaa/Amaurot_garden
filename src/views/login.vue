@@ -69,8 +69,7 @@
 </template>
 
 <script>
-import { auth, database } from '../stores/firebasedb.js';
-import { ref, set } from 'firebase/database';
+import { auth } from '../stores/firebasedb.js';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -102,12 +101,8 @@ export default {
                 }
                 // 創建新使用者
                 const authUser = await createUserWithEmailAndPassword(auth, user.email, user.password)
-                // 設置用戶額外資訊
-                await set(ref(database, 'users/' + authUser.user.uid), {
-                    email: authUser.user.email,
-                    displayName: '',
-                })
                 console.log('註冊成功', authUser)
+                alert('註冊成功');
             } catch (error) {
                 console.log(error.message)
             }
@@ -136,10 +131,6 @@ export default {
                 const provider = new GoogleAuthProvider();
                 const authUser = await signInWithPopup(auth, provider);
                 // 設置用戶額外資訊
-                await set(ref(database, 'users/' + authUser.user.uid), {
-                    email: authUser.user.email,
-                    displayName: authUser.user.displayName,
-                })
                 console.log('註冊成功', authUser)
                 await router.push({ name: 'home' })
             } catch (error) {

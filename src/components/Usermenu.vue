@@ -2,12 +2,12 @@
     <nav class="fixed top-0 right-0 w-full flex justify-between items-center bg-white h-20 z-10 | tooTop">
         <router-link to="/" class="flex items-center p-4">
             <img src="../assets/images/logo.png" alt="" class="w-16 mr-3 h-auto">
-            <h1 class="text-black text-xl">亞馬烏羅提後花園</h1>
+            <h1 class="text-black font-light text-xl">亞馬烏羅提後花園</h1>
         </router-link>
 
         <div>
             <ul class="flex mr-4 | menulist">
-                <li class="group">
+                <!-- <li class="group">
                     <a class="p-4 inline-flex items-center group-hover:text-grayBlue-800 | dropdown" href="#" role="button">
                         Dalamud介紹
                         <svg class="-mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -18,27 +18,29 @@
                     </a>
                     <ul class="absolute hidden w-full text-center right-0 bg-white group-hover:block">
                         <li>
-                            <a class="p-4 block" href="index.html#card_menu">功能概覽</a>
+                            <a class="p-4 block" href="/#card_menu">功能概覽</a>
                         </li>
                         <li>
                             <a class="p-4 block" href="index.html#install">基本安裝</a>
                         </li>
                     </ul>
+                </li> -->
+                <li>
+                    <router-link to="/" class="p-4 block">Dalamud介紹</router-link>
                 </li>
                 <li>
                     <router-link to="/dashboard/pluginsList" class="p-4 block">插件介紹</router-link>
                 </li>
                 <li>
-                    <a class="p-4 block" data-bs-toggle="page" href="third_plugins.html">第三方插件</a>
+                    <span class="p-4 block cursor-not-allowed text-gray-500" data-bs-toggle="page">第三方插件</span>
                 </li>
                 <li>
-                    <a class="p-4 block" @click.prevent="getUserID">個人資料</a>
+                    <a class="p-4 block cursor-pointer" @click.prevent="getUserID" v-if="isLogin">個人資料</a>
                 </li>
                 <li>
-                    <button class="p-4 block" v-if="isLogin"
-                    @click="$emit('signOut')">登出</button>
-                    <router-link to="/dashboard/pluginsList" class="p-4 block" v-else
-                    @click="loginPush">登入</router-link>
+                    <a class="p-4 block cursor-pointer" v-if="isLogin"
+                    @click.prevent="$emit('signOut')">登出</a>
+                    <router-link to="/login" class="p-4 block" v-else>登入</router-link>
                 </li>
             </ul>
         </div>
@@ -53,21 +55,22 @@ export default {
     props: {
         isLogin: {
             type: Boolean,
-            default: false,
+            default: false
         }
     },
     setup(props) {
         const router = useRouter();
         const stateStore = useStateStore();
-        // 點登入跳轉
+        stateStore.login();
+        // 測試登入
         function loginPush() {
-            if (props.isLogin) {
+            if (props.isLogin === true) {
                 console.log('已登入');
             } else {
-                router.push('/login');
+                console.log('未登入');
             }
         }
-
+        loginPush();
         function getUserID() {
             const id = stateStore.userID; 
             router.push(`/dashboard/user/${id}`);
@@ -76,7 +79,7 @@ export default {
         return {
             loginPush,
             stateStore,
-            getUserID
+            getUserID,
         }
     }
 }

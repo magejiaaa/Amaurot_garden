@@ -34,14 +34,16 @@ export const usePluginsStore = defineStore('plugins', {
             const onPlugin = ref(database, 'editPlugin/');
             onValue(onPlugin, (snapshot) => {
                 const Rplugins = snapshot.val();
-                // 遍歷每個插件
-                for (const key of Object.keys(Rplugins)) {
-                    const plugin = Rplugins[key];
-                    // 將插件的 ID 添加到插件物件中
-                    plugin.ID = key;
+                if (Rplugins !== null) {
+                    // 遍歷每個插件
+                    for (const key of Object.keys(Rplugins)) {
+                        const plugin = Rplugins[key];
+                        // 將插件的 ID 添加到插件物件中
+                        plugin.ID = key;
+                    }
+                    // 物件轉陣列
+                    this.reviewPlugins = Object.values(Rplugins);
                 }
-                // 物件轉陣列
-                this.reviewPlugins = Object.values(Rplugins);
             });
         },
         setPlugin(plugin) {
@@ -62,13 +64,17 @@ export const usePluginsStore = defineStore('plugins', {
         },
         reviewPlugin(plugin) {
             const value = plugin._value;
+            console.log(value);
             const ID = plugin._value.ID;
             const updates = {};
             updates[`plugins/` + ID] = value;
             return update(ref(database), updates)
-            .then(() => {
-                remove(child(ref(database), 'editPlugin/' + ID));
-            });
+                .then(() => {
+                    remove(child(ref(database), 'editPlugin/' + ID));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     }
 })

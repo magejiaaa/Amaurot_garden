@@ -1,10 +1,12 @@
 <template>
     <Usermenu :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></Usermenu>
     <router-view></router-view>
+    <footerBox></footerBox>
 </template>
 
 <script>
 import Usermenu from '../components/Usermenu.vue';
+import footerBox from '../components/FooterBox.vue';
 // import { ref } from 'vue';
 import { usePluginsStore } from '../stores/pluginStore';
 import { useStateStore } from '../stores/stateStore';
@@ -30,6 +32,7 @@ export default {
     },
     components: {
         Usermenu,
+        footerBox
     }
 }
 </script>

@@ -104,16 +104,20 @@ export default {
             isNew.value = false;
             tempPlugin.value = {};
         }
+        // 更新插件資料
         function updateModal(item) {
             if (isNew.value === true) {
-                // TODO: 新增插件不用審核
                 pluginStore.setPlugin(item);
                 closeModal();
                 pluginStore.getPlugin();
+                console.log('新增成功');
+                alert('新增成功');
             } else {
                 pluginStore.updatePlugin(item);
                 closeModal();
                 pluginStore.getPlugin();
+                console.log('送審成功');
+                alert('送審成功');
             }
         }
 
