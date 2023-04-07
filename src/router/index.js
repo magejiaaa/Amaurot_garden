@@ -19,6 +19,14 @@ const routes = [
                 path: 'pluginsList',
                 component: () => import('../views/pluginsList.vue'),
             },
+            {
+                path: 'user/:uid',
+                component: () => import('../views/user.vue'),
+            },
+            {
+                path: 'review',
+                component: () => import('../views/review.vue'),
+            },
         ],
     },
 ]

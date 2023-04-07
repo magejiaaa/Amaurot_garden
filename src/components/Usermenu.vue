@@ -32,6 +32,9 @@
                     <a class="p-4 block" data-bs-toggle="page" href="third_plugins.html">第三方插件</a>
                 </li>
                 <li>
+                    <a class="p-4 block" @click.prevent="getUserID">個人資料</a>
+                </li>
+                <li>
                     <button class="p-4 block" v-if="isLogin"
                     @click="$emit('signOut')">登出</button>
                     <router-link to="/dashboard/pluginsList" class="p-4 block" v-else
@@ -44,6 +47,7 @@
 
 <script>
 import { useRouter } from 'vue-router'
+import { useStateStore } from '../stores/stateStore';
 
 export default {
     props: {
@@ -53,7 +57,8 @@ export default {
         }
     },
     setup(props) {
-        const router = useRouter()
+        const router = useRouter();
+        const stateStore = useStateStore();
         // 點登入跳轉
         function loginPush() {
             if (props.isLogin) {
@@ -63,8 +68,15 @@ export default {
             }
         }
 
+        function getUserID() {
+            const id = stateStore.userID; 
+            router.push(`/dashboard/user/${id}`);
+        }
+
         return {
             loginPush,
+            stateStore,
+            getUserID
         }
     }
 }

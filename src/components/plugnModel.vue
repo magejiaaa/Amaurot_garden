@@ -80,6 +80,7 @@
 <script>
 import { ref, watch } from 'vue';
 import { usePluginsStore } from '../stores/pluginStore';
+import { useStateStore } from '../stores/stateStore';
 import TinycmeEditor from '../components/TinyMCE.vue';
 
 export default {
@@ -98,6 +99,7 @@ export default {
     },
     setup(props, { emit }) {
         const pluginStore = usePluginsStore();
+        const stateStore = useStateStore();
         // 點擊編輯按鈕
         const isEdit = ref(false);
         const handleClick = () => {
@@ -113,7 +115,9 @@ export default {
             emit("close");
             isEdit.value = false;
         };
+        // 送出時備註編輯人員
         const updateModal = () => {
+            tempPlugin.value.editMember = stateStore.userID;
             emit("updateModal", tempPlugin);
         };
 
@@ -137,6 +141,7 @@ export default {
             editorData,
             isEdit,
             handleClick,
+            stateStore
         };
     }
 }
