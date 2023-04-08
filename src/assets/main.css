@@ -19,8 +19,8 @@
         @apply text-2xl;
     }
     input, select, textarea {
-        @apply block h-9 w-full py-1.5 pl-7 pr-20 rounded-md border-0 
-        ring-1 ring-grayBlue-300
+        @apply block h-9 w-full py-1 px-4 rounded-md border-0 ring-1 ring-grayBlue-300
+        md:py-1.5 md:pl-7 md:pr-20
         focus:ring-2 focus:ring-grayBlue-500
         focus-visible:outline-none;
     }

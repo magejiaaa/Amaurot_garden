@@ -1,17 +1,17 @@
 <template>
     <!-- 插件視窗 -->
-    <div class="bg-white w-8/12 mx-auto rounded-lg p-8 h-4/5 overflow-auto relative">
+    <div class="mx-auto p-4 overflow-auto relative text-left  md:p-8">
         <div class="flex items-center justify-between text-grayBlue-500 mb-8" :class="{
             'sticky top-0 bg-white mx-auto pb-4 border-b-2'
                 : isEdit === false
         }">
 
             <div v-if="!pluginStore.isLogin || !isEdit" class="flex items-center">
-                <div class="flex flex-auto items-center">
-                    <h3 class="inline-block">
+                <div class="flex flex-wrap flex-auto md:items-center md:flex-row">
+                    <h3 class="inline-block mb-2 w-full md:mb-0 md:w-auto">
                         {{ tempPlugin.name }}
                     </h3>
-                    <span class="text-xs bg-grayBlue-500 text-white px-3 py-2 ml-2">
+                    <span class="text-xs bg-grayBlue-500 text-white px-3 py-2 md:ml-2">
                         {{ tempPlugin.category }}
                     </span>
                     <!-- 編輯按鈕 -->
@@ -23,16 +23,18 @@
                 </div>
             </div>
             <h3 v-else>插件編輯</h3>
-            <font-awesome-icon icon="fa-solid fa-xmark" class="h-6 fill-current cursor-pointer p-2" @click="closeModal" />
+            <font-awesome-icon icon="fa-solid fa-xmark" class="h-6 fill-current cursor-pointer p-2"
+                @click="closeModal" />
         </div>
         <!-- 沒登入的介紹 -->
         <div v-if="!pluginStore.isLogin || !isEdit" :class="{ 'mt-6': !isEdit }" id="pluginsContent">
-            <div class="grid grid-cols-6 mb-6">
+            <div class="grid grid-cols-2 mb-6
+            md:grid-cols-6">
                 <p class="col-span-4 btn bg-gray-100 border">
                     {{ tempPlugin.describe }}
                 </p>
-                <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 ml-4 text-center cursor-pointer
-                                hover:bg-grayBlue-100">插件原網址
+                <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 text-center cursor-pointer mt-2
+                hover:bg-grayBlue-100 md:ml-4 md:mt-0">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
             </div>
@@ -40,21 +42,20 @@
             <p v-if="isReview === true" class="mt-4 text-gray-500">編輯人員：{{ tempPlugin.editMember.name }}</p>
             <div class="mt-4">
                 <span>感謝熱心民眾編輯</span>
-                <button v-for="user in tempPlugin.allEditMember" :key="user.uid"
-                class="mx-2 px-4 py-1 bg-grayBlue-100"
-                @click="openUserLink(user)">
+                <button v-for="user in tempPlugin.allEditMember" :key="user.uid" class="mx-2 px-4 py-1 bg-grayBlue-100"
+                    @click="openUserLink(user)">
                     {{ user.name }}
                 </button>
             </div>
         </div>
         <!-- 有登入的可編輯內容 -->
         <div v-else>
-            <div class="grid grid-cols-2 gap-x-6 gap-y-3 mb-6">
-                <div>
+            <div class="grid gap-x-6 gap-y-3 mb-6 grid-cols-2">
+                <div class="col-span-2 md:col-auto">
                     <label for="name">插件名稱(原文)</label>
                     <input type="text" placeholder="請輸入插件名稱" id="name" v-model="tempPlugin.name" class="w-full">
                 </div>
-                <div>
+                <div class="col-span-2 md:col-auto">
                     <label for="category">分類</label>
                     <select id="category" v-model="tempPlugin.category" class="w-full leading-4">
                         <option value="" disabled>請選擇分類</option>
@@ -65,7 +66,8 @@
                 </div>
                 <div class="col-span-2">
                     <label for="describe">插件功能簡稱(不超過10個字)</label>
-                    <input type="text" placeholder="請輸入插件功能簡稱" id="describe" v-model="tempPlugin.describe" class="w-full">
+                    <input type="text" placeholder="請輸入插件功能簡稱" id="describe" v-model="tempPlugin.describe"
+                        class="w-full">
                 </div>
                 <div class="col-span-2">
                     <label for="website">插件原網址</label>
@@ -171,7 +173,7 @@ export default {
 
         // 點擊感謝名單連結使用者頁面
         function openUserLink(user) {
-            const id = user.uid; 
+            const id = user.uid;
             router.push(`/dashboard/user/${id}`);
         }
 

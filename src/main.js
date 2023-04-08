@@ -12,9 +12,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import 使用的 icon */
-import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-library.add(faUserSecret, faXmark, faGithub, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight)
+library.add(faUserSecret, faXmark, faGithub, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck)
 
 const pinia = createPinia();
 const app = createApp(App);

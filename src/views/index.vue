@@ -4,19 +4,23 @@
     <div class="container-none mx-auto pt-20">
         <!-- banner -->
         <div class="text-center py-16 h-full | banner">
-            <div class="w-8/12 mx-auto">
+            <div class="w-10/12 mx-auto
+            md:w-8/12">
                 <h1 class="text-5xl inline-block font-bold">Dalamud</h1>
                 <p class="my-5 font-light text-xl">
                     所有插件的基底，功能包含快速啟動與更新、第三方插件管理、記憶多組帳號密碼、上傳交易板價格資料至Universalis等多項功能
                 </p>
-                <div class="flex justify-center mx-auto mb-6 text-xl font-light">
-                    <div class="relative mr-6">
-                        <a type="button" class="btn downloadBtn"
+                <div class="flex flex-col justify-center w-full mx-auto mb-6 text-xl font-light
+                md:flex-row md:w-auto">
+                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                        <a type="button" class="btn downloadBtn w-full 
+                        lg:m-1 lg:w-auto"
                             href="https://github.com/goatcorp/FFXIVQuickLauncher/releases"
                             target="_blank">下載Dalamud(github)</a>
                     </div>
                     <div class="relative">
-                        <a type="button" class="btn downloadBtn cn"
+                        <a type="button" class="btn downloadBtn w-full
+                        lg:m-1 lg:w-auto | cn"
                             href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6"
                             target="_blank">CN版介紹</a>
                     </div>
@@ -29,8 +33,10 @@
                     class="img-fluid border rounded shadow my-4 mx-auto" alt="登陸器介面" width="700" height="500">
             </div>
         </div>
+
         <!-- 功能卡片 -->
-        <div class="mx-auto my-14 px-8 grid grid-cols-4 gap-4">
+        <div class="mx-auto my-14 px-8 grid grid-cols-2 gap-4
+        md:grid-cols-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
                 <ul class="divide-y">
                     <li class="text-grayBlue-500 px-6 py-2 text-lg">{{ item }}</li>
@@ -45,10 +51,12 @@
                 <font-awesome-icon icon="fa-solid fa-hand-point-right" class="ml-1" />
             </router-link>
         </div>
+
         <!-- 安裝介紹 -->
         <div class="bg-blueGreen-800 py-14">
             <h2 class="text-center mb-5 text-5xl text-green-200 font-black text-opacity-50">安裝相關問題</h2>
-            <div class="w-2/3 grid grid-cols-3 gap-6 mx-auto text-xl">
+            <div class="w-2/3 grid grid-cols-1 gap-6 mx-auto text-xl
+            md:grid-cols-3">
                 <button class="btn bg-white text-blueGreen-800 pb-6" 
                 @click="openInstallModal('install')">
                     <font-awesome-icon icon="fa-solid fa-book" class="w-12 h-12 block mx-auto p-4" />

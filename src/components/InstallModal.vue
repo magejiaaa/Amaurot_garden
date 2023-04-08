@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white w-8/12 mx-auto rounded-lg p-8 h-4/5 overflow-auto relative">
+    <div class="bg-white w-11/12 mx-auto rounded-lg p-8 h-4/5 overflow-auto relative md:w-8/12">
         <div class="flex items-center justify-between text-grayBlue-500 mb-8">
             <h3 v-if="installType === 'install'">安裝說明</h3>
             <h3 v-if="installType === 'setting'">遊戲內設定</h3>
