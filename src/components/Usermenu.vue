@@ -76,7 +76,7 @@ export default {
         function getUserID() {
             const id = stateStore.userID;
             router.push(`/dashboard/user/${id}`);
-            mobileMenuShow.value = false;
+            mobileMenuClose();
         }
 
         // 手機版選單

@@ -7,7 +7,8 @@
             </div>
 
             <ul class="listGroup" v-if="reviewPlugin.length > 0">
-                <li v-for="(item, index) in reviewPlugin" :key="index" class="p-4 list grid-cols-4 " @click="pluginContent(item)">
+                <li v-for="(item, index) in reviewPlugin" :key="index" class="p-4 list grid-cols-4 "
+                    @click="pluginContent(item)">
                     <p>{{ item.name }}</p>
                     <p class="font-light text-gray-500">{{ item.category }}</p>
                     <p class="col-span-2">{{ item.describe }}</p>
@@ -19,21 +20,28 @@
 
         <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100"
             leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
-            <Dialog>
+            <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
                 <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
                     leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-30" />
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="closeModal" />
                 </TransitionChild>
                 <!-- Modal內容 -->
-                <TransitionChild as="template" enter="ease-out duration-5000"
-                    enter-from="opacity-0 sm:translate-y-0 sm:scale-95" enter-to="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200" leave-from="opacity-100 translate-y-0 sm:scale-100"
-                    leave-to="opacity-0 sm:translate-y-0 sm:scale-95">
-                    <DialogPanel class="fixed w-full top-20 h-screen z-40">
-                        <pluginModel :plugin="tempPlugin" @close="closeModal" :isReview="isReview" @checkModal="checkPlugin"></pluginModel>
-                    </DialogPanel>
-                </TransitionChild>
+                <div class="fixed inset-0 overflow-y-auto">
+                    <div class="flex min-h-full items-center justify-center p-4 text-center">
+                        <TransitionChild as="template" enter="ease-out duration-5000"
+                            enter-from="opacity-0 sm:translate-y-0 sm:scale-95"
+                            enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
+                            leave-from="opacity-100 translate-y-0 sm:scale-100"
+                            leave-to="opacity-0 sm:translate-y-0 sm:scale-95">
+                            <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
+                            md:w-8/12">
+                                <pluginModel :plugin="tempPlugin" @close="closeModal" :isReview="isReview"
+                                    @checkModal="checkPlugin"></pluginModel>
+                            </DialogPanel>
+                        </TransitionChild>
+                    </div>
+                </div>
             </Dialog>
         </TransitionRoot>
     </div>
@@ -53,7 +61,7 @@ export default {
         const reviewPlugin = computed(() => {
             const arr = [];
             pluginStore.reviewPlugins.forEach((item) => {
-                    arr.push(item);
+                arr.push(item);
             });
             return arr;
         });

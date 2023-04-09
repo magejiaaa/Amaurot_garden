@@ -13,8 +13,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import 使用的 icon */
 import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-library.add(faUserSecret, faXmark, faGithub, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck)
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+library.add(faUserSecret, faXmark, faGoogle, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck)
 
 const pinia = createPinia();
 const app = createApp(App);

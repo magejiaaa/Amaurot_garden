@@ -15,7 +15,7 @@
             <form class="mt-8 space-y-6" action="#" method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
-                    <div>
+                    <div class="mb-2">
                         <label for="email-address" class="sr-only">Email address</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
                             class="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -29,17 +29,6 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="remember-me" name="remember-me" type="checkbox"
-                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                        <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
-                    </div>
-
-                    <div class="text-sm">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
-                    </div>
-                </div>
                 <div>
                     <button type="submit"
                         class="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white mb-3
@@ -63,7 +52,9 @@
                     </button>
                 </div>
             </form>
-            <button type="button" class="btn" @click.prevent="signInWithGoogle">google登入</button>
+            <button type="button" class="btn border hover:bg-gray-50" @click.prevent="signInWithGoogle">
+                <font-awesome-icon icon="fa-brands fa-google" class="mr-2" />註冊 | 登入
+            </button>
         </div>
     </div>
 </template>

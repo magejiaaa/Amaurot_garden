@@ -67,10 +67,11 @@
             <!-- 插件列表（管理版） -->
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
-                <div class="mb-5 flex justify-between items-center">
+                <div class="mb-5 flex justify-between items-end">
                     <h3 class="text-2xl">插件列表</h3>
                     <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()"
                         v-if="pluginStore.isLogin">新增插件</button>
+                    <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
 
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
