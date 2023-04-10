@@ -24,6 +24,32 @@
         focus:ring-2 focus:ring-grayBlue-500
         focus-visible:outline-none;
     }
+    /* 插件內容樣式 */
+    thead {
+        @apply border-b border-gray-700;
+    }
+    tbody > tr {
+        @apply border-b border-gray-300;
+    }
+    tbody > tr :hover {
+        @apply bg-gray-100;
+    }
+    .pluginContent span {
+        @apply p-1;
+    }
+    .pluginContent ul {
+        @apply list-disc pl-8;
+    }
+    .pluginContent ol {
+        @apply list-decimal pl-8;
+    }
+    .pluginContent h1, .pluginContent h2, .pluginContent h3 {
+        @apply font-bold text-grayBlue-500;
+    }
+    .pluginContent h1 {
+        @apply text-2xl;
+    }
+
     .btn {
         @apply px-6 py-3 rounded-xl transition;
     }

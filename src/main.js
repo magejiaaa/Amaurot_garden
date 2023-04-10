@@ -22,11 +22,11 @@ app.use(router);
 app.use(pinia);
 app.use(LoadingPlugin);
 app.use(VueGtag, {
-    config: { id: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID },
-    appName: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    config: { id: `${import.meta.env.VITE_FIREBASE_MEASUREMENT_ID}`},
+    appName: `${import.meta.env.VITE_FIREBASE_PROJECT_ID}`,
     enabled: true,
     pageTrackerScreenviewEnabled: true,
-}, router);      
+}, router);
 app.component('loading-plugin', Loading);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');

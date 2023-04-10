@@ -16,7 +16,7 @@
                     </span>
                     <!-- 編輯按鈕 -->
                     <button type="button" class="ml-4 text-gray-500 cursor-pointer px-3 py-1 rounded align-middle transition
-                                        hover:bg-gray-200" @click="handleClick">
+                                                        hover:bg-gray-200" @click="handleClick">
                         <font-awesome-icon icon="fa-solid fa-pen-to-square" class="w-5 h-5" />
                         編輯
                     </button>
@@ -28,16 +28,16 @@
         <!-- 沒登入的介紹 -->
         <div v-if="!pluginStore.isLogin || !isEdit" :class="{ 'mt-6': !isEdit }" id="pluginsContent">
             <div class="grid grid-cols-2 mb-6
-                        md:grid-cols-6">
+                                        md:grid-cols-6">
                 <p class="col-span-4 btn bg-gray-100 border">
                     {{ tempPlugin.describe }}
                 </p>
                 <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 text-center cursor-pointer mt-2
-                            hover:bg-grayBlue-100 md:ml-4 md:mt-0">插件原網址
+                                            hover:bg-grayBlue-100 md:ml-4 md:mt-0">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
             </div>
-            <div v-html="tempPlugin.content"></div>
+            <div v-html="tempPlugin.content" class="pluginContent"></div>
             <p v-if="isReview === true" class="mt-4 text-gray-500">編輯人員：{{ tempPlugin.editMember.name }}</p>
             <div class="mt-4">
                 <span>感謝熱心民眾編輯</span>
@@ -46,6 +46,8 @@
                     {{ user.name }}
                 </button>
             </div>
+
+            <!-- 留言板 -->
         </div>
         <!-- 有登入的可編輯內容 -->
         <div v-else>
@@ -78,17 +80,20 @@
             </div>
             <div class="flex justify-end mt-6">
                 <button class="btn text-gray-500 border border-gray-500 mr-4
-                                        hover:bg-gray-500 hover:text-white" type="button" @click="handleClick">取消
+                                                        hover:bg-gray-500 hover:text-white" type="button"
+                    @click="handleClick">取消
                 </button>
                 <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800
-                                        hover:bg-grayBlue-800" type="button" @click="updateModal"
+                                                        hover:bg-grayBlue-800" type="button" @click="updateModal"
                     v-if="isReview === false">確定
                 </button>
                 <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800
-                                        hover:bg-grayBlue-800" type="button" @click="checkModal" v-else>審核通過
+                                                        hover:bg-grayBlue-800" type="button" @click="checkModal"
+                    v-else>審核通過
                 </button>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -198,7 +203,7 @@ export default {
             handleClick,
             stateStore,
             checkModal,
-            openUserLink
+            openUserLink,
         };
     }
 }
