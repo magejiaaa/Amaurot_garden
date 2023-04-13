@@ -37,6 +37,7 @@
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
             </div>
+            <!-- TODO: 製作多頁標籤顯示 -->
             <div v-html="tempPlugin.content" class="pluginContent"></div>
             <p v-if="isReview === true" class="mt-4 text-gray-500">編輯人員：{{ tempPlugin.editMember.name }}</p>
             <div class="mt-4">
@@ -77,6 +78,8 @@
                     <label for="pluginHTML">插件介紹</label>
                     <tinycme-editor v-model="editorData"></tinycme-editor>
                 </div>
+                <!-- TODO 增加tempPlugin.分頁節點 -->
+                <button>增加頁數</button>
             </div>
             <div class="flex justify-end mt-6">
                 <button class="btn text-gray-500 border border-gray-500 mr-4
@@ -182,6 +185,17 @@ export default {
         watch(editorData, (newValue) => {
             tempPlugin.value.content = newValue;
         });
+        // 新增內容節點
+        function addContent() {
+            // TODO https://headlessui.com/vue/tabs
+            // 使用tabs切換
+            // 1.將content的資料轉為陣列 const contentArray = ref([]);
+            // 2.for (const key in tempPlugin.content) {
+                //   if (Object.hasOwnProperty.call(tempPlugin.content, key)) {
+                //     contentArray.value.push(tempPlugin.content[key]);
+                //   }
+                // }
+        }
         // 新增插件開放編輯
         if (props.isNew === true) {
             isEdit.value = true;

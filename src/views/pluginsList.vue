@@ -98,11 +98,12 @@
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
-                        <TransitionChild as="template" enter="ease-out duration-5000"
-                            enter-from="opacity-0 sm:translate-y-0 sm:scale-95"
-                            enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
-                            leave-from="opacity-100 translate-y-0 sm:scale-100"
-                            leave-to="opacity-0 sm:translate-y-0 sm:scale-95">
+                        <TransitionChild as="template" enter="ease-out duration-500 transform"
+                            enter-from="opacity-0 -translate-y-40 sm:scale-95"
+                            enter-to="opacity-100 -translate-y-0 sm:scale-100" 
+                            leave="ease-in duration-200"
+                            leave-from="opacity-100 sm:scale-100"
+                            leave-to="opacity-0 sm:scale-95">
                             <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
                             md:w-8/12">
                                 <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal"
