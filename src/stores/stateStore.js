@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { auth, database } from '../stores/firebasedb';
 import { onAuthStateChanged, signOut } from '@firebase/auth';
-import { ref as refData, onValue} from "firebase/database";
+import { ref as refData, onValue, update} from "firebase/database";
 import { usePluginsStore } from '../stores/pluginStore';
 
 export const useStateStore = defineStore('user', () => {
@@ -41,12 +41,28 @@ export const useStateStore = defineStore('user', () => {
             console.log(error);
         });
     }
+    // TODO 將使用者id寫入資料庫
+    // 但登入註冊同按鈕
+    function userSubmit() {
+        const tempUserObj = userContent.value;
+        const updates = {};
+        const postData = tempUserObj;
+        const userUid = userID.value;
+        updates['/users/' + userUid] = postData;
+        console.log(updates);
+        return update(refData(database), updates)
+        .then(() => {
+            console.log('更新成功');
+            alert('更新成功');
+        });
+    }
 
     return {
         login,
         userID,
         handleSignOut,
         userContent,
-        userName
+        userName,
+        userSubmit
     }
 });

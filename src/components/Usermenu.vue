@@ -94,7 +94,9 @@ export default {
 
         function logOut() {
             emit("signOut");
-            mobileMenuShow.value = false;
+            if (window.innerWidth < 1024) {
+                mobileMenuShow.value = false;
+            }
         }
 
 

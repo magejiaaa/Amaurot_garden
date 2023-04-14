@@ -68,9 +68,12 @@ import {
     GoogleAuthProvider
 } from "firebase/auth";
 import { useRouter } from 'vue-router'
+// import { useStateStore } from '../stores/stateStore'
 
 export default {
     setup() {
+        // TODO 使用stateStore的使用者ID寫入資料庫功能
+        // const stateStore = useStateStore()
         const router = useRouter()
         // 使用者資訊
         let user = {
@@ -123,7 +126,8 @@ export default {
                 const authUser = await signInWithPopup(auth, provider);
                 // 設置用戶額外資訊
                 console.log('註冊成功', authUser)
-                await router.push({ name: 'home' })
+                const id = authUser.uid;
+                await router.push(`/dashboard/user/${id}`);
             } catch (error) {
                 console.log(error);
             }
