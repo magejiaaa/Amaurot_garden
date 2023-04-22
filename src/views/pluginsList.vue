@@ -32,9 +32,9 @@
                             class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <ListboxOption v-slot="{ active, selected }" value="" as="template">
                                 <li :class="[
-                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
-                                    'relative cursor-default select-none py-2 pl-10 pr-4',
-                                ]">
+                                        active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                        'relative cursor-default select-none py-2 pl-10 pr-4',
+                                    ]">
                                     <button>顯示全部</button>
                                     <span v-if="selected"
                                         class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
@@ -45,13 +45,13 @@
                             <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category"
                                 :key="index" :value="item" as="template">
                                 <li :class="[
-                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
-                                    'relative cursor-default select-none py-2 pl-10 pr-4',
-                                ]">
+                                        active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                        'relative cursor-default select-none py-2 pl-10 pr-4',
+                                    ]">
                                     <span :class="[
-                                        selected ? 'font-medium' : 'font-normal',
-                                        'block truncate',
-                                    ]">{{ item }}</span>
+                                            selected ? 'font-medium' : 'font-normal',
+                                            'block truncate',
+                                        ]">{{ item }}</span>
                                     <span v-if="selected"
                                         class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
@@ -64,6 +64,7 @@
             </Listbox>
 
             <loading-plugin :active="pluginStore.isLoading"></loading-plugin>
+
             <!-- 插件列表（管理版） -->
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
@@ -76,7 +77,7 @@
 
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-4"
-                        @click="pluginContent(item)">
+                        @click="pluginContent(index, item)">
                         <p>{{ item.name }}</p>
                         <p class="font-light text-gray-500">{{ item.category }}</p>
                         <p class="md:col-span-2">{{ item.describe }}</p>
@@ -90,23 +91,31 @@
             leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
-                <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
+                <TransitionChild as="template" enter="ease-out duration-500" enter-from="opacity-0" enter-to="opacity-100"
                     leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
-                        @click="closeModal" />
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" />
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
-                        <TransitionChild as="template" enter="ease-out duration-500 transform"
-                            enter-from="opacity-0 -translate-y-40 sm:scale-95"
-                            enter-to="opacity-100 -translate-y-0 sm:scale-100" 
-                            leave="ease-in duration-200"
-                            leave-from="opacity-100 sm:scale-100"
-                            leave-to="opacity-0 sm:scale-95">
+                        <TransitionChild class="relative z-50 w-full" enter="ease-out duration-300 transform"
+                            enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200"
+                            leave-from="opacity-100" leave-to="opacity-0">
+                            <!-- TODO 切換上下一個插件 -->
+                            <font-awesome-icon icon="fa-solid fa-chevron-left"
+                                class="absolute w-16 h-16 left-32 text-white cursor-pointer" 
+                                @click="prePlugin" v-if="isEdit == false" />
+                            <font-awesome-icon icon="fa-solid fa-chevron-right"
+                                class="absolute w-16 h-16 right-32 text-white cursor-pointer" 
+                                @click="nextPlugin" v-if="isEdit == false" />
+                        </TransitionChild>
+                        <TransitionChild as="template" enter="ease duration-300 transform"
+                            enter-from="opacity-0 translate-x-40"
+                            enter-to="opacity-100 translate-x-0" leave="ease-in duration-200"
+                            leave-from="opacity-100 sm:scale-100" leave-to="opacity-0 sm:scale-95">
                             <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
                             md:w-8/12">
-                                <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal"
+                                <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal" @editing="editHandler"
                                     :isNew="isNew">
                                 </pluginModel>
                             </DialogPanel>
@@ -120,7 +129,7 @@
 
 <script>
 import { usePluginsStore } from '../stores/pluginStore';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import pluginModel from '../components/plugnModel.vue';
 import { Dialog, DialogPanel, TransitionRoot, TransitionChild } from '@headlessui/vue';
 import {
@@ -156,6 +165,7 @@ export default {
         // 控制 Modal 開關
         let isOpen = ref(false);
         let isNew = ref(false);
+        const pluginIndex = ref(0);
         const tempPlugin = ref({});
         // 新增插件判別
         function newPlugin() {
@@ -163,14 +173,40 @@ export default {
             isOpen.value = true;
         }
         // 獲取當前插件資料
-        function pluginContent(item) {
+        function pluginContent(index, item) {
+            pluginIndex.value = index;
             tempPlugin.value = { ...item };
             isOpen.value = true;
         }
+        // 判斷model是否為編輯狀態，不是才可以點上下一頁
+        let isEdit = ref(false);
+        function editHandler() {
+            isEdit.value = !isEdit.value;
+        }
+        // 上一個插件
+        function prePlugin() {
+            if(pluginIndex.value > 0 && isEdit.value === false) {
+                pluginIndex.value--;
+            }
+        }
+        // 下一個插件
+        function nextPlugin() {
+            if(pluginIndex.value < filterPlugin.value.length -1 && isEdit.value === false) {
+                pluginIndex.value++;
+            }
+        }
+        // 監聽pluginIndex改變tempPlugin
+        watch(
+            pluginIndex, (newValue) => {
+                const item = filterPlugin.value[newValue];
+                pluginContent(newValue, item);
+            }
+        );
         // 關閉 Modal 
         function closeModal() {
             isOpen.value = false;
             isNew.value = false;
+            isEdit.value = false;
             tempPlugin.value = {};
         }
         // 更新插件資料
@@ -202,12 +238,17 @@ export default {
             filterPlugin,
             isOpen,
             tempPlugin,
+            pluginIndex,
             pluginContent,
             updateModal,
             closeModal,
             newPlugin,
             isNew,
-            mobileMenuShow
+            mobileMenuShow,
+            prePlugin,
+            nextPlugin,
+            editHandler,
+            isEdit
         }
     },
     components: {

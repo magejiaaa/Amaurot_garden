@@ -5,7 +5,6 @@
             'sticky top-0 bg-white mx-auto pb-4 border-b-2'
                 : isEdit === false
         }">
-
             <div v-if="!pluginStore.isLogin || !isEdit" class="flex items-center">
                 <div class="flex flex-wrap flex-auto md:items-center md:flex-row">
                     <h3 class="inline-block mb-2 w-full md:mb-0 md:w-auto">
@@ -16,7 +15,7 @@
                     </span>
                     <!-- 編輯按鈕 -->
                     <button type="button" class="ml-4 text-gray-500 cursor-pointer px-3 py-1 rounded align-middle transition
-                                                        hover:bg-gray-200" @click="handleClick">
+                    hover:bg-gray-200" @click="handleClick">
                         <font-awesome-icon icon="fa-solid fa-pen-to-square" class="w-5 h-5" />
                         編輯
                     </button>
@@ -27,13 +26,13 @@
         </div>
         <!-- 沒登入的介紹 -->
         <div v-if="!pluginStore.isLogin || !isEdit" :class="{ 'mt-6': !isEdit }" id="pluginsContent">
-            <div class="grid grid-cols-2 mb-6
-                                        md:grid-cols-6">
+
+            <div class="grid grid-cols-2 mb-6 md:grid-cols-6">
                 <p class="col-span-4 btn bg-gray-100 border">
                     {{ tempPlugin.describe }}
                 </p>
                 <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 text-center cursor-pointer mt-2
-                                            hover:bg-grayBlue-100 md:ml-4 md:mt-0">插件原網址
+                hover:bg-grayBlue-100 md:ml-4 md:mt-0">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
             </div>
@@ -48,7 +47,7 @@
                 </button>
             </div>
 
-            <!-- 留言板 -->
+            <!-- TODO 留言板 -->
         </div>
         <!-- 有登入的可編輯內容 -->
         <div v-else>
@@ -83,16 +82,13 @@
             </div>
             <div class="flex justify-end mt-6">
                 <button class="btn text-gray-500 border border-gray-500 mr-4
-                                                        hover:bg-gray-500 hover:text-white" type="button"
-                    @click="handleClick">取消
+                    hover:bg-gray-500 hover:text-white" type="button" @click="handleClick">取消
                 </button>
                 <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800
-                                                        hover:bg-grayBlue-800" type="button" @click="updateModal"
-                    v-if="isReview === false">確定
+                    hover:bg-grayBlue-800" type="button" @click="updateModal" v-if="isReview === false">確定
                 </button>
                 <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800
-                                                        hover:bg-grayBlue-800" type="button" @click="checkModal"
-                    v-else>審核通過
+                    hover:bg-grayBlue-800" type="button" @click="checkModal" v-else>審核通過
                 </button>
             </div>
         </div>
@@ -131,21 +127,44 @@ export default {
         const stateStore = useStateStore();
         // 點擊編輯按鈕
         const isEdit = ref(false);
+        // 編輯器
+        const editorData = ref("");
+        // 監控編輯器結果
+        watch(editorData, (newValue) => {
+            tempPlugin.value.content = newValue;
+        });
         const handleClick = () => {
             if (props.isNew === true) {
+                // 新增插件的取消
                 closeModal();
             } else {
+                // 點編輯按紐後的取消
                 if (stateStore.userID == '') {
                     alert('請先登入')
                 } else {
                     isEdit.value = !isEdit.value;
+                    emit("editing");
+                    editorData.value = tempPlugin.value.content;
                 }
             }
         }
         // 傳入外層指定資料
         const tempPlugin = ref(props.plugin);
+        watch(
+            // 避免 props.plugin 為 undefined 時報錯，this好煩 >:(
+            () => props.plugin,
+            (newValue, oldValue) => {
+                if (newValue !== oldValue) {
+                    // console.log(newValue);
+                    tempPlugin.value = newValue;
+                }
+            }
+        );
         const closeModal = () => {
             emit("close");
+            if (isEdit.value === true) {
+                emit("editing");
+            }
             isEdit.value = false;
         };
         // 送出時備註編輯人員
@@ -178,23 +197,16 @@ export default {
             }
             emit("checkModal", tempPlugin);
         }
-
-        // 編輯器
-        const editorData = ref(tempPlugin.value.content);
-        // 監控編輯器結果
-        watch(editorData, (newValue) => {
-            tempPlugin.value.content = newValue;
-        });
         // 新增內容節點
         function addContent() {
             // TODO https://headlessui.com/vue/tabs
             // 使用tabs切換
             // 1.將content的資料轉為陣列 const contentArray = ref([]);
             // 2.for (const key in tempPlugin.content) {
-                //   if (Object.hasOwnProperty.call(tempPlugin.content, key)) {
-                //     contentArray.value.push(tempPlugin.content[key]);
-                //   }
-                // }
+            //   if (Object.hasOwnProperty.call(tempPlugin.content, key)) {
+            //     contentArray.value.push(tempPlugin.content[key]);
+            //   }
+            // }
         }
         // 新增插件開放編輯
         if (props.isNew === true) {

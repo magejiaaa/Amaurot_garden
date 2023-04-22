@@ -25,6 +25,7 @@ import 'tinymce/plugins/link';
 import 'tinymce/plugins/code';
 import 'tinymce/plugins/hr';
 import 'tinymce/plugins/lists';
+import 'tinymce/plugins/codesample';
 
 // 語言包
 import 'tinymce-i18n/langs5/zh_TW.js'
@@ -40,12 +41,12 @@ const props = defineProps({
     },
     plugins: {
         type: [String, Array],
-        default: 'quickbars emoticons table image link code lists hr',
+        default: 'quickbars emoticons table image link code lists hr codesample',
     },
     toolbar1: {
         type: [String, Array],
         default:
-            ' bold italic underline strikethrough | fontsizeselect formatselect | forecolor backcolor | alignleft aligncenter alignright alignjustify| bullist numlist | outdent indent blockquote | undo redo | axupimgs | table hr | lists emoticons image link | code | removeformat ',
+            ' bold italic underline strikethrough | fontsizeselect formatselect | forecolor backcolor codesample | alignleft aligncenter alignright alignjustify| bullist numlist | outdent indent blockquote | undo redo | axupimgs | table hr | lists emoticons image link | code | removeformat ',
     },
     // toolbar2: {
     //     type: [String, Array],
@@ -61,7 +62,7 @@ const init = reactive({
     height: 350,
     menubar: false,
     content_css: false,
-    content_style: 'body { font-family: Rubik, "Noto Sans TC", "M PLUS Rounded 1c", sans-serif } p {} span { padding: 0.25em } a { color: #5d7dac } table { border: none; border-coler: #fff } thead { border: none; border-bottom: 1px solid #000; } tbody>tr { border: none; border-bottom : 1px solid #ddd; } tbody>tr:hover { background-color: #eee; }',
+    content_style: 'body { font-family: Rubik, "Noto Sans TC", "M PLUS Rounded 1c", sans-serif } p { margin-bottom: 0.5rem; } span { padding: 0.25em } a { color: #5d7dac } table { border: none; border-coler: #fff } thead { border: none; border-bottom: 1px solid #000; } tbody>tr { border: none; border-bottom : 1px solid #ddd; } tbody>tr:hover { background-color: #eee; } code { color: #dc2626; background: #e5e7eb; padding: 0.125rem 0.5rem; }',
     skin: false,
     plugins: props.plugins,
     toolbar1: props.toolbar1,
