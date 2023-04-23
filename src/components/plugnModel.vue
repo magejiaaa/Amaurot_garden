@@ -38,6 +38,7 @@
             </div>
             <!-- TODO: 製作多頁標籤顯示 -->
             <div v-html="tempPlugin.content" class="pluginContent"></div>
+            
             <p v-if="isReview === true" class="mt-4 text-gray-500">編輯人員：{{ tempPlugin.editMember.name }}</p>
             <div class="mt-4">
                 <span>感謝熱心民眾編輯</span>
@@ -73,12 +74,28 @@
                     <label for="website">插件原網址</label>
                     <input type="url" placeholder="請輸入插件原網址" id="website" v-model="tempPlugin.website" class="w-full">
                 </div>
+                <!-- contentArray的陣列按鈕列表 -->
+                <ul>
+                    <li v-for="(item, index) in contentArray" :key="index"
+                    @click="loadPages(item, index)">
+                    {{ item.title }}
+                    <button class="border bg-gray-100"
+                    @click="deletePage(index)">刪除</button>
+                    </li>
+                </ul>
+                <!-- 增加tempPlugin.分頁節點 -->
+                <button class="border" v-if="isPageNew == true"
+                @click="addPages">增加頁數</button>
+                <button class="border" v-else
+                @click="updatePage" >確認修改</button>
+                <div class="col-span-2" v-if="multiPage == true">
+                    <label for="pagetitle">分頁標題</label>
+                    <input type="text" placeholder="請輸入分頁標題" id="pagetitle" v-model="contentObject.title" class="w-full">
+                </div>
                 <div class="col-span-2">
                     <label for="pluginHTML">插件介紹</label>
                     <tinycme-editor v-model="editorData"></tinycme-editor>
                 </div>
-                <!-- TODO 增加tempPlugin.分頁節點 -->
-                <button>增加頁數</button>
             </div>
             <div class="flex justify-end mt-6">
                 <button class="btn text-gray-500 border border-gray-500 mr-4
@@ -97,7 +114,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watch, reactive } from 'vue';
 import { usePluginsStore } from '../stores/pluginStore';
 import { useStateStore } from '../stores/stateStore';
 import TinycmeEditor from '../components/TinyMCE.vue';
@@ -160,6 +177,7 @@ export default {
                 }
             }
         );
+        
         const closeModal = () => {
             emit("close");
             if (isEdit.value === true) {
@@ -197,17 +215,60 @@ export default {
             }
             emit("checkModal", tempPlugin);
         }
-        // 新增內容節點
-        function addContent() {
-            // TODO https://headlessui.com/vue/tabs
-            // 使用tabs切換
-            // 1.將content的資料轉為陣列 const contentArray = ref([]);
-            // 2.for (const key in tempPlugin.content) {
-            //   if (Object.hasOwnProperty.call(tempPlugin.content, key)) {
-            //     contentArray.value.push(tempPlugin.content[key]);
-            //   }
-            // }
+
+        // 多頁時的內容陣列
+        const contentArray = ref([]);
+        // 點擊新增分頁後增加標題欄位
+        let multiPage = ref(false);
+        // 點擊按鈕新增多頁標題輸入欄位
+        const contentObject = reactive({});
+        // 偵測是新增還是修改
+        let isPageNew = ref(true);
+        function addPages() {
+            // 第一次按新增頁數
+            if (multiPage.value == false) {
+                multiPage.value = true;
+                contentObject.content = tempPlugin.value.content;
+            } else {
+                // 先複製一份 contentObject(避免推進陣列前被清空)
+                const newObj = { ...contentObject };
+                // 將複製的物件推進陣列
+                contentArray.value.push(newObj);
+                tempPlugin.value.contentArr = contentArray.value;
+                clearEditPage();
+            }
         }
+        // 清空編輯器內容
+        function clearEditPage() {
+            // 清空輸入欄位
+            Object.assign(contentObject, {
+                content: "",
+                title: "",
+            });
+            editorData.value = "";
+        }
+
+        // 點擊分頁列表出現在編輯器&標題
+        let pageIndex = 0;
+        function loadPages(item, index) {
+            pageIndex = index;
+            isPageNew.value = false;
+            contentObject.title = item.title;
+            editorData.value = item.content;
+        }
+        // 修改分頁內容
+        function updatePage() {
+            const writeArr = tempPlugin.value.contentArr;
+            writeArr[pageIndex].title = contentObject.title;
+            writeArr[pageIndex].content = editorData.value;
+            clearEditPage();
+            isPageNew.value = true;
+        }
+        // 刪除分頁
+        function deletePage(index) {
+            tempPlugin.value.contentArr.splice(index, 1);
+        }
+
         // 新增插件開放編輯
         if (props.isNew === true) {
             isEdit.value = true;
@@ -230,6 +291,15 @@ export default {
             stateStore,
             checkModal,
             openUserLink,
+            addPages,
+            multiPage,
+            contentObject,
+            contentArray,
+            loadPages,
+            isPageNew,
+            updatePage,
+            pageIndex,
+            deletePage
         };
     }
 }

@@ -139,7 +139,6 @@ export default {
         // 說明按鈕
         function openInstallModal(type) {
             isOpen.value = true;
-            console.log(type);
             installType.value = type;
         }
 

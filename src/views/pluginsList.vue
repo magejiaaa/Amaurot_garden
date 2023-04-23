@@ -76,7 +76,7 @@
                 </div>
 
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-4"
+                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4"
                         @click="pluginContent(index, item)">
                         <p>{{ item.name }}</p>
                         <p class="font-light text-gray-500">{{ item.category }}</p>
@@ -101,12 +101,14 @@
                         <TransitionChild class="relative z-50 w-full" enter="ease-out duration-300 transform"
                             enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200"
                             leave-from="opacity-100" leave-to="opacity-0">
-                            <!-- TODO 切換上下一個插件 -->
+                            <!-- 切換上下一個插件 -->
                             <font-awesome-icon icon="fa-solid fa-chevron-left"
-                                class="absolute w-16 h-16 left-32 text-white cursor-pointer" 
+                                class="hidden absolute w-16 h-16 left-12 text-white cursor-pointer
+                                md:block lg:left-32" 
                                 @click="prePlugin" v-if="isEdit == false" />
                             <font-awesome-icon icon="fa-solid fa-chevron-right"
-                                class="absolute w-16 h-16 right-32 text-white cursor-pointer" 
+                                class="hidden absolute w-16 h-16 right-12 text-white cursor-pointer
+                                md:block lg:right-32" 
                                 @click="nextPlugin" v-if="isEdit == false" />
                         </TransitionChild>
                         <TransitionChild as="template" enter="ease duration-300 transform"
@@ -228,7 +230,7 @@ export default {
 
         // 篩選偵測視窗大小
         let mobileMenuShow = ref(false);
-        if (window.innerWidth >= 1024) {
+        if (window.innerWidth >= 768) {
             mobileMenuShow.value = true;
         }
 
