@@ -125,7 +125,7 @@ export default {
                 const provider = new GoogleAuthProvider();
                 const authUser = await signInWithPopup(auth, provider);
                 // 設置用戶額外資訊
-                console.log('註冊成功', authUser)
+                console.log('google註冊/登入成功', authUser)
                 const id = authUser.uid;
                 await router.push(`/dashboard/user/${id}`);
             } catch (error) {
@@ -141,7 +141,6 @@ export default {
                     router.push({ name: 'home' })
                 })
         }
-
 
 
         return {
