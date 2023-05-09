@@ -131,11 +131,11 @@
                         class="w-full"
                     />
                 </div>
-                <div class="col-span-2 flex">
+                <div class="col-span-2 flex justify-between">
                     <!-- contentArray的陣列按鈕列表 -->
                     <ul
                         v-if="contentArray.length > 0"
-                        class="flex items-end border-b"
+                        class="flex items-end border-b flex-grow"
                     >
                         <li
                             v-for="(item, index) in contentArray"
@@ -158,14 +158,14 @@
                     </ul>
                     <!-- 增加tempPlugin.分頁節點 -->
                     <button
-                        class="border px-2 py-1 rounded bg-grayBlue-500 text-white"
+                        class="border px-2 py-1 rounded bg-grayBlue-500 text-white ml-4"
                         v-if="isPageNew == true"
                         @click="addPages"
                     >
                         增加頁數
                     </button>
                     <button
-                        class="border px-2 py-1 rounded bg-grayBlue-500 text-white"
+                        class="border px-2 py-1 rounded bg-grayBlue-500 text-white ml-4"
                         v-else
                         @click="updatePage"
                     >
