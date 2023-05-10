@@ -28,6 +28,7 @@
                         type="button"
                         class="ml-4 text-gray-500 cursor-pointer px-3 py-1 rounded align-middle transition hover:bg-gray-200"
                         @click="handleClick"
+                        v-if="pluginStore.isLogin && isEdit === false"
                     >
                         <font-awesome-icon
                             icon="fa-solid fa-pen-to-square"
@@ -61,10 +62,34 @@
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
             </div>
-            <!-- TODO: 製作多頁標籤顯示 -->
-            <div v-html="tempPlugin.content" class="pluginContent"></div>
+            <!-- 多頁標籤顯示 -->
+            <div class="col-span-2 flex justify-between">
+                <ul class="flex items-end flex-grow mb-2">
+                    <li
+                        v-for="(item, index) in plugin.contentArr"
+                        :key="index"
+                        @click="loadPages(item, index)"
+                    >
+                        <button class="border rounded px-2 py-1">
+                            {{ item.title }}
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <!-- 單頁內容 -->
+            <div
+                v-html="
+                    tempPlugin.content === ''
+                        ? plugin.contentArr[0].content
+                        : tempPlugin.content
+                "
+                class="pluginContent border-b py-4"
+            ></div>
 
-            <p v-if="tempPlugin.editMember" class="mt-4 text-gray-500">
+            <p
+                v-if="tempPlugin.editMember && isReview === true"
+                class="mt-4 text-gray-500"
+            >
                 編輯人員：{{ tempPlugin.editMember.name }}
             </p>
             <div class="mt-4">
@@ -134,11 +159,32 @@
                 <div class="col-span-2 flex justify-between">
                     <!-- contentArray的陣列按鈕列表 -->
                     <ul
-                        v-if="contentArray.length > 0"
+                        v-if="
+                            contentArray.length ||
+                            tempPlugin.contentArr.length > 0
+                        "
                         class="flex items-end border-b flex-grow"
                     >
                         <li
                             v-for="(item, index) in contentArray"
+                            :key="index"
+                            @click="loadPages(item, index)"
+                            class="border-t border-l border-r rounded-t px-2 py-1"
+                            :class="{
+                                'bg-grayBlue-100':
+                                    contentObject.title === item.title,
+                            }"
+                        >
+                            {{ item.title }}
+                            <button
+                                class="border-none px-1"
+                                @click="deletePage(index)"
+                            >
+                                <font-awesome-icon icon="fa-solid fa-xmark" />
+                            </button>
+                        </li>
+                        <li
+                            v-for="(item, index) in tempPlugin.contentArr"
                             :key="index"
                             @click="loadPages(item, index)"
                             class="border-t border-l border-r rounded-t px-2 py-1"
