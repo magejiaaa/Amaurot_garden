@@ -23,13 +23,13 @@ export const useStateStore = defineStore("user", () => {
                 const getUserData = refData(database, "users/" + user.uid);
                 onValue(getUserData, (snapshot) => {
                     const userData = snapshot.val();
-                    console.log(userData);
                     // 如果資料庫沒有該使用者路徑
                     if (userData === null) {
-                        console.log("寫入資料");
+                        console.log("user");
                         // 寫入第三方的名稱
                         set(refData(database, "users/" + user.uid), {
                             displayName: user.displayName,
+                            email: user.email,
                         });
                     }
                     userName.value = userData.name;

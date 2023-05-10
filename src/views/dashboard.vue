@@ -1,15 +1,18 @@
 <template>
-    <Usermenu :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></Usermenu>
+    <Usermenu
+        :isLogin="pluginStore.isLogin"
+        @signOut="handleSignOut"
+    ></Usermenu>
     <router-view class="pt-20"></router-view>
     <footerBox></footerBox>
 </template>
 
 <script>
-import Usermenu from '../components/Usermenu.vue';
-import footerBox from '../components/FooterBox.vue';
+import Usermenu from "../components/Usermenu.vue";
+import footerBox from "../components/FooterBox.vue";
 // import { ref } from 'vue';
-import { usePluginsStore } from '../stores/pluginStore';
-import { useStateStore } from '../stores/stateStore';
+import { usePluginsStore } from "../stores/pluginStore";
+import { useStateStore } from "../stores/stateStore";
 
 export default {
     setup() {
@@ -27,12 +30,12 @@ export default {
         return {
             pluginStore,
             stateStore,
-            handleSignOut
-        }
+            handleSignOut,
+        };
     },
     components: {
         Usermenu,
-        footerBox
-    }
-}
+        footerBox,
+    },
+};
 </script>

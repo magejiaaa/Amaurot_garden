@@ -64,7 +64,7 @@
             <!-- TODO: 製作多頁標籤顯示 -->
             <div v-html="tempPlugin.content" class="pluginContent"></div>
 
-            <p v-if="isReview === true" class="mt-4 text-gray-500">
+            <p v-if="tempPlugin.editMember" class="mt-4 text-gray-500">
                 編輯人員：{{ tempPlugin.editMember.name }}
             </p>
             <div class="mt-4">
@@ -301,6 +301,7 @@ export default {
             if (!tempPlugin.value.allEditMember) {
                 tempPlugin.value.allEditMember = [];
             }
+            // 檢查是否有相同的uid
             const isUidExist = tempPlugin.value.allEditMember.some(
                 (member) => member.uid === tempPlugin.value.editMember.uid
             );
@@ -316,7 +317,6 @@ export default {
                 duplicateMembers.forEach((member) => {
                     member.name = tempPlugin.value.editMember.name;
                 });
-                console.log(tempPlugin.value);
             }
             emit("checkModal", tempPlugin);
         };
