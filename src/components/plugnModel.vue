@@ -1,6 +1,7 @@
 <template>
     <!-- 插件視窗 -->
     <div class="mx-auto p-4 overflow-auto relative text-left md:p-8">
+        <loading-plugin :active="isLoading"></loading-plugin>
         <div
             class="flex items-center justify-between text-grayBlue-500 mb-8"
             :class="{
@@ -84,6 +85,7 @@
                         : tempPlugin.content
                 "
                 class="pluginContent border-b py-4"
+                ref="contentRef"
             ></div>
 
             <p
@@ -263,7 +265,7 @@
 </template>
 
 <script>
-import { ref, watch, reactive } from "vue";
+import { ref, watch, reactive, nextTick, onMounted } from "vue";
 import { usePluginsStore } from "../stores/pluginStore";
 import { useStateStore } from "../stores/stateStore";
 import TinycmeEditor from "../components/TinyMCE.vue";
@@ -431,6 +433,31 @@ export default {
             router.push(`/dashboard/user/${id}`);
         }
 
+        // 獲取所有圖片並在加載完成後關閉vue-loading-overlay
+        const isLoading = ref(false);
+        const contentRef = ref(null); // 使用 ref 創建容器的參考
+        const applyLazyLoad = () => {
+            nextTick(() => {
+                const imgTags = contentRef.value.querySelectorAll("img");
+                imgTags.forEach((img) => {
+                    isLoading.value = true;
+                    img.onload = () => {
+                        // 所有圖片已加載完成
+                        console.log("所有圖片已加載完成");
+                        isLoading.value = false; // 隱藏 loading 畫面
+                    };
+                });
+            });
+        };
+
+        onMounted(() => {
+            applyLazyLoad();
+        });
+
+        watch(tempPlugin, () => {
+            applyLazyLoad();
+        });
+
         return {
             closeModal,
             tempPlugin,
@@ -451,6 +478,9 @@ export default {
             updatePage,
             pageIndex,
             deletePage,
+            contentRef,
+            applyLazyLoad,
+            isLoading,
         };
     },
 };

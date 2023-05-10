@@ -117,7 +117,6 @@
                     src="../assets/images/moreplugins02.jpg"
                     class="mx-auto border rounded-3 mb-3"
                     alt=""
-                    loading="lazy"
                     width="700"
             /></a>
             <p class="mx-sm-5">
