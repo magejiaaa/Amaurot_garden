@@ -14,22 +14,23 @@
                     md:flex-row md:w-auto">
                     <div class="relative mb-2 md:mr-6 md:mb-0">
                         <a type="button" class="btn downloadBtn w-full 
-                            lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases"
-                            target="_blank">下載Dalamud(github)</a>
+                            lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(github)</a>
                     </div>
                     <div class="relative">
                         <a type="button" class="btn downloadBtn w-full
-                            lg:m-1 lg:w-auto | cn"
-                            href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6"
-                            target="_blank">CN版介紹</a>
+                            lg:m-1 lg:w-auto | cn" href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6" target="_blank">CN版介紹</a>
                     </div>
                 </div>
                 <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
-                <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png"
-                    class="img-fluid border rounded shadow my-4 mx-auto" alt="登陸器介面" width="700" height="500">
+                <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png" class="img-fluid border rounded shadow my-4 mx-auto" alt="登陸器介面" width="700"
+                    height="500">
+                <a href="https://github.com/magejiaaa/Amaurot_garden/issues/1#issue-1565685628" target="_blank" class="p-4 border rounded inline-block bg-white hover:bg-slate-100">
+                    👉這個網站預計更新的項目👉<br>
+                    獨立作業更新緩慢跟bug很多請見諒🥺
+                </a>
             </div>
         </div>
 
@@ -71,22 +72,17 @@
             </div>
         </div>
         <!-- 安裝說明 -->
-        <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100"
-            leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
+        <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
-                <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
-                    leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
-                        @click="closeModal" />
+                <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" @click="closeModal" />
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
-                        <TransitionChild as="template" enter="ease-out duration-500 transform"
-                            enter-from="opacity-0 -translate-y-40 sm:scale-95"
-                            enter-to="opacity-100 -translate-y-0 sm:scale-100" leave="ease-in duration-200"
-                            leave-from="opacity-100 sm:scale-100" leave-to="opacity-0 sm:scale-95">
+                        <TransitionChild as="template" enter="ease-out duration-500 transform" enter-from="opacity-0 -translate-y-40 sm:scale-95" enter-to="opacity-100 -translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200" leave-from="opacity-100 sm:scale-100" leave-to="opacity-0 sm:scale-95">
                             <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
                                 md:w-8/12">
                                 <install :installType="installType" @close="closeModal"></install>

@@ -162,8 +162,7 @@
                     <!-- contentArray的陣列按鈕列表 -->
                     <ul
                         v-if="
-                            contentArray.length ||
-                            tempPlugin.contentArr.length > 0
+                            contentArray.length || tempPlugin.contentArr
                         "
                         class="flex items-end border-b flex-grow"
                     >
