@@ -102,10 +102,11 @@
                     </button>
                 </div>
                 <!-- contentArray的陣列按鈕列表 -->
-                <ul v-if="contentArray.length || tempPlugin.contentArr
-                    " class="flex items-end border-b flex-grow">
-                    <li v-for="(item, index) in contentArray" :key="index" @click="loadPages(item, index)" class="border-t border-l border-r rounded-t px-2 py-1"
-                        :class="{ 'bg-grayBlue-100': contentObject.title === item.title }">
+                <ul v-if="contentArray.length || tempPlugin.contentArr" class="flex items-end border-b flex-grow">
+                    <li v-for="(item, index) in contentArray" :key="index" @click="loadPages(item, index)" class="border-t border-l border-r rounded-t px-2 py-1" :class="{
+                            'bg-grayBlue-100':
+                                contentObject.title === item.title,
+                        }">
                         {{ item.title }}
                         <button class="border-none px-1" @click="deletePage(index)">
                             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -130,7 +131,10 @@
                 <button class="btn text-gray-500 border border-gray-500 mr-4 hover:bg-gray-500 hover:text-white" type="button" @click="handleClick">
                     取消
                 </button>
-                <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800 hover:bg-grayBlue-800" type="submit" @click="updateModal" v-if="isReview === false">
+                <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800 
+                hover:bg-grayBlue-800
+                disabled:border-gray-400 disabled:bg-gray-300 disabled:text-gray-400" type="submit" @click="updateModal" v-if="isReview === false"
+                ref="submitButton">
                     確定
                 </button>
                 <!-- 審核畫面才出現 -->
@@ -221,7 +225,11 @@ export default {
                 uid: stateStore.userID,
             };
             // 驗證必填欄位
-            if (tempPlugin.value.name && tempPlugin.value.category && tempPlugin.value.describe) {
+            if (
+                tempPlugin.value.name &&
+                tempPlugin.value.category &&
+                tempPlugin.value.describe
+            ) {
                 emit("updateModal", tempPlugin);
             } else {
                 alert("尚有必填欄位未填寫！");
@@ -260,11 +268,13 @@ export default {
         const contentObject = reactive({});
         // 偵測是新增還是修改
         let isPageNew = ref(true);
+        const submitButton = ref(null);
         function addPages() {
             // 第一次按新增頁數
             if (multiPage.value === false) {
                 multiPage.value = true;
                 contentObject.content = tempPlugin.value.content;
+                submitButton.value.disabled = true; // 添加 disabled 属性
             } else {
                 if (contentObject.title) {
                     // 先複製一份 contentObject(避免推進陣列前被清空)
@@ -272,6 +282,7 @@ export default {
                     // 將複製的物件推進陣列
                     contentArray.value.push(newObj);
                     tempPlugin.value.contentArr = contentArray.value;
+                    submitButton.value.disabled = false; // 添加 disabled 属性
                     clearEditPage();
                 } else {
                     alert("請輸入分頁名稱");
@@ -372,6 +383,7 @@ export default {
             contentRef,
             applyLazyLoad,
             isLoading,
+            submitButton,
         };
     },
 };
