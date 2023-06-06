@@ -192,13 +192,14 @@ export default {
                     } else {
                         isEdit.value = false;
                     }
-
-                    if ( props.plugin.contentArr ) {
+                    // 有分頁的插件要編輯
+                    if (props.plugin.contentArr) {
                         loadPages(props.plugin.contentArr, 0);
+                    } else {
+                        editorData.value = tempPlugin.value.content;
                     }
                     isEdit.value = !isEdit.value;
                     emit("editing");
-                    editorData.value = tempPlugin.value.content;
                 }
             }
         };
@@ -309,18 +310,18 @@ export default {
         // 點擊分頁列表出現在編輯器&標題
         let pageIndex = 0;
         function loadPages(item, index) {
-            if (item.content !== props.plugin.contentArr[index].content && props.plugin.content ) {
+            if (tempPlugin.value.content !== tempPlugin.value.contentArr[pageIndex].content && editorData.value !== "") {
                 if (window.confirm("編輯尚未儲存，是否放棄編輯內容？")) {
                     pageIndex = index;
                     isPageNew.value = false;
                     contentObject.title = item.title;
                     editorData.value = item.content;
                 }
-            } else {
-                if (!props.plugin.content) {
+            } else if (pageIndex == 0 && props.plugin.content == "") {
                     editorData.value = tempPlugin.value.contentArr[0].content;
                     contentObject.title = tempPlugin.value.contentArr[0].title;
-                }
+            } else {
+                // 沒有變更才換頁
                 pageIndex = index;
                 isPageNew.value = false;
                 contentObject.title = item.title;
@@ -363,14 +364,15 @@ export default {
         const applyLazyLoad = () => {
             nextTick(() => {
                 const imgTags = contentRef.value.querySelectorAll("img");
-                imgTags.forEach((img) => {
-                    isLoading.value = true;
-                    img.onload = () => {
-                        // 所有圖片已加載完成
-                        console.log("所有圖片已加載完成");
-                        isLoading.value = false; // 隱藏 loading 畫面
-                    };
-                });
+                if (imgTags.length > 0) {
+                    imgTags.forEach((img) => {
+                        isLoading.value = true;
+                        img.onload = () => {
+                            // console.log("所有圖片已加載完成");
+                            isLoading.value = false; // 隱藏 loading 畫面
+                        };
+                    });
+                }
             });
         };
 
