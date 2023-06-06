@@ -39,7 +39,9 @@
             <div class="col-span-2 flex justify-between">
                 <ul class="flex items-end flex-grow mb-2">
                     <li v-for="(item, index) in plugin.contentArr" :key="index" @click="loadPages(item, index)">
-                        <button class="border rounded px-2 py-1">
+                        <button class="border rounded px-2 py-1 text-gray-500" :class="{
+                                'bg-grayBlue-100 border-grayBlue-300 text-grayBlue-500': item.title === contentObject.title || (index === 0 && !contentObject.title)
+                            }">
                             {{ item.title }}
                         </button>
                     </li>
@@ -67,11 +69,11 @@
         <div v-else>
             <div class="grid gap-x-6 gap-y-3 mb-6 grid-cols-2">
                 <div class="col-span-2 md:col-auto">
-                    <label for="name">插件名稱(原文)</label>
+                    <label for="name"><span class="text-red-500">*</span>插件名稱(原文)</label>
                     <input type="text" placeholder="請輸入插件名稱" id="name" required v-model="tempPlugin.name" class="w-full" />
                 </div>
                 <div class="col-span-2 md:col-auto">
-                    <label for="category">分類</label>
+                    <label for="category"><span class="text-red-500">*</span>分類</label>
                     <select id="category" v-model="tempPlugin.category" required class="w-full leading-4">
                         <option value="" disabled>請選擇分類</option>
                         <option :value="item" v-for="(item, index) in pluginStore.category" :key="index">
@@ -80,7 +82,7 @@
                     </select>
                 </div>
                 <div class="col-span-2">
-                    <label for="describe">插件功能簡稱(不超過10個字)</label>
+                    <label for="describe"><span class="text-red-500">*</span>插件功能簡稱(不超過10個字)</label>
                     <input type="text" placeholder="請輸入插件功能簡稱" id="describe" required v-model="tempPlugin.describe" class="w-full" />
                 </div>
                 <div class="col-span-2">
@@ -89,29 +91,21 @@
                 </div>
                 <!-- 插件分頁編輯 -->
                 <div class="col-span-2 flex items-end">
-                    <div class="flex-auto" v-if="multiPage == true">
+                    <div class="flex-auto mr-4" v-if="multiPage == true">
                         <label for="pagetitle">分頁標題</label>
                         <input type="text" placeholder="請輸入分頁標題" id="pagetitle" v-model="contentObject.title" class="w-full" />
                     </div>
                     <!-- 增加tempPlugin.分頁節點 -->
-                    <button class="border px-3 py-2 rounded bg-grayBlue-500 text-white ml-4 flex-none" v-if="isPageNew == true" @click="addPages">
+                    <button class="border px-3 py-2 rounded bg-grayBlue-500 text-white flex-none" v-if="isPageNew == true" @click="addPages">
                         增加頁數
                     </button>
-                    <button class="border px-3 py-2 rounded bg-grayBlue-500 text-white ml-4 flex-none" v-else @click="updatePage">
+                    <button class="border px-3 py-2 rounded bg-grayBlue-500 text-white flex-none" v-else @click="updatePage">
                         確認修改
                     </button>
+                    <p class="text-sm text-red-500" ref="multiText">※可增加分頁標籤，如果內容太多可透過分頁展示，視窗就不會太長</p>
                 </div>
                 <!-- contentArray的陣列按鈕列表 -->
-                <ul v-if="contentArray.length || tempPlugin.contentArr" class="flex items-end border-b flex-grow">
-                    <li v-for="(item, index) in contentArray" :key="index" @click="loadPages(item, index)" class="border-t border-l border-r rounded-t px-2 py-1" :class="{
-                            'bg-grayBlue-100':
-                                contentObject.title === item.title,
-                        }">
-                        {{ item.title }}
-                        <button class="border-none px-1" @click="deletePage(index)">
-                            <font-awesome-icon icon="fa-solid fa-xmark" />
-                        </button>
-                    </li>
+                <ul v-if="tempPlugin.contentArr" class="flex items-end border-b flex-grow col-span-2">
                     <li v-for="(item, index) in tempPlugin.contentArr" :key="index" @click="loadPages(item, index)" class="border-t border-l border-r rounded-t px-2 py-1" :class="{
                             'bg-grayBlue-100':
                                 contentObject.title === item.title,
@@ -133,8 +127,7 @@
                 </button>
                 <button class="btn bg-grayBlue-500 text-white border border-grayBlue-800 
                 hover:bg-grayBlue-800
-                disabled:border-gray-400 disabled:bg-gray-300 disabled:text-gray-400" type="submit" @click="updateModal" v-if="isReview === false"
-                ref="submitButton">
+                disabled:border-gray-400 disabled:bg-gray-300 disabled:text-gray-400" type="submit" @click="updateModal" v-if="isReview === false" ref="submitButton">
                     確定
                 </button>
                 <!-- 審核畫面才出現 -->
@@ -183,6 +176,7 @@ export default {
         watch(editorData, (newValue) => {
             tempPlugin.value.content = newValue;
         });
+        // 編輯、取消按鈕
         const handleClick = () => {
             if (props.isNew === true) {
                 // 新增插件的取消
@@ -192,6 +186,16 @@ export default {
                 if (stateStore.userID == "") {
                     alert("請先登入");
                 } else {
+                    if (isEdit.value == true && window.confirm("尚未儲存編輯的內容，是否退出？")) {
+                        // 退出編輯返回插件頁面
+                        contentObject.title = "";
+                    } else {
+                        isEdit.value = false;
+                    }
+
+                    if ( props.plugin.contentArr ) {
+                        loadPages(props.plugin.contentArr, 0);
+                    }
                     isEdit.value = !isEdit.value;
                     emit("editing");
                     editorData.value = tempPlugin.value.content;
@@ -218,6 +222,7 @@ export default {
             }
             isEdit.value = false;
         };
+
         // 送出時備註編輯人員
         const updateModal = () => {
             tempPlugin.value.editMember = {
@@ -269,12 +274,14 @@ export default {
         // 偵測是新增還是修改
         let isPageNew = ref(true);
         const submitButton = ref(null);
+        const multiText = ref(null);
         function addPages() {
             // 第一次按新增頁數
             if (multiPage.value === false) {
                 multiPage.value = true;
                 contentObject.content = tempPlugin.value.content;
                 submitButton.value.disabled = true; // 添加 disabled 属性
+                multiText.value.style.display = 'none'; // 设置为不可见
             } else {
                 if (contentObject.title) {
                     // 先複製一份 contentObject(避免推進陣列前被清空)
@@ -302,10 +309,23 @@ export default {
         // 點擊分頁列表出現在編輯器&標題
         let pageIndex = 0;
         function loadPages(item, index) {
-            pageIndex = index;
-            isPageNew.value = false;
-            contentObject.title = item.title;
-            editorData.value = item.content;
+            if (item.content !== props.plugin.contentArr[index].content && props.plugin.content ) {
+                if (window.confirm("編輯尚未儲存，是否放棄編輯內容？")) {
+                    pageIndex = index;
+                    isPageNew.value = false;
+                    contentObject.title = item.title;
+                    editorData.value = item.content;
+                }
+            } else {
+                if (!props.plugin.content) {
+                    editorData.value = tempPlugin.value.contentArr[0].content;
+                    contentObject.title = tempPlugin.value.contentArr[0].title;
+                }
+                pageIndex = index;
+                isPageNew.value = false;
+                contentObject.title = item.title;
+                editorData.value = item.content;
+            }
         }
         // 修改分頁內容
         function updatePage() {
@@ -321,7 +341,9 @@ export default {
         }
         // 刪除分頁
         function deletePage(index) {
-            tempPlugin.value.contentArr.splice(index, 1);
+            if (window.confirm("確定刪除此分頁？")) {
+                tempPlugin.value.contentArr.splice(index, 1);
+            }
         }
 
         // 新增插件開放編輯
@@ -384,6 +406,7 @@ export default {
             applyLazyLoad,
             isLoading,
             submitButton,
+            multiText,
         };
     },
 };

@@ -41,19 +41,19 @@ export default {
         stateStore.login();
         // 取得database的使用者資料
         const tempUser = ref({});
-        const localUser = ref(tempUser);
+        const localUser = ref({});
         // 確保有uid
         const userUid = stateStore.userID || route.params.uid;
         // 從database取得使用者資料
         const userData = refData(database, "users/" + userUid);
         onValue(userData, (snapshot) => {
             tempUser.value = snapshot.val();
+            localUser.value = { ...tempUser.value };
+            // 當第三方名稱不為空 且 name不存在
+            if (tempUser.value.displayName && !tempUser.value.name) {
+                localUser.value.name = tempUser.value.displayName;
+            }
         });
-
-        // 當第三方名稱不為空 且 name不存在
-        if (tempUser.value.displayName !== "" && !tempUser.value.name) {
-            localUser.value.name = tempUser.value.displayName;
-        }
         // 更改database使用者資料
         function userSubmit(user) {
             const tempUserObj = toRaw(user);
