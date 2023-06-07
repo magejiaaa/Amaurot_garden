@@ -1,4 +1,8 @@
-# Dalamud登陸器、插件介紹網站
+# 此分支已停止更新
+請前往newVue分支查看</br>
+https://github.com/magejiaaa/Amaurot_garden/tree/newVue
+
+## Dalamud登陸器、插件介紹網站
 https://magejiaaa.github.io/Amaurot_garden/ </br>
 存放FF14插件的各種使用方法、實用連結、介面粗略翻譯。 </br>
 包含跨服傳送介面刪減不必要訊息、連續技能按鍵同位置、自動立旗寶圖地點、場地標點儲存、快捷欄自訂數量與功能增加、自訂家具位置...等等。 </br>
