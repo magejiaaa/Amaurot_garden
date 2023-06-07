@@ -26,24 +26,20 @@
                         </span>
                     </ListboxButton>
 
-                    <transition leave-active-class="transition duration-100 ease-in" leave-from-class="opacity-100"
-                        leave-to-class="opacity-0">
-                        <ListboxOptions
-                            class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <transition leave-active-class="transition duration-100 ease-in" leave-from-class="opacity-100" leave-to-class="opacity-0">
+                        <ListboxOptions class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <ListboxOption v-slot="{ active, selected }" value="" as="template">
                                 <li :class="[
                                         active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
                                         'relative cursor-default select-none py-2 pl-10 pr-4',
                                     ]">
                                     <button>顯示全部</button>
-                                    <span v-if="selected"
-                                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
+                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
                                 </li>
                             </ListboxOption>
-                            <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category"
-                                :key="index" :value="item" as="template">
+                            <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category" :key="index" :value="item" as="template">
                                 <li :class="[
                                         active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
                                         'relative cursor-default select-none py-2 pl-10 pr-4',
@@ -52,8 +48,7 @@
                                             selected ? 'font-medium' : 'font-normal',
                                             'block truncate',
                                         ]">{{ item }}</span>
-                                    <span v-if="selected"
-                                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
+                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
                                 </li>
@@ -70,14 +65,12 @@
                     w-11/12 py-10 mx-auto">
                 <div class="mb-5 flex justify-between items-end">
                     <h3 class="text-2xl">插件列表</h3>
-                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()"
-                        v-if="pluginStore.isLogin">新增插件</button>
+                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
 
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4"
-                        @click="pluginContent(index, item)">
+                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
                         <p>{{ item.name }}</p>
                         <p class="font-light text-gray-500">{{ item.category }}</p>
                         <p class="md:col-span-2">{{ item.describe }}</p>
@@ -87,38 +80,29 @@
                 <p v-else class="text-center">本分類下沒有插件</p>
             </div>
         </div>
-        <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100"
-            leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
+        <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
-                <TransitionChild as="template" enter="ease-out duration-500" enter-from="opacity-0" enter-to="opacity-100"
-                    leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+                <TransitionChild as="template" enter="ease-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
                     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" />
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
-                        <TransitionChild class="relative z-50 w-full" enter="ease-out duration-300 transform"
-                            enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200"
+                        <TransitionChild class="relative z-50 w-full" enter="ease-out duration-300 transform" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200"
                             leave-from="opacity-100" leave-to="opacity-0">
                             <!-- 切換上下一個插件 -->
-                            <font-awesome-icon icon="fa-solid fa-chevron-left"
-                                class="hidden absolute w-16 h-16 left-12 text-white cursor-pointer
-                                md:block lg:left-32" 
-                                @click="prePlugin" v-if="isEdit == false" />
-                            <font-awesome-icon icon="fa-solid fa-chevron-right"
-                                class="hidden absolute w-16 h-16 right-12 text-white cursor-pointer
-                                md:block lg:right-32" 
-                                @click="nextPlugin" v-if="isEdit == false" />
+                            <font-awesome-icon icon="fa-solid fa-chevron-left" class="hidden absolute w-16 h-16 left-12 text-white cursor-pointer
+                                md:block lg:left-32" @click="prePlugin" v-if="isEdit == false" />
+                            <font-awesome-icon icon="fa-solid fa-chevron-right" class="hidden absolute w-16 h-16 right-12 text-white cursor-pointer
+                                md:block lg:right-32" @click="nextPlugin" v-if="isEdit == false" />
                         </TransitionChild>
-                        <TransitionChild as="template" enter="ease duration-300 transform"
-                            enter-from="opacity-0 translate-x-40"
-                            enter-to="opacity-100 translate-x-0" leave="ease-in duration-200"
+                        <TransitionChild as="template" enter="ease duration-300 transform" enter-from="opacity-0 translate-x-40" enter-to="opacity-100 translate-x-0" leave="ease-in duration-200"
                             leave-from="opacity-100 sm:scale-100" leave-to="opacity-0 sm:scale-95">
-                            <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
+                            <DialogPanel class="scrollbarWindow | 
+                            fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
                             md:w-8/12">
-                                <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal" @editing="editHandler"
-                                    :isNew="isNew">
+                                <pluginModel :plugin="tempPlugin" @close="closeModal" @updateModal="updateModal" @editing="editHandler" :isNew="isNew">
                                 </pluginModel>
                             </DialogPanel>
                         </TransitionChild>
@@ -187,13 +171,13 @@ export default {
         }
         // 上一個插件
         function prePlugin() {
-            if(pluginIndex.value > 0 && isEdit.value === false) {
+            if (pluginIndex.value > 0 && isEdit.value === false) {
                 pluginIndex.value--;
             }
         }
         // 下一個插件
         function nextPlugin() {
-            if(pluginIndex.value < filterPlugin.value.length -1 && isEdit.value === false) {
+            if (pluginIndex.value < filterPlugin.value.length - 1 && isEdit.value === false) {
                 pluginIndex.value++;
             }
         }
@@ -233,6 +217,16 @@ export default {
         if (window.innerWidth >= 768) {
             mobileMenuShow.value = true;
         }
+
+        // 監聽插件視窗開啟的話背景不可捲動
+        watch(isOpen, (newVal) => {
+            const body = document.querySelector('body');
+            if (newVal) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        });
 
         return {
             pluginStore,

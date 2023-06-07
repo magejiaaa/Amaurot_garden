@@ -16,7 +16,7 @@ export const usePluginsStore = defineStore("plugins", {
             "座標地圖相關",
             "成就相關",
             "金蝶房屋交易版",
-            "外觀、BGM",
+            "外觀、BGM、RP友善",
         ],
     }),
     actions: {

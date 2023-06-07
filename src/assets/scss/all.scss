@@ -1,2 +1,28 @@
 @import './menu';
 @import './index';
+
+// scrollbar美化
+.scrollbarWindow {
+    &::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-button {
+        background: transparent;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid slategrey;
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: transparent;
+    }
+}
