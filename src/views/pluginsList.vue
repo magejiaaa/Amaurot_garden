@@ -2,7 +2,7 @@
     <div>
         <div class="bg-gray-100 flex flex-col md:flex-row">
             <!-- PC分類列表 -->
-            <div class="md:border-r md:w-3/12" v-if="mobileMenuShow">
+            <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
                 <ul class="mx-auto my-8 text-grayBlue-800">
                     <li>
                         <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = ''">顯示全部</button>
