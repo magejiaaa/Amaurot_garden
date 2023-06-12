@@ -31,11 +31,15 @@ export const useStateStore = defineStore("user", () => {
                             displayName: user.displayName,
                             email: user.email,
                         });
+                        userName.value = userContent.value.displayName;
+                    } else if (!userData.name) {
+                        userName.value = userData.displayName;
+                    } else {
+                        userName.value = userData.name;
                     }
-                    userName.value = userData.name;
                 });
                 userContent.value = user;
-                // console.log(user);
+                console.log(user);
             } else {
                 console.log("not logged in");
             }

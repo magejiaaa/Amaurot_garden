@@ -82,6 +82,7 @@
 
 <script>
 import { usePluginsStore } from "../stores/pluginStore";
+import { useStateStore } from '../stores/stateStore';
 import { ref, computed } from "vue";
 import {
     Dialog,
@@ -93,6 +94,7 @@ import pluginModel from "../components/plugnModel.vue";
 
 export default {
     setup() {
+        const stateStore = useStateStore();
         const pluginStore = usePluginsStore();
         // 取得待審核插件
         const reviewPlugin = computed(() => {

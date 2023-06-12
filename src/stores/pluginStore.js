@@ -40,7 +40,6 @@ export const usePluginsStore = defineStore("plugins", {
             const onPlugin = ref(database, "editPlugin/");
             onValue(onPlugin, (snapshot) => {
                 const reviewPlugins = snapshot.val();
-                console.log(reviewPlugins);
                 if (reviewPlugins !== null) {
                     // 遍歷每個插件
                     for (const key of Object.keys(reviewPlugins)) {

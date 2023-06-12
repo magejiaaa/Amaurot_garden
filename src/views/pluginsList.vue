@@ -201,13 +201,11 @@ export default {
                 pluginStore.setPlugin(item);
                 closeModal();
                 pluginStore.getPlugin();
-                console.log('新增成功');
                 alert('新增成功');
             } else {
                 pluginStore.updatePlugin(item);
                 closeModal();
                 pluginStore.getPlugin();
-                console.log('送審成功');
                 alert('送審成功');
             }
         }
