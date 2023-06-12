@@ -32,11 +32,12 @@ import { useStateStore } from "../stores/stateStore";
 import { ref, toRaw } from "vue";
 import { database } from "../stores/firebasedb.js";
 import { onValue, ref as refData, update } from "firebase/database";
-import { useRoute } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 export default {
     setup() {
         const route = useRoute();
+        const router = useRouter();
         const stateStore = useStateStore();
         stateStore.login();
         // 取得database的使用者資料
@@ -64,6 +65,7 @@ export default {
             return update(refData(database), updates).then(() => {
                 console.log("更新成功");
                 alert("更新成功");
+                router.go();
             });
         }
 

@@ -32,8 +32,8 @@
                             @click="mobileMenuClose">插件介紹</router-link>
                     </li>
                     <li>
-                        <span class="p-4 block cursor-not-allowed text-gray-500" data-bs-toggle="page"
-                            @click="mobileMenuClose">第三方插件</span>
+                        <router-link to="/dashboard/thirdPluginsList" class="p-4 block" 
+                            @click="mobileMenuClose">第三方插件</router-link>
                     </li>
                     <li>
                         <a class="p-4 block cursor-pointer" @click.prevent="getUserID" v-if="isLogin">個人資料</a>

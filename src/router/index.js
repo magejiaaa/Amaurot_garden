@@ -21,6 +21,11 @@ const routes = [
                 component: () => import('../views/pluginsList.vue'),
             },
             {
+                path: 'thirdPluginsList',
+                name: 'thirdPluginsList',
+                component: () => import('../views/thirdPlugin.vue'),
+            },
+            {
                 path: 'user/:uid',
                 name: 'user',
                 component: () => import('../views/user.vue'),
