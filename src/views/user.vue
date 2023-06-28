@@ -9,11 +9,7 @@
                 <input type="url" id="userWeb" v-model="localUser.website" />
                 <label for="userGame">遊戲名稱</label>
                 <input type="text" id="userGame" v-model="localUser.gameName" />
-                <button
-                    type="button"
-                    class="btn border mt-4"
-                    @click.prevent="userSubmit(localUser)"
-                >
+                <button type="button" class="btn border mt-4" @click.prevent="userSubmit(localUser)">
                     確認修改
                 </button>
             </form>
@@ -33,6 +29,7 @@ import { ref, toRaw } from "vue";
 import { database } from "../stores/firebasedb.js";
 import { onValue, ref as refData, update } from "firebase/database";
 import { useRouter, useRoute } from "vue-router";
+import Swal from 'sweetalert2';
 
 export default {
     setup() {
@@ -63,9 +60,12 @@ export default {
             updates["/users/" + userUid] = postData;
             console.log(updates);
             return update(refData(database), updates).then(() => {
-                console.log("更新成功");
-                alert("更新成功");
-                router.go();
+                Swal.fire({
+                    title: "更新成功",
+                    icon: 'success',
+                }).then(() => {
+                    router.go();
+                })
             });
         }
 

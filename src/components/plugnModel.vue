@@ -3,9 +3,9 @@
     <div class="mx-auto p-4 overflow-auto relative text-left md:p-8">
         <loading-plugin :active="isLoading"></loading-plugin>
         <div class="flex items-center justify-between text-grayBlue-500 mb-8" :class="{
-                'sticky top-0 bg-white mx-auto pb-4 border-b-2':
-                    isEdit === false,
-            }">
+            'sticky top-0 bg-white mx-auto pb-4 border-b-2':
+                isEdit === false,
+        }">
             <div v-if="!pluginStore.isLogin || !isEdit" class="flex items-center">
                 <div class="flex flex-wrap flex-auto md:items-center md:flex-row">
                     <h3 class="inline-block mb-2 w-full md:mb-0 md:w-auto">
@@ -40,8 +40,8 @@
                 <ul class="flex items-end flex-grow mb-2">
                     <li v-for="(item, index) in plugin.contentArr" :key="index" @click="loadPages(item, index)">
                         <button class="border rounded px-2 py-1 text-gray-500" :class="{
-                                'bg-grayBlue-100 border-grayBlue-300 text-grayBlue-500': item.title === contentObject.title || (index === 0 && !contentObject.title)
-                            }">
+                            'bg-grayBlue-100 border-grayBlue-300 text-grayBlue-500': item.title === contentObject.title || (index === 0 && !contentObject.title)
+                        }">
                             {{ item.title }}
                         </button>
                     </li>
@@ -49,8 +49,8 @@
             </div>
             <!-- 單頁內容 -->
             <div v-html="tempPlugin.content === ''
-                    ? plugin.contentArr[0].content
-                    : tempPlugin.content
+                ? plugin.contentArr[0].content
+                : tempPlugin.content
                 " class="pluginContent border-b py-4" ref="contentRef"></div>
 
             <p v-if="tempPlugin.editMember && isReview === true" class="mt-4 text-gray-500">
@@ -107,9 +107,9 @@
                 <!-- contentArray的陣列按鈕列表 -->
                 <ul v-if="tempPlugin.contentArr" class="flex items-end border-b flex-grow col-span-2">
                     <li v-for="(item, index) in tempPlugin.contentArr" :key="index" @click="loadPages(item, index)" class="border-t border-l border-r rounded-t px-2 py-1" :class="{
-                            'bg-grayBlue-100':
-                                contentObject.title === item.title,
-                        }">
+                        'bg-grayBlue-100':
+                            contentObject.title === item.title,
+                    }">
                         {{ item.title }}
                         <button class="border-none px-1" @click="deletePage(index)">
                             <font-awesome-icon icon="fa-solid fa-xmark" />
@@ -143,8 +143,9 @@
 import { ref, watch, reactive, nextTick, onMounted } from "vue";
 import { usePluginsStore } from "../stores/pluginStore";
 import { useStateStore } from "../stores/stateStore";
-import TinycmeEditor from "../components/TinyMCE.vue";
+import TinycmeEditor from "../components/TinyMCE.vue"; // 不能刪
 import { useRouter } from "vue-router";
+import Swal from 'sweetalert2';
 
 export default {
     components: {
@@ -184,22 +185,34 @@ export default {
             } else {
                 // 點編輯按紐後的取消
                 if (stateStore.userID == "") {
-                    alert("請先登入");
+                    Swal.fire({
+                        title: "請先登入",
+                        icon: 'warning',
+                    })
                 } else {
-                    if (isEdit.value == true && window.confirm("尚未儲存編輯的內容，是否退出？")) {
-                        // 退出編輯返回插件頁面
-                        contentObject.title = "";
+                    if (isEdit.value === true) {
+                        Swal.fire({
+                            title: "尚未儲存編輯的內容，是否退出？",
+                            icon: 'warning',
+                            showDenyButton: true,
+                            confirmButtonText: '是',
+                            deniedButtonText: '否',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                contentObject.title = "";
+                                isEdit.value = false;
+                            }
+                        })
                     } else {
-                        isEdit.value = false;
+                        // 有分頁的插件要編輯
+                        if (props.plugin.contentArr) {
+                            loadPages(props.plugin.contentArr, 0);
+                        } else {
+                            editorData.value = tempPlugin.value.content;
+                        }
+                        isEdit.value = !isEdit.value;
+                        emit("editing");
                     }
-                    // 有分頁的插件要編輯
-                    if (props.plugin.contentArr) {
-                        loadPages(props.plugin.contentArr, 0);
-                    } else {
-                        editorData.value = tempPlugin.value.content;
-                    }
-                    isEdit.value = !isEdit.value;
-                    emit("editing");
                 }
             }
         };
@@ -238,7 +251,10 @@ export default {
             ) {
                 emit("updateModal", tempPlugin);
             } else {
-                alert("尚有必填欄位未填寫！");
+                Swal.fire({
+                    title: "尚有必填欄位未填寫！",
+                    icon: 'warning',
+                })
             }
         };
         // 審核用
@@ -293,7 +309,10 @@ export default {
                     submitButton.value.disabled = false; // 添加 disabled 属性
                     clearEditPage();
                 } else {
-                    alert("請輸入分頁名稱");
+                    Swal.fire({
+                        title: "請輸入分頁名稱",
+                        icon: 'warning',
+                    })
                 }
             }
         }
@@ -311,15 +330,24 @@ export default {
         let pageIndex = 0;
         function loadPages(item, index) {
             if (tempPlugin.value.content !== tempPlugin.value.contentArr[pageIndex].content && editorData.value !== "") {
-                if (window.confirm("編輯尚未儲存，是否放棄編輯內容？")) {
-                    pageIndex = index;
-                    isPageNew.value = false;
-                    contentObject.title = item.title;
-                    editorData.value = item.content;
-                }
+                Swal.fire({
+                    title: "編輯尚未儲存，是否放棄編輯內容？",
+                    icon: 'warning',
+                    showDenyButton: true,
+                    confirmButtonText: '是',
+                    deniedButtonText: '否',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        pageIndex = index;
+                        isPageNew.value = false;
+                        contentObject.title = item.title;
+                        editorData.value = item.content;
+                    }
+                })
             } else if (pageIndex == 0 && props.plugin.content == "") {
-                    editorData.value = tempPlugin.value.contentArr[0].content;
-                    contentObject.title = tempPlugin.value.contentArr[0].title;
+                editorData.value = tempPlugin.value.contentArr[0].content;
+                contentObject.title = tempPlugin.value.contentArr[0].title;
             } else {
                 // 沒有變更才換頁
                 pageIndex = index;
@@ -337,14 +365,26 @@ export default {
                 clearEditPage();
                 isPageNew.value = true;
             } else {
-                alert("請填寫分頁名稱");
+                Swal.fire({
+                    title: "請填寫分頁名稱",
+                    icon: 'warning',
+                })
             }
         }
         // 刪除分頁
         function deletePage(index) {
-            if (window.confirm("確定刪除此分頁？")) {
-                tempPlugin.value.contentArr.splice(index, 1);
-            }
+            Swal.fire({
+                title: "確定刪除此分頁？",
+                icon: 'warning',
+                showDenyButton: true,
+                confirmButtonText: '是',
+                deniedButtonText: '否',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    tempPlugin.value.contentArr.splice(index, 1);
+                }
+            })
         }
 
         // 新增插件開放編輯

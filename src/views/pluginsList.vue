@@ -30,9 +30,9 @@
                         <ListboxOptions class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <ListboxOption v-slot="{ active, selected }" value="" as="template">
                                 <li :class="[
-                                        active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
-                                        'relative cursor-default select-none py-2 pl-10 pr-4',
-                                    ]">
+                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                    'relative cursor-default select-none py-2 pl-10 pr-4',
+                                ]">
                                     <button>顯示全部</button>
                                     <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
@@ -41,13 +41,13 @@
                             </ListboxOption>
                             <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category" :key="index" :value="item" as="template">
                                 <li :class="[
-                                        active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
-                                        'relative cursor-default select-none py-2 pl-10 pr-4',
-                                    ]">
+                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                    'relative cursor-default select-none py-2 pl-10 pr-4',
+                                ]">
                                     <span :class="[
-                                            selected ? 'font-medium' : 'font-normal',
-                                            'block truncate',
-                                        ]">{{ item }}</span>
+                                        selected ? 'font-medium' : 'font-normal',
+                                        'block truncate',
+                                    ]">{{ item }}</span>
                                     <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
@@ -63,12 +63,13 @@
             <!-- 插件列表（管理版） -->
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
-                <div class="mb-5 flex justify-between items-end">
-                    <h3 class="text-2xl">插件列表</h3>
+                <div class="mb-5 flex justify-between items-end flex-wrap">
+                    <h3 class="text-2xl">插件列表
+                        <span class="font-light text-sm text-gray-400">獨立作業暫無搜尋功能，需透過Ctrl+F進行搜尋</span>
+                    </h3>
                     <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
-
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
                         <p>{{ item.name }}</p>
@@ -125,6 +126,7 @@ import {
     ListboxOptions,
     ListboxOption,
 } from '@headlessui/vue'
+import Swal from 'sweetalert2';
 
 export default {
     setup() {
@@ -201,12 +203,18 @@ export default {
                 pluginStore.setPlugin(item);
                 closeModal();
                 pluginStore.getPlugin();
-                alert('新增成功');
+                Swal.fire({
+                    title: "新增成功",
+                    icon: 'success',
+                })
             } else {
                 pluginStore.updatePlugin(item);
                 closeModal();
                 pluginStore.getPlugin();
-                alert('送審成功');
+                Swal.fire({
+                    title: "送審成功",
+                    icon: 'success',
+                })
             }
         }
 
