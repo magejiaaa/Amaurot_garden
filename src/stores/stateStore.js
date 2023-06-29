@@ -39,7 +39,6 @@ export const useStateStore = defineStore("user", () => {
                     }
                 });
                 userContent.value = user;
-                console.log(user);
             } else {
                 console.log("not logged in");
             }

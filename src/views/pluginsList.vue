@@ -116,9 +116,10 @@
 
 <script>
 import { usePluginsStore } from '../stores/pluginStore';
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted, watchEffect } from 'vue';
 import pluginModel from '../components/plugnModel.vue';
 import { Dialog, DialogPanel, TransitionRoot, TransitionChild } from '@headlessui/vue';
+import { useRouter, useRoute } from "vue-router";
 import {
     Listbox,
     ListboxLabel,
@@ -155,15 +156,43 @@ export default {
         let isNew = ref(false);
         const pluginIndex = ref(0);
         const tempPlugin = ref({});
-        // 新增插件判別
-        function newPlugin() {
-            isNew.value = true;
-            isOpen.value = true;
-        }
+        // 帶有id的插件網址
+        const route = useRoute();
+        const router = useRouter();
+        let routePluginID = ref(route.params.pluginId);
+        const isDataLoaded = ref(false);
+        const getPluginURL = () => {
+            if (routePluginID.value) {
+                isOpen.value = true;
+                pluginStore.plugins.forEach((item) => {
+                    if (item.ID === routePluginID.value) {
+                        tempPlugin.value = item;
+                    }
+                });
+            }
+        };
+
+        onMounted(async () => {
+            await pluginStore.getPlugin(); // Assuming you have a method to fetch data from the server in your store
+            isDataLoaded.value = true;
+        });
+        watchEffect(() => {
+            if (isDataLoaded.value) {
+                getPluginURL();
+            }
+        });
+
         // 獲取當前插件資料
         function pluginContent(index, item) {
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
+            isOpen.value = true;
+            const pluginId = tempPlugin.value.ID;
+            router.replace({ name: 'plugin', params: { pluginId } });
+        }
+        // 新增插件的話增加判斷
+        function newPlugin() {
+            isNew.value = true;
             isOpen.value = true;
         }
         // 判斷model是否為編輯狀態，不是才可以點上下一頁
@@ -196,6 +225,7 @@ export default {
             isNew.value = false;
             isEdit.value = false;
             tempPlugin.value = {};
+            router.push({ name: 'pluginsList' });
         }
         // 更新插件資料
         function updateModal(item) {
@@ -250,7 +280,8 @@ export default {
             prePlugin,
             nextPlugin,
             editHandler,
-            isEdit
+            isEdit,
+            getPluginURL
         }
     },
     components: {
