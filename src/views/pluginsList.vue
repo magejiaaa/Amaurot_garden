@@ -58,9 +58,10 @@
                 </div>
             </Listbox>
 
+            <!-- 讀取狀態 -->
             <loading-plugin :active="pluginStore.isLoading"></loading-plugin>
 
-            <!-- 插件列表（管理版） -->
+            <!-- 插件列表 -->
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
                 <div class="mb-5 flex justify-between items-end flex-wrap">
@@ -68,16 +69,21 @@
                         <span class="font-light text-sm text-gray-400">獨立作業暫無搜尋功能，需透過Ctrl+F進行搜尋</span>
                     </h3>
                     <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
+                    <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
+                <!-- 插件列表 -->
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                        <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
+                        <!-- 插件分類 -->
                         <p class="font-light text-gray-500">{{ item.category }}</p>
+                        <!-- 插件簡介 -->
                         <p class="md:col-span-2">{{ item.describe }}</p>
                     </li>
                 </ul>
-
+                <!-- 沒資料畫面 -->
                 <p v-else class="text-center">本分類下沒有插件</p>
             </div>
         </div>
@@ -92,7 +98,7 @@
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
                         <TransitionChild class="relative z-50 w-full" enter="ease-out duration-300 transform" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200"
                             leave-from="opacity-100" leave-to="opacity-0">
-                            <!-- 切換上下一個插件 -->
+                            <!-- 切換上下一個插件按鈕 -->
                             <font-awesome-icon icon="fa-solid fa-chevron-left" class="hidden absolute w-16 h-16 left-12 text-white cursor-pointer
                                 md:block lg:left-32" @click="prePlugin" v-if="isEdit == false" />
                             <font-awesome-icon icon="fa-solid fa-chevron-right" class="hidden absolute w-16 h-16 right-12 text-white cursor-pointer

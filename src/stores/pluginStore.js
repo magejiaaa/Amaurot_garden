@@ -7,7 +7,9 @@ export const usePluginsStore = defineStore("plugins", {
     state: () => ({
         isLogin: false,
         isLoading: false,
+        isThirdPlugin: false,
         plugins: [],
+        thirdPlugins: [],
         reviewPlugins: [],
         category: [
             "UI優化相關",
@@ -21,8 +23,12 @@ export const usePluginsStore = defineStore("plugins", {
     }),
     actions: {
         getPlugin() {
+            let pluginName = 'plugins/';
             this.isLoading = true;
-            const onPlugin = ref(database, "plugins/");
+            if (this.isThirdPlugin === true) {
+                pluginName = 'thirdPlugins/';
+            }
+            const onPlugin = ref(database, pluginName);
             onValue(onPlugin, (snapshot) => {
                 const plugins = snapshot.val();
                 // 遍歷每個插件
