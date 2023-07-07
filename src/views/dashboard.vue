@@ -1,8 +1,5 @@
 <template>
-    <Usermenu
-        :isLogin="pluginStore.isLogin"
-        @signOut="handleSignOut"
-    ></Usermenu>
+    <Usermenu :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></Usermenu>
     <router-view class="pt-20"></router-view>
     <footerBox></footerBox>
 </template>
@@ -13,11 +10,13 @@ import footerBox from "../components/FooterBox.vue";
 // import { ref } from 'vue';
 import { usePluginsStore } from "../stores/pluginStore";
 import { useStateStore } from "../stores/stateStore";
+import { watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
     setup() {
         const pluginStore = usePluginsStore();
-        pluginStore.getPlugin();
+        // pluginStore.getPlugin();
         pluginStore.getReviewPlugin();
 
         const stateStore = useStateStore();
@@ -26,6 +25,16 @@ export default {
         function handleSignOut() {
             stateStore.handleSignOut();
         }
+        const route = useRoute();
+        watch(
+            () => route,
+            (to, from) => {
+                // 检测到路由变化时执行刷新页面的操作
+                if (to.path !== from.path) {
+                    pluginStore.getPlugin();
+                }
+            }
+        );
 
         return {
             pluginStore,

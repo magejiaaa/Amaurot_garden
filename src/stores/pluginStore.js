@@ -9,7 +9,6 @@ export const usePluginsStore = defineStore("plugins", {
         isLoading: false,
         isThirdPlugin: false,
         plugins: [],
-        thirdPlugins: [],
         reviewPlugins: [],
         category: [
             "UI優化相關",
@@ -23,22 +22,20 @@ export const usePluginsStore = defineStore("plugins", {
     }),
     actions: {
         getPlugin() {
-            let pluginName = 'plugins/';
+            this.plugins = [];
             this.isLoading = true;
-            if (this.isThirdPlugin === true) {
-                pluginName = 'thirdPlugins/';
-            }
+            const pluginName = this.isThirdPlugin ? 'thirdPlugins/' : 'plugins/'; // 根据isThirdPlugin确定pluginName
             const onPlugin = ref(database, pluginName);
             onValue(onPlugin, (snapshot) => {
-                const plugins = snapshot.val();
+                const callbackPlugins = snapshot.val();
                 // 遍歷每個插件
-                for (const key of Object.keys(plugins)) {
-                    const plugin = plugins[key];
+                for (const key of Object.keys(callbackPlugins)) {
+                    const plugin = callbackPlugins[key];
                     // 將插件的 ID 添加到插件物件中
                     plugin.ID = key;
                 }
                 // 物件轉陣列
-                this.plugins = Object.values(plugins);
+                this.plugins = Object.values(callbackPlugins);
                 this.isLoading = false;
             });
         },
@@ -61,7 +58,8 @@ export const usePluginsStore = defineStore("plugins", {
         setPlugin(plugin) {
             const dbRef = database;
             const value = plugin._value;
-            const newPluginKey = push(child(ref(dbRef), "plugins")).key;
+            const pluginName = this.isThirdPlugin ? 'thirdPlugins' : 'plugins';
+            const newPluginKey = push(child(ref(dbRef), pluginName)).key;
             const updates = {};
             updates[`editPlugin/` + newPluginKey] = value;
             return update(ref(dbRef), updates);
@@ -77,8 +75,10 @@ export const usePluginsStore = defineStore("plugins", {
         reviewPlugin(plugin) {
             const value = plugin._value;
             const ID = plugin._value.ID;
+            // 有第三方插件庫網址就更改路徑
+            const pluginName = plugin._value.thirdPluginURL ? 'thirdPlugins/' : 'plugins/';
             const updates = {};
-            updates[`plugins/` + ID] = value;
+            updates[pluginName + ID] = value;
             updates[`editPlugin/` + ID] = null; // 將刪除操作添加到更新操作中
             return update(ref(database), updates)
                 .then(() => {

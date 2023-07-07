@@ -138,7 +138,7 @@ import Swal from 'sweetalert2';
 export default {
     setup() {
         const pluginStore = usePluginsStore();
-
+        pluginStore.isThirdPlugin = false;
         // 篩選插件種類
         const selectCategory = ref('');
         const filterPlugin = computed(() => {

@@ -68,15 +68,18 @@
                     <h3 class="text-2xl">第三方插件
                         <span class="font-light text-sm text-gray-400">獨立作業暫無搜尋功能，需透過Ctrl+F進行搜尋</span>
                     </h3>
-                    <!-- <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button> -->
+                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
-                <ul class="listGroup" v-if="pluginStore.thirdPlugins.length > 0">
-                    <li class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
-                        <p></p>
-                        <p class="font-light text-gray-500"></p>
-                        <p class="md:col-span-2"></p>
+                <ul class="listGroup" v-if="pluginStore.plugins.length > 0">
+                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                        <!-- 插件名稱 -->
+                        <p>{{ item.name }}</p>
+                        <!-- 插件分類 -->
+                        <p class="font-light text-gray-500">{{ item.category }}</p>
+                        <!-- 插件簡介 -->
+                        <p class="md:col-span-2">{{ item.describe }}</p>
                     </li>
                 </ul>
                 <!-- 沒資料畫面 -->
@@ -134,6 +137,11 @@ import Swal from 'sweetalert2';
 export default {
     setup() {
         const pluginStore = usePluginsStore();
+        const route = useRoute();
+        const router = useRouter();
+        // 這頁是第三方插件
+        pluginStore.isThirdPlugin = true;
+        pluginStore.getPlugin();
 
         // 篩選插件種類
         const selectCategory = ref('');
@@ -158,39 +166,13 @@ export default {
         let isNew = ref(false);
         const pluginIndex = ref(0);
         const tempPlugin = ref({});
-        // 帶有id的插件網址
-        const route = useRoute();
-        const router = useRouter();
-        let routePluginID = ref(route.params.pluginId);
-        const isDataLoaded = ref(false);
-        const getPluginURL = () => {
-            if (routePluginID.value) {
-                isOpen.value = true;
-                pluginStore.plugins.forEach((item) => {
-                    if (item.ID === routePluginID.value) {
-                        tempPlugin.value = item;
-                    }
-                });
-            }
-        };
 
-        onMounted(async () => {
-            await pluginStore.getPlugin(); // Assuming you have a method to fetch data from the server in your store
-            isDataLoaded.value = true;
-        });
-        watchEffect(() => {
-            if (isDataLoaded.value) {
-                getPluginURL();
-            }
-        });
 
         // 獲取當前插件資料
         function pluginContent(index, item) {
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
             isOpen.value = true;
-            const pluginId = tempPlugin.value.ID;
-            router.replace({ name: 'plugin', params: { pluginId } });
         }
         // 新增插件的話增加判斷
         function newPlugin() {
@@ -227,7 +209,7 @@ export default {
             isNew.value = false;
             isEdit.value = false;
             tempPlugin.value = {};
-            router.push({ name: 'pluginsList' });
+            router.push({ name: 'thirdPluginsList' });
         }
         // 更新插件資料
         function updateModal(item) {
@@ -283,7 +265,6 @@ export default {
             nextPlugin,
             editHandler,
             isEdit,
-            getPluginURL
         }
     },
     components: {

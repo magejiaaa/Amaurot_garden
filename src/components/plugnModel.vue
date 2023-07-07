@@ -27,17 +27,21 @@
         </div>
         <!-- 沒登入的介紹 -->
         <div v-if="!pluginStore.isLogin || !isEdit" :class="{ 'mt-6': !isEdit }" id="pluginsContent">
-            <div class="grid grid-cols-2 mb-6 md:grid-cols-6">
-                <p class="col-span-4 btn bg-gray-100 border">
+            <div class="grid grid-cols-2 mb-6 items-center gap-1 md:grid-cols-6">
+                <p class="col-span-4 btn bg-gray-100 border py-2">
                     {{ tempPlugin.describe }}
                 </p>
-                <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 text-center cursor-pointer mt-2 hover:bg-grayBlue-100 md:ml-4 md:mt-0">插件原網址
+                <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 text-center cursor-pointer mt-2 py-2 hover:bg-grayBlue-100  md:mt-0">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
+                <!-- 第三方插件庫顯示 -->
+                <p v-if="plugin.thirdPluginURL">插件庫連結</p>
+                <p v-if="plugin.thirdPluginURL"
+                class="btn col-span-5 border py-2">{{ plugin.thirdPluginURL }}</p>
             </div>
             <!-- 多頁標籤顯示 -->
-            <div class="col-span-2 flex justify-between">
-                <ul class="flex items-end flex-grow mb-2">
+            <div class="col-span-2 flex justify-between" v-if="plugin.contentArr">
+                <ul class="flex items-end flex-grow mb-2 gap-x-1">
                     <li v-for="(item, index) in plugin.contentArr" :key="index" @click="loadPages(item, index)">
                         <button class="border rounded px-2 py-1 text-gray-500" :class="{
                             'bg-grayBlue-100 border-grayBlue-300 text-grayBlue-500': item.title === contentObject.title || (index === 0 && !contentObject.title)
@@ -88,6 +92,14 @@
                 <div class="col-span-2">
                     <label for="website">插件原網址</label>
                     <input type="url" placeholder="請輸入插件原網址" id="website" v-model="tempPlugin.website" class="w-full" />
+                </div>
+                <div class="col-span-2" v-if="pluginStore.isThirdPlugin || isReview">
+                    <label for="thirdPluginOwn">第三方插件作者</label>
+                    <input type="text" placeholder="請輸入第三方插件作者" id="thirdPluginOwn" v-model="tempPlugin.thirdPluginOwn" class="w-full" />
+                </div>
+                <div class="col-span-2" v-if="pluginStore.isThirdPlugin || isReview">
+                    <label for="thirdPluginURL"><span class="text-red-500">*</span>第三方插件庫</label>
+                    <input type="text" placeholder="請輸入第三方插件庫URL" id="thirdPluginURL" v-model="tempPlugin.thirdPluginURL" class="w-full" />
                 </div>
                 <!-- 插件分頁編輯 -->
                 <div class="col-span-2 flex items-end">
@@ -143,7 +155,7 @@
 import { ref, watch, reactive, nextTick, onMounted } from "vue";
 import { usePluginsStore } from "../stores/pluginStore";
 import { useStateStore } from "../stores/stateStore";
-import TinycmeEditor from "../components/TinyMCE.vue"; // 不能刪
+import TinycmeEditor from "../components/TinyMce.vue"; // 不能刪
 import { useRouter } from "vue-router";
 import Swal from 'sweetalert2';
 
@@ -247,7 +259,8 @@ export default {
             if (
                 tempPlugin.value.name &&
                 tempPlugin.value.category &&
-                tempPlugin.value.describe
+                tempPlugin.value.describe &&
+                (!pluginStore.isThirdPlugin || tempPlugin.value.thirdPluginURL)
             ) {
                 emit("updateModal", tempPlugin);
             } else {
@@ -403,8 +416,10 @@ export default {
         const contentRef = ref(null); // 使用 ref 創建容器的參考
         const applyLazyLoad = () => {
             nextTick(() => {
-                const imgTags = contentRef.value.querySelectorAll("img");
-                if (imgTags.length > 0) {
+                let imgTags;
+                if (contentRef.value!=null) {
+                    imgTags = contentRef.value.querySelectorAll("img");
+                    if (imgTags.length > 0) {
                     imgTags.forEach((img) => {
                         isLoading.value = true;
                         img.onload = () => {
@@ -412,6 +427,7 @@ export default {
                             isLoading.value = false; // 隱藏 loading 畫面
                         };
                     });
+                }
                 }
             });
         };
