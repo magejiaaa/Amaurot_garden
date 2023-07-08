@@ -72,7 +72,7 @@
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
-                <ul class="listGroup" v-if="pluginStore.plugins.length > 0">
+                <ul class="listGroup" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>

@@ -37,7 +37,7 @@
                 <!-- 第三方插件庫顯示 -->
                 <p v-if="plugin.thirdPluginURL">插件庫連結</p>
                 <p v-if="plugin.thirdPluginURL"
-                class="btn col-span-5 border py-2">{{ plugin.thirdPluginURL }}</p>
+                class="btn col-span-5 border py-2 break-all text-sm">{{ plugin.thirdPluginURL }}</p>
             </div>
             <!-- 多頁標籤顯示 -->
             <div class="col-span-2 flex justify-between" v-if="plugin.contentArr">
