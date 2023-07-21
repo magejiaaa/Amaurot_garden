@@ -69,6 +69,3 @@
         @apply bg-white border border-solid border-gray-300 rounded divide-y;
     }
 };
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
-    @apply bg-grayBlue-500;
-}

@@ -12,9 +12,16 @@ module.exports = {
           800: '#374c6c',
         },
         blueGreen: {
+          100: '#E6EFEE',
           300: '#B4D0CC',
           500: '#8EB8B2',
           800: '#4F7D76',
+        },
+        darkYellow: {
+          100: '#FADDC6',
+          300: '#F6BB8D',
+          500: '#F29550',
+          800: '#BC5D10',
         }
       },
       fontFamily: {

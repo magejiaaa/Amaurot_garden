@@ -50,7 +50,7 @@
                     </li>
                 </ul>
             </div>
-            <router-link to="/dashboard/pluginsList" class="card flex items-center justify-center text-xl bg-blue-50
+            <router-link to="/dashboard/pluginsList" class="card flex items-center justify-center text-xl bg-blue-50 border-0
                     hover:bg-blue-100">
                 查看更多
                 <font-awesome-icon icon="fa-solid fa-hand-point-right" class="ml-1" />

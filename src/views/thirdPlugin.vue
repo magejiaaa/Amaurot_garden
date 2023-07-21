@@ -3,7 +3,7 @@
         <div class="bg-gray-100 flex flex-col md:flex-row">
             <!-- PC分類列表 -->
             <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
-                <ul class="mx-auto my-8 text-grayBlue-800">
+                <ul class="mx-auto my-8 text-blueGreen-800">
                     <li>
                         <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = ''">顯示全部</button>
                     </li>
@@ -18,8 +18,8 @@
             <Listbox v-model="selectCategory" v-else>
                 <div class="relative mt-10 w-11/12 mx-auto">
                     <ListboxButton
-                        class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border border-gray-300 text-grayBlue-800
-                                focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                        class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border border-gray-300 text-blueGreen-800
+                                focus:outline-none focus-visible:border-blueGreen-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span class="block truncate">{{ selectCategory || '請選擇分類' }}</span>
                         <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
@@ -30,25 +30,25 @@
                         <ListboxOptions class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <ListboxOption v-slot="{ active, selected }" value="" as="template">
                                 <li :class="[
-                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                    active ? 'bg-grayBlue-100 text-blueGreen-800' : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-10 pr-4',
                                 ]">
                                     <button>顯示全部</button>
-                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
+                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-blueGreen-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
                                 </li>
                             </ListboxOption>
                             <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category" :key="index" :value="item" as="template">
                                 <li :class="[
-                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                    active ? 'bg-grayBlue-100 text-blueGreen-800' : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-10 pr-4',
                                 ]">
                                     <span :class="[
                                         selected ? 'font-medium' : 'font-normal',
                                         'block truncate',
                                     ]">{{ item }}</span>
-                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
+                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-blueGreen-500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
                                 </li>
@@ -68,7 +68,7 @@
                     <h3 class="text-2xl">第三方插件
                         <span class="font-light text-sm text-gray-400">獨立作業暫無搜尋功能，需透過Ctrl+F進行搜尋</span>
                     </h3>
-                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
+                    <button class="btn text-white bg-blueGreen-300 hover:bg-blueGreen-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
