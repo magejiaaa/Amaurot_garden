@@ -48,7 +48,7 @@ const routes = [
             {
                 path: 'thirdPluginsList/:pluginId',
                 name: 'thirdPlugins',
-                component: () => import('../views/pluginsList.vue'),
+                component: () => import('../views/thirdPlugin.vue'),
                 meta: {
                     title: '第三方插件 - 亞馬屋羅提後花園2.0'
                 }

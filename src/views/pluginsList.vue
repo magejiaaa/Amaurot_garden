@@ -193,9 +193,20 @@ export default {
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
             isOpen.value = true;
+            // 更新URL中的ID
             const pluginId = tempPlugin.value.ID;
             router.replace({ name: 'plugin', params: { pluginId } });
         }
+        // 監聽路由變化更新網頁標題
+        router.beforeEach((to, from, next) => {
+            const pluginTitle = tempPlugin.value.name;
+            // 檢查是否有設置了插件名稱，如果有就使用插件名稱作為網頁標題，否則使用預設標題
+            const title = pluginTitle || '插件列表 - 亞馬屋羅提後花園2.0';
+            if (from.name === 'pluginsList' && to.name === 'plugin') {
+                document.title = `${title} - 亞馬屋羅提後花園2.0`;
+            }
+            next();
+        });
         // 新增插件的話增加判斷
         function newPlugin() {
             isNew.value = true;

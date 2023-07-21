@@ -161,6 +161,29 @@ export default {
             return [...new Set(arr)];
         });
 
+        // 從URL初始化頁面
+        let routePluginID = ref(route.params.pluginId);
+        const isDataLoaded = ref(false);
+        const getPluginURL = () => {
+            if (routePluginID.value) {
+                isOpen.value = true;
+                pluginStore.plugins.forEach((item) => {
+                    if (item.ID === routePluginID.value) {
+                        tempPlugin.value = item;
+                    }
+                });
+            }
+        };
+        onMounted(async () => {
+            await pluginStore.getPlugin(); // Assuming you have a method to fetch data from the server in your store
+            isDataLoaded.value = true;
+        });
+        watchEffect(() => {
+            if (isDataLoaded.value) {
+                getPluginURL();
+            }
+        });
+
         // 控制 Modal 開關
         let isOpen = ref(false);
         let isNew = ref(false);
@@ -173,7 +196,20 @@ export default {
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
             isOpen.value = true;
+            // 更新URL中的ID
+            const pluginId = tempPlugin.value.ID;
+            router.push({ name: 'thirdPlugins', params: { pluginId } });
         }
+        // 監聽路由變化更新網頁標題
+        router.beforeEach((to, from, next) => {
+            const pluginTitle = tempPlugin.value.name;
+            // 檢查是否有設置了插件名稱，如果有就使用插件名稱作為網頁標題，否則使用預設標題
+            const title = pluginTitle || '第三方插件 - 亞馬屋羅提後花園2.0';
+            if (from.name === 'thirdPluginsList' && to.name === 'thirdPlugins') {
+                document.title = `${title}(第三方) - 亞馬屋羅提後花園2.0`;
+            }
+            next();
+        });
         // 新增插件的話增加判斷
         function newPlugin() {
             isNew.value = true;
