@@ -7,7 +7,7 @@
         @apply font-default font-normal tracking-wide;
     }
     a {
-        @apply text-grayBlue-500 transition;
+        @apply text-grayBlue-500 transition break-all;
     }
     a:hover {
         @apply text-grayBlue-800;

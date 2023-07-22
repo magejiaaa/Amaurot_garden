@@ -2,16 +2,28 @@
     <!-- 插件視窗 -->
     <div class="mx-auto p-4 overflow-auto relative text-left md:p-8">
         <loading-plugin :active="isLoading"></loading-plugin>
-        <div class="flex items-center justify-between text-grayBlue-500 mb-8" :class="{
+        <div 
+        :class="{
             'sticky top-0 bg-white mx-auto pb-4 border-b-2':
                 isEdit === false,
-        }">
+                'text-blueGreen-500':
+                pluginStore.isThirdPlugin === true,
+                'text-grayBlue-500':
+                pluginStore.isThirdPlugin === false,
+        }"
+        class="flex items-center justify-between mb-8">
             <div v-if="!pluginStore.isLogin || !isEdit" class="flex items-center">
                 <div class="flex flex-wrap flex-auto md:items-center md:flex-row">
                     <h3 class="inline-block mb-2 w-full md:mb-0 md:w-auto">
                         {{ tempPlugin.name }}
                     </h3>
-                    <span class="text-xs bg-grayBlue-500 text-white px-3 py-2 md:ml-2">
+                    <span class="text-xs text-white px-3 py-2 md:ml-2"
+                    :class="{
+                            'bg-blueGreen-500':
+                            pluginStore.isThirdPlugin === true,
+                            'bg-grayBlue-500':
+                            pluginStore.isThirdPlugin === false,
+                    }">
                         {{ tempPlugin.category }}
                     </span>
                     <!-- 編輯按鈕 -->
@@ -31,11 +43,17 @@
                 <p class="col-span-4 btn bg-gray-100 border py-2">
                     {{ tempPlugin.describe }}
                 </p>
-                <a :href="tempPlugin.website" class="btn border border-grayBlue-300 col-span-2 text-center cursor-pointer mt-2 py-2 hover:bg-grayBlue-100  md:mt-0">插件原網址
+                <a :href="tempPlugin.website" class="btn border  col-span-2 text-center cursor-pointer mt-2 py-2 md:mt-0"
+                :class="{
+                            'border-blueGreen-300 hover:bg-blueGreen-100 text-blueGreen-500 hover:text-blueGreen-800':
+                            pluginStore.isThirdPlugin === true,
+                            'border-grayBlue-300 hover:bg-grayBlue-100':
+                            pluginStore.isThirdPlugin === false,
+                    }">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
                 <!-- 第三方插件庫顯示 -->
-                <p v-if="plugin.thirdPluginURL">插件庫連結</p>
+                <p v-if="plugin.thirdPluginURL" class="text-center">插件庫連結</p>
                 <p v-if="plugin.thirdPluginURL"
                 class="btn col-span-5 border py-2 break-all text-sm">{{ plugin.thirdPluginURL }}</p>
             </div>
