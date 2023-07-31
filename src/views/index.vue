@@ -27,7 +27,8 @@
                 </div>
                 <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png" class="img-fluid border rounded shadow my-4 mx-auto" alt="登陸器介面" width="700"
                     height="500">
-                <a href="https://github.com/magejiaaa/Amaurot_garden/issues/1#issue-1565685628" target="_blank" class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
+                <a href="https://github.com/magejiaaa/Amaurot_garden/issues/1#issue-1565685628" target="_blank"
+                    class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
                     <font-awesome-icon icon="fa-brands fa-github" />預計更新的項目
                 </a>
                 <a href="https://twitter.com/NMiaohen6461" target="_blank" class="px-4 py-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
@@ -121,6 +122,7 @@ export default {
         }
         // 載入插件列表
         onMounted(() => {
+            pluginStore.isThirdPlugin = false;
             pluginStore.getPlugin();
         })
         // 篩選插件種類
