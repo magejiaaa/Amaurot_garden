@@ -44,12 +44,12 @@
         <div class="mx-auto my-14 px-8 grid grid-cols-2 gap-4
             md:grid-cols-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
-                <ul class="divide-y">
-                    <li class="text-grayBlue-300 px-6 py-2 text-lg">{{ item }}</li>
-                    <li class="text-gray-500 text-sm hover:text-grayBlue-800 group" v-for="(plugin, index) in categories(item)" :key="index">
+                <ul class="">
+                    <li class="text-grayBlue-300 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
+                    <li class="text-sm hover:text-gray-800 group" v-for="(plugin, index) in categories(item)" :key="index">
                         <router-link :to="`/dashboard/pluginsList/${plugin.ID}`"
-                        class="px-6 py-2 block">
-                            <span class="block text-xs text-grayBlue-300 transition-all group-hover:text-grayBlue-800">{{ plugin.name }}</span>
+                        class="px-6 py-2 block text-gray-500 ">
+                            <span class="block text-xs text-gray-400 transition-all group-hover:text-grayBlue-800">{{ plugin.name }}</span>
                             {{ plugin.describe }}
                         </router-link>
                     </li>

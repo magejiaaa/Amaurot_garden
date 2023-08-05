@@ -65,16 +65,18 @@
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
                 <div class="mb-5 flex justify-between items-end flex-wrap">
-                    <h3 class="text-2xl">插件列表
-                        <span class="font-light text-sm text-gray-400">獨立作業暫無搜尋功能，需透過Ctrl+F進行搜尋</span>
-                    </h3>
+                    <div class="flex gap-x-4 items-center">
+                        <h3 class="text-2xl flex-none">插件列表</h3>
+                        <!-- 搜索框 -->
+                        <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2" />
+                    </div>
                     <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
                 <!-- 插件列表 -->
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
                         <!-- 插件分類 -->
@@ -85,6 +87,17 @@
                 </ul>
                 <!-- 沒資料畫面 -->
                 <p v-else class="text-center">本分類下沒有插件</p>
+                <ul class="pagination">
+                    <li v-if="currentPage !== 1">
+                        <button @click="changePage('prev')"><font-awesome-icon icon="fa-solid fa-chevron-left" /></button>
+                    </li>
+                    <li v-for="(page, index) in totalPages" :key="index">
+                        <button @click="changePage(index)" :class="{ 'active': currentPage === page }">{{ page }}</button>
+                    </li>
+                    <li v-if="currentPage !== totalPages">
+                        <button @click="changePage('next')"><font-awesome-icon icon="fa-solid fa-chevron-right" /></button>
+                    </li>
+                </ul>
             </div>
         </div>
         <TransitionRoot :show="isOpen" as="template" enter="duration-300 ease" enter-from="opacity-0" enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
@@ -281,6 +294,55 @@ export default {
             }
         });
 
+
+        // 分頁＋搜尋功能
+        const currentPage = ref(1);
+        const perPage = 10;
+
+        const totalPages = computed(() => {
+            return Math.ceil(filteredData.value.length / perPage);
+        });
+        const windowWidth = ref(window.innerWidth);
+        const searchKeyword = ref('');
+        const filteredData = computed(() => {
+            // Filter data based on the searchKeyword
+            const keyword = searchKeyword.value.toLowerCase().trim();
+            if (keyword === '') {
+                return filterPlugin.value;
+            } else {
+                return filterPlugin.value.filter(item => {
+                    return item.name.toLowerCase().includes(keyword) || item.category.toLowerCase().includes(keyword) || item.describe.toLowerCase().includes(keyword) || item.content.toLowerCase().includes(keyword);
+                });
+            }
+        });
+        const currentPageData = computed(() => {
+            if (windowWidth.value > 820) {
+                const startIndex = (currentPage.value - 1) * perPage;
+                const endIndex = startIndex + perPage;
+                return filteredData.value.slice(startIndex, endIndex);
+            } else {
+                return filteredData.value;
+            }
+        });
+
+        function changePage(direction) {
+            if (direction === 'prev' && currentPage.value > 1) {
+                currentPage.value -= 1;
+            } else if (direction === 'next' && currentPage.value < totalPages.value) {
+                currentPage.value += 1;
+            } else {
+                currentPage.value = direction + 1;
+            }
+            // 跳至最上面
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        watch(() => {
+            return searchKeyword.value;
+        }, () => {
+            currentPage.value = 1; // Reset current page when search keyword changes
+        });
+
         return {
             pluginStore,
             selectCategory,
@@ -298,7 +360,14 @@ export default {
             nextPlugin,
             editHandler,
             isEdit,
-            getPluginURL
+            getPluginURL,
+            currentPage,
+            perPage,
+            totalPages,
+            currentPageData,
+            changePage,
+            searchKeyword,
+            filteredData
         }
     },
     components: {

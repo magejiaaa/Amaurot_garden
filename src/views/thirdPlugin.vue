@@ -65,15 +65,17 @@
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
                 <div class="mb-5 flex justify-between items-end flex-wrap">
-                    <h3 class="text-2xl">第三方插件
-                        <span class="font-light text-sm text-gray-400">獨立作業暫無搜尋功能，需透過Ctrl+F進行搜尋</span>
-                    </h3>
+                    <div class="flex gap-x-4 items-center">
+                        <h3 class="text-2xl flex-none">插件列表</h3>
+                        <!-- 搜索框 -->
+                        <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2 border-blueGreen-500 focus:ring-blueGreen-500" />
+                    </div>
                     <button class="btn text-white bg-blueGreen-300 hover:bg-blueGreen-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in filterPlugin" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                    <li v-for="(item, index) in filteredData" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
                         <!-- 插件分類 -->
@@ -142,6 +144,21 @@ export default {
         // 這頁是第三方插件
         pluginStore.isThirdPlugin = true;
         pluginStore.getPlugin();
+
+
+        // 搜索功能
+        const searchKeyword = ref('');
+        const filteredData = computed(() => {
+            // Filter data based on the searchKeyword
+            const keyword = searchKeyword.value.toLowerCase().trim();
+            if (keyword === '') {
+                return filterPlugin.value;
+            } else {
+                return filterPlugin.value.filter(item => {
+                    return item.name.toLowerCase().includes(keyword) || item.category.toLowerCase().includes(keyword) || item.describe.toLowerCase().includes(keyword) || item.content.toLowerCase().includes(keyword);
+                });
+            }
+        });
 
         // 篩選插件種類
         const selectCategory = ref('');
@@ -284,6 +301,7 @@ export default {
             }
         });
 
+
         return {
             pluginStore,
             selectCategory,
@@ -301,6 +319,8 @@ export default {
             nextPlugin,
             editHandler,
             isEdit,
+            searchKeyword,
+            filteredData
         }
     },
     components: {

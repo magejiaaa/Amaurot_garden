@@ -66,6 +66,15 @@
         @apply grid transition cursor-pointer hover:bg-gray-100 first:rounded-t last:rounded-b;
     }
     .card {
-        @apply bg-white border border-solid border-gray-300 rounded divide-y;
+        @apply bg-white border border-solid border-gray-100 rounded-xl divide-y pb-2;
+    }
+    .pagination {
+        @apply hidden items-center justify-center m-5 gap-x-2 md:flex;
+    }
+    .pagination button {
+        @apply border border-solid border-grayBlue-500 px-4 py-2 rounded-md text-grayBlue-500;
+    }
+    .pagination button.active {
+        @apply bg-grayBlue-500 text-white;
     }
 };
