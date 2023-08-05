@@ -45,17 +45,16 @@
             md:grid-cols-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
                 <ul class="divide-y">
-                    <li class="text-grayBlue-500 px-6 py-2 text-lg">{{ item }}</li>
-                    <li class="px-6 py-2 text-gray-500 text-sm" v-for="(plugin, index) in categories(item)" :key="index">
-                        {{ plugin }}
+                    <li class="text-grayBlue-300 px-6 py-2 text-lg">{{ item }}</li>
+                    <li class="text-gray-500 text-sm hover:text-grayBlue-800 group" v-for="(plugin, index) in categories(item)" :key="index">
+                        <router-link :to="`/dashboard/pluginsList/${plugin.ID}`"
+                        class="px-6 py-2 block">
+                            <span class="block text-xs text-grayBlue-300 transition-all group-hover:text-grayBlue-800">{{ plugin.name }}</span>
+                            {{ plugin.describe }}
+                        </router-link>
                     </li>
                 </ul>
             </div>
-            <router-link to="/dashboard/pluginsList" class="card flex items-center justify-center text-xl bg-blue-50 border-0
-                    hover:bg-blue-100">
-                查看更多
-                <font-awesome-icon icon="fa-solid fa-hand-point-right" class="ml-1" />
-            </router-link>
         </div>
 
         <!-- 安裝介紹 -->
@@ -130,7 +129,7 @@ export default {
             const categories = new Set();
             pluginStore.plugins.forEach(plugin => {
                 if (plugin.category === category) {
-                    categories.add(plugin.describe);
+                    categories.add({ ID: plugin.ID, name: plugin.name, describe: plugin.describe });
                 }
             });
             return Array.from(categories);
