@@ -26,6 +26,7 @@ import {
     faCheck,
     faChevronLeft,
     faChevronRight,
+    faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle, faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 library.add(
@@ -44,7 +45,8 @@ library.add(
     faChevronLeft,
     faChevronRight,
     faTwitter,
-    faGithub
+    faGithub,
+    faChevronUp
 );
 
 const pinia = createPinia();

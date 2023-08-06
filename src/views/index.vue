@@ -41,8 +41,8 @@
         </div>
 
         <!-- 功能卡片 -->
-        <div class="mx-auto my-14 px-8 grid grid-cols-2 gap-4
-            md:grid-cols-4">
+        <div class="mx-auto my-8 px-4 grid grid-cols-2 gap-2
+            md:grid-cols-4 md:px-8 md:my-14 md:gap-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
                 <ul class="">
                     <li class="text-grayBlue-300 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
@@ -99,6 +99,7 @@
         </TransitionRoot>
 
         <footerBox></footerBox>
+        <scorllToTop></scorllToTop>
     </div>
 </template>
 
@@ -106,6 +107,7 @@
 import menuNav from '../components/Usermenu.vue';
 import install from '../components/InstallModal.vue';
 import footerBox from '../components/FooterBox.vue';
+import scorllToTop from '../components/scrollToTop.vue';
 import { usePluginsStore } from '../stores/pluginStore';
 import { useStateStore } from '../stores/stateStore';
 import { onMounted, ref } from 'vue';
@@ -167,7 +169,8 @@ export default {
         DialogPanel,
         TransitionRoot,
         TransitionChild,
-        footerBox
+        footerBox,
+        scorllToTop
     },
 }
 </script>

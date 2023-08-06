@@ -64,8 +64,8 @@
             <!-- 插件列表 -->
             <div class="md:w-8/12 md:px-5
                     w-11/12 py-10 mx-auto">
-                <div class="mb-5 flex justify-between items-end flex-wrap">
-                    <div class="flex gap-x-4 items-center">
+                <div class="mb-5 flex justify-between md:items-end flex-wrap">
+                    <div class="flex flex-col gap-x-4 md:items-center md:flex-row">
                         <h3 class="text-2xl flex-none">插件列表</h3>
                         <!-- 搜索框 -->
                         <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2" />
@@ -131,12 +131,14 @@
             </Dialog>
         </TransitionRoot>
     </div>
+    <scorllToTop></scorllToTop>
 </template>
 
 <script>
 import { usePluginsStore } from '../stores/pluginStore';
 import { ref, computed, watch, onMounted, watchEffect } from 'vue';
 import pluginModel from '../components/plugnModel.vue';
+import scorllToTop from '../components/scrollToTop.vue';
 import { Dialog, DialogPanel, TransitionRoot, TransitionChild } from '@headlessui/vue';
 import { useRouter, useRoute } from "vue-router";
 import {
@@ -381,6 +383,7 @@ export default {
         ListboxButton,
         ListboxOptions,
         ListboxOption,
+        scorllToTop,
     }
 }
 </script>
