@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-20">
         <div class="bg-gray-100 flex flex-col md:flex-row">
             <!-- PC分類列表 -->
             <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">

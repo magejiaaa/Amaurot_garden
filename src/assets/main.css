@@ -25,14 +25,23 @@
         focus-visible:outline-none;
     }
     /* 插件內容樣式 */
-    thead {
+    .pluginContent table {
+        @apply border-t border-gray-300 my-2;
+    }
+    .pluginContent thead {
         @apply border-b border-gray-700;
     }
-    tbody > tr {
+    .pluginContent tbody > tr {
         @apply border-b border-gray-300;
     }
-    tbody > tr :hover {
+    .pluginContent tbody > tr :hover {
         @apply bg-gray-100;
+    }
+    .pluginContent td {
+        @apply p-2;
+    }
+    .pluginContent td p {
+        @apply m-0;
     }
     .pluginContent span {
         @apply p-1;
@@ -44,7 +53,10 @@
         @apply list-decimal pl-8;
     }
     .pluginContent h1, .pluginContent h2, .pluginContent h3 {
-        @apply font-bold text-grayBlue-500;
+        @apply font-bold text-grayBlue-500 mt-4 mb-2;
+    }
+    .pluginContent h4 {
+        @apply font-bold mb-1 mt-3;
     }
     .pluginContent h1 {
         @apply text-2xl;
@@ -52,8 +64,11 @@
     .pluginContent p {
         @apply mb-2;
     }
+    .pluginContent a {
+        @apply decoration-grayBlue-500 underline;
+    }
     .pluginContent code {
-        @apply text-red-600 bg-gray-200 px-2 py-0.5 rounded;
+        @apply text-red-600 bg-gray-200 px-2 py-0.5 rounded mx-2;
     }
 
     .btn {

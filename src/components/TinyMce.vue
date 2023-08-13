@@ -62,7 +62,7 @@ const init = reactive({
     height: 350,
     menubar: false,
     content_css: false,
-    content_style: 'body { font-family: Rubik, "Noto Sans TC", "M PLUS Rounded 1c", sans-serif } p { margin-bottom: 0.5rem; } span { padding: 0.25em } a { color: #5d7dac } table { border: none; border-coler: #fff } thead { border: none; border-bottom: 1px solid #000; } tbody>tr { border: none; border-bottom : 1px solid #ddd; } tbody>tr:hover { background-color: #eee; } code { color: #dc2626; background: #e5e7eb; padding: 0.125rem 0.5rem; }',
+    content_style: 'body { font-family: Rubik, "Noto Sans TC", "M PLUS Rounded 1c", sans-serif } p { margin-bottom: 0.5rem; } span { padding: 0.25em } a { color: #5d7dac } code { color: #dc2626; background: #e5e7eb; padding: 0.125rem 0.5rem; }',
     skin: false,
     plugins: props.plugins,
     toolbar1: props.toolbar1,

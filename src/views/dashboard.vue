@@ -1,6 +1,6 @@
 <template>
     <Usermenu :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></Usermenu>
-    <router-view class="pt-20"></router-view>
+    <router-view></router-view>
     <footerBox></footerBox>
 </template>
 

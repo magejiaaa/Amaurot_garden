@@ -49,7 +49,7 @@
                             pluginStore.isThirdPlugin === true,
                             'border-grayBlue-300 hover:bg-grayBlue-100':
                             pluginStore.isThirdPlugin === false,
-                    }">插件原網址
+                    }" target="_blank">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
                 <!-- 第三方插件庫顯示 -->
