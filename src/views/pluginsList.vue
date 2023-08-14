@@ -240,14 +240,14 @@ export default {
         }
         // 下一個插件
         function nextPlugin() {
-            if (pluginIndex.value < filterPlugin.value.length - 1 && isEdit.value === false) {
+            if (pluginIndex.value < currentPageData.value.length - 1 && isEdit.value === false) {
                 pluginIndex.value++;
             }
         }
         // 監聽pluginIndex改變tempPlugin
         watch(
             pluginIndex, (newValue) => {
-                const item = filterPlugin.value[newValue];
+                const item = currentPageData.value[newValue];
                 pluginContent(newValue, item);
             }
         );
