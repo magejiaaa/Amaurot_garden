@@ -18,11 +18,17 @@
     h3 {
         @apply text-2xl;
     }
-    input, select, textarea {
+    input,
+    select,
+    textarea {
         @apply block h-9 w-full py-1 px-4 rounded-md border-0 ring-1 ring-grayBlue-300
         md:py-1.5 md:pl-7 md:pr-20
         focus:ring-2 focus:ring-grayBlue-500
         focus-visible:outline-none;
+    }
+    .content-area {
+        height: calc(100vh - 161px);
+        @apply bg-gray-100;
     }
     /* 插件內容樣式 */
     .pluginContent table {
@@ -52,7 +58,9 @@
     .pluginContent ol {
         @apply list-decimal pl-8;
     }
-    .pluginContent h1, .pluginContent h2, .pluginContent h3 {
+    .pluginContent h1,
+    .pluginContent h2,
+    .pluginContent h3 {
         @apply font-bold text-grayBlue-500 mt-4 mb-2;
     }
     .pluginContent h4 {
@@ -92,4 +100,4 @@
     .pagination button.active {
         @apply bg-grayBlue-500 text-white;
     }
-};
+}
