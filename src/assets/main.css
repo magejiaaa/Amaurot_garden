@@ -27,7 +27,7 @@
         focus-visible:outline-none;
     }
     .content-area {
-        height: calc(100vh - 161px);
+        min-height: calc(100vh - 161px);
         @apply bg-gray-100;
     }
     /* 插件內容樣式 */
@@ -44,10 +44,10 @@
         @apply bg-gray-100;
     }
     .pluginContent td {
-        @apply p-2;
+        @apply p-2 break-all;
     }
     .pluginContent td p {
-        @apply m-0;
+        @apply m-0 break-words;
     }
     .pluginContent span {
         @apply p-1;
