@@ -25,6 +25,7 @@
     "tinymce": "^5.10.7",
     "tinymce-i18n": "^23.1.23",
     "vue": "^3.2.47",
+    "vue-disqus": "^5.1.0",
     "vue-gtag": "^2.0.1",
     "vue-loading-overlay": "6.0",
     "vue-router": "^4.1.6"

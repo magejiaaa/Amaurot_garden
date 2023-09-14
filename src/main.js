@@ -6,6 +6,7 @@ import "vue-loading-overlay/dist/css/index.css";
 import Loading from "vue-loading-overlay";
 import App from "./App.vue";
 import VueGtag from "vue-gtag";
+import VueDisqus from 'vue-disqus';
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -64,6 +65,7 @@ app.use(
     },
     router
 );
+app.use(VueDisqus);
 app.component("loading-plugin", Loading);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");

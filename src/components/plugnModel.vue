@@ -2,26 +2,23 @@
     <!-- 插件視窗 -->
     <div class="mx-auto p-4 overflow-auto relative text-left md:p-8">
         <loading-plugin :active="isLoading"></loading-plugin>
-        <div 
-        :class="{
+        <div :class="{
             'sticky top-0 bg-white mx-auto pb-4 border-b-2':
                 isEdit === false,
-                'text-blueGreen-500':
+            'text-blueGreen-500':
                 pluginStore.isThirdPlugin === true,
-                'text-grayBlue-500':
+            'text-grayBlue-500':
                 pluginStore.isThirdPlugin === false,
-        }"
-        class="flex items-center justify-between mb-8">
+        }" class="flex items-center justify-between mb-8">
             <div v-if="!pluginStore.isLogin || !isEdit" class="flex items-center">
                 <div class="flex flex-wrap flex-auto md:items-center md:flex-row">
                     <h3 class="inline-block mb-2 w-full md:mb-0 md:w-auto">
                         {{ tempPlugin.name }}
                     </h3>
-                    <span class="text-xs text-white px-3 py-2 md:ml-2"
-                    :class="{
-                            'bg-blueGreen-500':
+                    <span class="text-xs text-white px-3 py-2 md:ml-2" :class="{
+                        'bg-blueGreen-500':
                             pluginStore.isThirdPlugin === true,
-                            'bg-grayBlue-500':
+                        'bg-grayBlue-500':
                             pluginStore.isThirdPlugin === false,
                     }">
                         {{ tempPlugin.category }}
@@ -43,19 +40,17 @@
                 <p class="col-span-4 btn bg-gray-100 border py-2">
                     {{ tempPlugin.describe }}
                 </p>
-                <a :href="tempPlugin.website" class="btn border  col-span-2 text-center cursor-pointer mt-2 py-2 md:mt-0"
-                :class="{
-                            'border-blueGreen-300 hover:bg-blueGreen-100 text-blueGreen-500 hover:text-blueGreen-800':
-                            pluginStore.isThirdPlugin === true,
-                            'border-grayBlue-300 hover:bg-grayBlue-100':
-                            pluginStore.isThirdPlugin === false,
-                    }" target="_blank">插件原網址
+                <a :href="tempPlugin.website" class="btn border  col-span-2 text-center cursor-pointer mt-2 py-2 md:mt-0" :class="{
+                    'border-blueGreen-300 hover:bg-blueGreen-100 text-blueGreen-500 hover:text-blueGreen-800':
+                        pluginStore.isThirdPlugin === true,
+                    'border-grayBlue-300 hover:bg-grayBlue-100':
+                        pluginStore.isThirdPlugin === false,
+                }" target="_blank">插件原網址
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
                 <!-- 第三方插件庫顯示 -->
                 <p v-if="plugin.thirdPluginURL" class="text-center">插件庫連結</p>
-                <p v-if="plugin.thirdPluginURL"
-                class="btn col-span-5 border py-2 break-all text-sm">{{ plugin.thirdPluginURL }}</p>
+                <p v-if="plugin.thirdPluginURL" class="btn col-span-5 border py-2 break-all text-sm">{{ plugin.thirdPluginURL }}</p>
             </div>
             <!-- 多頁標籤顯示 -->
             <div class="col-span-2 flex justify-between" v-if="plugin.contentArr">
@@ -86,6 +81,10 @@
             </div>
 
             <!-- TODO 留言板 -->
+            <section class='comments' aria-labelledby="comment">
+                <h2 id="comment">Comments</h2>
+                <Disqus shortname="amaurotgarden" :pageConfig="pageConfig" />
+            </section>
         </div>
         <!-- 有登入的可編輯內容 -->
         <div v-else>
@@ -174,7 +173,7 @@ import { ref, watch, reactive, nextTick, onMounted } from "vue";
 import { usePluginsStore } from "../stores/pluginStore";
 import { useStateStore } from "../stores/stateStore";
 import TinycmeEditor from "../components/TinyMce.vue"; // 不能刪
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import Swal from 'sweetalert2';
 
 export default {
@@ -196,6 +195,7 @@ export default {
         },
     },
     setup(props, { emit }) {
+        const route = useRoute();
         const router = useRouter();
         const pluginStore = usePluginsStore();
         const stateStore = useStateStore();
@@ -248,13 +248,16 @@ export default {
         };
         // 傳入外層指定資料
         const tempPlugin = ref(props.plugin);
+        // 留言板
+        const pageConfig = ref({});
         watch(
             // 避免 props.plugin 為 undefined 時報錯，this好煩 >:(
             () => props.plugin,
             (newValue, oldValue) => {
                 if (newValue !== oldValue) {
-                    // console.log(newValue);
                     tempPlugin.value = newValue;
+                    pageConfig.value.identifier = props.plugin.ID;
+                    pageConfig.value.url = 'https://amaurot-garden.web.app/#' + route.path;
                 }
             }
         );
@@ -435,23 +438,25 @@ export default {
         const applyLazyLoad = () => {
             nextTick(() => {
                 let imgTags;
-                if (contentRef.value!=null) {
+                if (contentRef.value != null) {
                     imgTags = contentRef.value.querySelectorAll("img");
                     if (imgTags.length > 0) {
-                    imgTags.forEach((img) => {
-                        isLoading.value = true;
-                        img.onload = () => {
-                            // console.log("所有圖片已加載完成");
-                            isLoading.value = false; // 隱藏 loading 畫面
-                        };
-                    });
-                }
+                        imgTags.forEach((img) => {
+                            isLoading.value = true;
+                            img.onload = () => {
+                                // console.log("所有圖片已加載完成");
+                                isLoading.value = false; // 隱藏 loading 畫面
+                            };
+                        });
+                    }
                 }
             });
         };
 
         onMounted(() => {
             applyLazyLoad();
+            pageConfig.value.identifier = props.plugin.ID;
+            pageConfig.value.url = 'https://amaurot-garden.web.app/#' + route.path;
         });
 
         watch(tempPlugin, () => {
@@ -483,6 +488,7 @@ export default {
             isLoading,
             submitButton,
             multiText,
+            pageConfig,
         };
     },
 };
