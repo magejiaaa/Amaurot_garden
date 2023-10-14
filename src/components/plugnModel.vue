@@ -80,10 +80,9 @@
                 </button>
             </div>
 
-            <!-- TODO 留言板 -->
             <section class='comments' aria-labelledby="comment">
                 <h2 id="comment">Comments</h2>
-                <Disqus shortname="amaurotgarden" :pageConfig="pageConfig" />
+                <Disqus-box :pageConfig="pageConfig" />
             </section>
         </div>
         <!-- 有登入的可編輯內容 -->
@@ -175,10 +174,13 @@ import { useStateStore } from "../stores/stateStore";
 import TinycmeEditor from "../components/TinyMce.vue"; // 不能刪
 import { useRouter, useRoute } from "vue-router";
 import Swal from 'sweetalert2';
+import DisqusBox from '../components/DisqusBox.vue';
+
 
 export default {
     components: {
         TinycmeEditor,
+        DisqusBox,
     },
     props: {
         plugin: {
@@ -249,14 +251,16 @@ export default {
         // 傳入外層指定資料
         const tempPlugin = ref(props.plugin);
         // 留言板
-        const pageConfig = ref({});
+        let pageConfig = ref({
+            identifier: tempPlugin.value.ID,
+        });
         watch(
             // 避免 props.plugin 為 undefined 時報錯，this好煩 >:(
             () => props.plugin,
             (newValue, oldValue) => {
                 if (newValue !== oldValue) {
                     tempPlugin.value = newValue;
-                    pageConfig.value.identifier = props.plugin.ID;
+                    pageConfig.value.identifier = tempPlugin.value.ID;
                     pageConfig.value.url = 'https://amaurot-garden.web.app/#' + route.path;
                 }
             }
@@ -455,8 +459,6 @@ export default {
 
         onMounted(() => {
             applyLazyLoad();
-            pageConfig.value.identifier = props.plugin.ID;
-            pageConfig.value.url = 'https://amaurot-garden.web.app/#' + route.path;
         });
 
         watch(tempPlugin, () => {

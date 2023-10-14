@@ -61,7 +61,7 @@
         <div class="mx-auto text-center" v-if="installType === 'setting'">
             <p class="mx-5">一般設定</p>
             <a
-                href="https://firebasestorage.googleapis.com/v0/b/amaurot-garden.appspot.com/o/xlsetting01.jpg?alt=media&token=fdd6e357-da0c-46fc-93c7-41f0b1f4111e"
+                href="../src/assets/images/xlsetting01.jpg"
                 target="_blank"
                 ><img
                     src="../assets/images/xlsetting01.jpg"
@@ -71,19 +71,26 @@
                     width="700"
             /></a>
             <p class="mx-5">外觀設定</p>
-            <a
-                href="https://firebasestorage.googleapis.com/v0/b/amaurot-garden.appspot.com/o/xlsetting02.jpg?alt=media&token=ba3a8674-cbd6-4439-bd50-2106368b6ce9"
-                target="_blank"
-                ><img
+            <a href="../src/assets/images/xlsetting02.jpg" target="_blank">
+                <img
                     src="../assets/images/xlsetting02.jpg"
                     class="mx-auto border rounded-3 mb-3"
                     alt=""
                     loading="lazy"
                     width="700"
-            /></a>
-            <p class="mx-sm-5">
+                />
+            </a>
+            <a href="../src/assets/images/xlsetting03.jpg" target="_blank">
+                <img
+                    src="../assets/images/xlsetting03.jpg"
+                    class="mx-auto border rounded-3 mb-3"
+                    alt=""
+                    loading="lazy"
+                />
+            </a>
+            <!-- <p class="mx-sm-5">
                 後面兩個一個是頂部的bar，遊戲內可使用"/xldev"呼叫出一個頂部控制bar，最後一個標籤是使用正在測試中未上架的插件。
-            </p>
+            </p> -->
         </div>
 
         <!-- 加載第三方 -->
@@ -97,7 +104,7 @@
                 確保在啟動器設置中打開“啟用遊戲內功能”以訪問遊戲內命令和功能！(可使用"/xlplugins"等指令)
             </p>
             <a
-                href="https://firebasestorage.googleapis.com/v0/b/amaurot-garden.appspot.com/o/moreplugins01.jpg?alt=media&token=72b53ae4-a05c-4303-913f-d241f0cce6c6"
+                href="../src/assets/images/moreplugins01.jpg"
                 target="_blank"
                 ><img
                     src="../assets/images/moreplugins01.jpg"
@@ -106,19 +113,25 @@
                     loading="lazy"
                     width="700"
             /></a>
-            <p class="mx-sm-5">
-                到Dalamud設定介面的最後一個標籤頁，URL的地方貼上第三方程式庫的位址，按一下"+"<br />
-                Enabled那欄會變成"√"
-            </p>
             <a
-                href="https://firebasestorage.googleapis.com/v0/b/amaurot-garden.appspot.com/o/moreplugins02.jpg?alt=media&token=32ab3bac-a5f5-4f59-98de-31b5f68ce096"
+                href="../src/assets/images/moreplugins011.png"
                 target="_blank"
                 ><img
-                    src="../assets/images/moreplugins02.jpg"
-                    class="mx-auto border rounded-3 mb-3"
+                    src="../assets/images/moreplugins011.png"
+                    class="mx-auto border rounded-3"
                     alt=""
+                    loading="lazy"
                     width="700"
             /></a>
+            <p class="mx-sm-5 mb-3">
+                將網址貼上至新增的欄位後會出現"+"按鈕，之後點選儲存<br />
+                Enabled那欄記得檢查有沒有打勾"√"
+            </p>
+            <img
+                    src="../assets/images/moreplugins02.png"
+                    class="mx-auto border rounded-3 mb-3"
+                    alt=""
+            />
             <p class="mx-sm-5">
                 回到插件管理頁面，會發現多了新增的插件，此時需要點擊安裝，即可使用。
             </p>
