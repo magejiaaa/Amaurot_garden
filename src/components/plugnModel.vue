@@ -252,7 +252,9 @@ export default {
         // 留言板
         const disqusRef = ref(null);
         const shortname = 'gardenMJJ';
-        let pageConfig = ref({});
+        let pageConfig = ref({
+            identifier: tempPlugin.value.ID
+        });
         watch(
             // 避免 props.plugin 為 undefined 時報錯，this好煩 >:(
             () => props.plugin,
