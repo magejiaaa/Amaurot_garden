@@ -82,8 +82,7 @@
 
             <section class='comments' aria-labelledby="comment">
                 <h2 id="comment">Comments</h2>
-                <!-- <Disqus-box :pageConfig="pageConfig" ref="disqus" /> -->
-                <Disqus shortname='amaurotgarden' :pageConfig="pageConfig" ref="disqus" />
+                <Disqus :shortname="shortname" :pageConfig="pageConfig" :key="tempPlugin.ID" />
             </section>
         </div>
         <!-- 有登入的可編輯內容 -->
@@ -175,13 +174,11 @@ import { useStateStore } from "../stores/stateStore";
 import TinycmeEditor from "../components/TinyMce.vue"; // 不能刪
 import { useRouter, useRoute } from "vue-router";
 import Swal from 'sweetalert2';
-import DisqusBox from '../components/DisqusBox.vue';
-import { Disqus } from 'vue-disqus';
+import { Disqus } from 'vue-disqus'
 
 export default {
     components: {
         TinycmeEditor,
-        DisqusBox,
         Disqus
     },
     props: {
@@ -253,11 +250,9 @@ export default {
         // 傳入外層指定資料
         const tempPlugin = ref(props.plugin);
         // 留言板
-        const disqus = ref(null);
-        let pageConfig = ref({
-            identifier: tempPlugin.value.ID,
-            url: ''
-        });
+        const disqusRef = ref(null);
+        const shortname = 'gardenMJJ';
+        let pageConfig = ref({});
         watch(
             // 避免 props.plugin 為 undefined 時報錯，this好煩 >:(
             () => props.plugin,
@@ -265,9 +260,8 @@ export default {
                 if (newValue !== oldValue) {
                     tempPlugin.value = newValue;
                     pageConfig.value.identifier = tempPlugin.value.ID;
-                    pageConfig.value.url = 'https://amaurot-garden.web.app/#' + route.path;
-                    // disqus.value.reset();
-                    // console.log(disqus.value);
+                    pageConfig.value.url = 'https://amaurot-garden.web.app' + route.path;
+                    console.log('頁面刷新');
                 }
             }
         );
@@ -498,7 +492,8 @@ export default {
             submitButton,
             multiText,
             pageConfig,
-            disqus
+            shortname,
+            disqusRef
         };
     },
 };

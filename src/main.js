@@ -12,42 +12,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 /* import 使用的 icon */
-import {
-    faUserSecret,
-    faXmark,
-    faTriangleExclamation,
-    faLink,
-    faPenToSquare,
-    faBook,
-    faGears,
-    fa3,
-    faHandPointRight,
-    faCaretDown,
-    faCheck,
-    faChevronLeft,
-    faChevronRight,
-    faChevronUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck, faChevronLeft, faChevronRight, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle, faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
-library.add(
-    faUserSecret,
-    faXmark,
-    faGoogle,
-    faTriangleExclamation,
-    faLink,
-    faPenToSquare,
-    faBook,
-    faGears,
-    fa3,
-    faHandPointRight,
-    faCaretDown,
-    faCheck,
-    faChevronLeft,
-    faChevronRight,
-    faTwitter,
-    faGithub,
-    faChevronUp
-);
+library.add(faUserSecret, faXmark, faGoogle, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck, faChevronLeft, faChevronRight, faTwitter, faGithub, faChevronUp);
 
 const pinia = createPinia();
 const app = createApp(App);
