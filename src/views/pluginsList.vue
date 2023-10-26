@@ -188,6 +188,7 @@ export default {
                 pluginStore.plugins.forEach((item) => {
                     if (item.ID === routePluginID.value) {
                         tempPlugin.value = item;
+                        tempPlugin.value.url = route.path;
                     }
                 });
             }
@@ -207,6 +208,7 @@ export default {
         function pluginContent(index, item) {
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
+            tempPlugin.value.url = route.path + '/' + item.ID;
             isOpen.value = true;
             // 更新URL中的ID
             const pluginId = tempPlugin.value.ID;

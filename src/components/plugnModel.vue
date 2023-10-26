@@ -251,9 +251,10 @@ export default {
         const tempPlugin = ref(props.plugin);
         // 留言板
         const disqusRef = ref(null);
-        const shortname = 'gardenMJJ';
+        const shortname = 'gardenmjj';
         let pageConfig = ref({
-            identifier: tempPlugin.value.ID
+            identifier: tempPlugin.value.ID,
+            url: 'https://amaurot-garden.web.app' + tempPlugin.value.url
         });
         watch(
             // 避免 props.plugin 為 undefined 時報錯，this好煩 >:(
@@ -262,7 +263,7 @@ export default {
                 if (newValue !== oldValue) {
                     tempPlugin.value = newValue;
                     pageConfig.value.identifier = tempPlugin.value.ID;
-                    pageConfig.value.url = 'https://amaurot-garden.web.app' + route.path;
+                    pageConfig.value.url = 'https://amaurot-garden.web.app' + tempPlugin.value.url;
                     console.log('頁面刷新');
                 }
             }
