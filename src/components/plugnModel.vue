@@ -49,8 +49,9 @@
                     <font-awesome-icon icon="fa-solid fa-link" />
                 </a>
                 <!-- 第三方插件庫顯示 -->
-                <p v-if="plugin.thirdPluginURL" class="text-center">插件庫連結</p>
-                <p v-if="plugin.thirdPluginURL" class="btn col-span-5 border py-2 break-all text-sm">{{ plugin.thirdPluginURL }}</p>
+                <p v-if="plugin.thirdPluginURL" class="btn col-span-8 border py-2 break-all text-sm">
+                    <span class="mr-4 text-gray-400">插件庫連結</span>{{ plugin.thirdPluginURL }}
+                </p>
             </div>
             <!-- 多頁標籤顯示 -->
             <div class="col-span-2 flex justify-between" v-if="plugin.contentArr">

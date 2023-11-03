@@ -12,11 +12,12 @@
                 </p>
                 <div class="flex flex-col justify-center w-full mx-auto mb-6 text-xl font-light
                     md:flex-row md:w-auto">
-                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                    <!-- 下載 -->
+                    <div class="relative w-full md:w-auto mb-2 md:mr-6 md:mb-0">
                         <a type="button" class="btn downloadBtn w-full 
                             lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(github)</a>
                     </div>
-                    <div class="relative">
+                    <div class="relative w-full md:w-auto">
                         <a type="button" class="btn downloadBtn w-full
                             lg:m-1 lg:w-auto | cn" href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6" target="_blank">CN版介紹</a>
                     </div>
