@@ -154,6 +154,7 @@ export default {
     setup() {
         const pluginStore = usePluginsStore();
         pluginStore.isThirdPlugin = false;
+        pluginStore.getPlugin();
         // 篩選插件種類
         const selectCategory = ref('');
         const filterPlugin = computed(() => {
@@ -175,35 +176,35 @@ export default {
         // 控制 Modal 開關
         let isOpen = ref(false);
         let isNew = ref(false);
-        const pluginIndex = ref(0);
+        let pluginIndex = ref(0);
         const tempPlugin = ref({});
         // 帶有id的插件網址
         const route = useRoute();
         const router = useRouter();
+
         let routePluginID = ref(route.params.pluginId);
         const isDataLoaded = ref(false);
         const getPluginURL = () => {
-            if (routePluginID.value) {
+            if (routePluginID.value && isDataLoaded.value) {
                 isOpen.value = true;
-                pluginStore.plugins.forEach((item) => {
+                pluginStore.plugins.forEach((item, index) => {
                     if (item.ID === routePluginID.value) {
                         tempPlugin.value = item;
+                        pluginIndex.value = index;
                         tempPlugin.value.url = route.path;
+                        isDataLoaded.value = false;
                     }
                 });
             }
         };
 
         onMounted(async () => {
-            await pluginStore.getPlugin(); // Assuming you have a method to fetch data from the server in your store
             isDataLoaded.value = true;
+            await getPluginURL();
         });
         watchEffect(() => {
-            if (isDataLoaded.value) {
-                getPluginURL();
-            }
+            getPluginURL();
         });
-
         // 獲取當前插件資料
         function pluginContent(index, item) {
             pluginIndex.value = index;

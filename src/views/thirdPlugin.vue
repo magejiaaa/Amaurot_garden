@@ -141,8 +141,6 @@ import Swal from 'sweetalert2';
 export default {
     setup() {
         const pluginStore = usePluginsStore();
-        const route = useRoute();
-        const router = useRouter();
         // 這頁是第三方插件
         pluginStore.isThirdPlugin = true;
         pluginStore.getPlugin();
@@ -180,40 +178,41 @@ export default {
             return [...new Set(arr)];
         });
 
+        // 控制 Modal 開關
+        let isOpen = ref(false);
+        let isNew = ref(false);
+        let pluginIndex = ref(0);
+        const tempPlugin = ref({});
+        const route = useRoute();
+        const router = useRouter();
         // 從URL初始化頁面
         let routePluginID = ref(route.params.pluginId);
         const isDataLoaded = ref(false);
         const getPluginURL = () => {
-            if (routePluginID.value) {
+            if (routePluginID.value && isDataLoaded.value) {
                 isOpen.value = true;
-                pluginStore.plugins.forEach((item) => {
+                pluginStore.plugins.forEach((item, index) => {
                     if (item.ID === routePluginID.value) {
                         tempPlugin.value = item;
+                        pluginIndex.value = index;
+                        tempPlugin.value.url = route.path;
+                        isDataLoaded.value = false;
                     }
                 });
             }
         };
         onMounted(async () => {
-            await pluginStore.getPlugin(); // Assuming you have a method to fetch data from the server in your store
             isDataLoaded.value = true;
+            await getPluginURL();
         });
         watchEffect(() => {
-            if (isDataLoaded.value) {
-                getPluginURL();
-            }
+            getPluginURL();
         });
-
-        // 控制 Modal 開關
-        let isOpen = ref(false);
-        let isNew = ref(false);
-        const pluginIndex = ref(0);
-        const tempPlugin = ref({});
-
-
         // 獲取當前插件資料
         function pluginContent(index, item) {
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
+            tempPlugin.value.url = route.path + '/' + item.ID;
             isOpen.value = true;
             // 更新URL中的ID
             const pluginId = tempPlugin.value.ID;
