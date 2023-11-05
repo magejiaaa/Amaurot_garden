@@ -5,10 +5,10 @@
             <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
                 <ul class="mx-auto my-8 text-grayBlue-800">
                     <li>
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = ''">顯示全部</button>
+                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory()">顯示全部</button>
                     </li>
                     <li v-for="(item, index) in pluginStore.category" :key="index">
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="selectCategory = item">{{ item
+                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory(item)">{{ item
                         }}</button>
                     </li>
                 </ul>
@@ -155,6 +155,8 @@ export default {
         const pluginStore = usePluginsStore();
         pluginStore.isThirdPlugin = false;
         pluginStore.getPlugin();
+
+
         // 篩選插件種類
         const selectCategory = ref('');
         const filterPlugin = computed(() => {
@@ -172,7 +174,11 @@ export default {
             }
             return [...new Set(arr)];
         });
-
+        // 点击时将 pluginIndex 设置为 0 并设置 selectCategory
+        const setSelectedCategory = (category) => {
+            currentPage.value = 1;
+            selectCategory.value = category || '';
+        };
         // 控制 Modal 開關
         let isOpen = ref(false);
         let isNew = ref(false);
@@ -372,7 +378,8 @@ export default {
             currentPageData,
             changePage,
             searchKeyword,
-            filteredData
+            filteredData,
+            setSelectedCategory
         }
     },
     components: {
