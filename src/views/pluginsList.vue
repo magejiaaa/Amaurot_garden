@@ -257,7 +257,12 @@ export default {
         watch(
             pluginIndex, (newValue) => {
                 console.log(newValue);
-                const item = filterPlugin.value[newValue];
+                let item;
+                if (newValue > 10) {
+                    item = filterPlugin.value[newValue];
+                } else {
+                    item = currentPageData.value[newValue];
+                }
                 pluginContent(newValue, item);
             }
         );
