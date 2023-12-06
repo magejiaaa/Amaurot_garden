@@ -344,11 +344,16 @@ export default {
                 multiText.value.style.display = 'none'; // 设置为不可见
             } else {
                 if (contentObject.title) {
-                    contentArray.value = tempPlugin.value.contentArr;
+                    if (tempPlugin.value.contentArr) {
+                        contentArray.value = tempPlugin.value.contentArr;
+                    } else {
+                        contentArray.value = [];
+                    }
                     // 先複製一份 contentObject(避免推進陣列前被清空)
-                    const newObj = { ...contentObject };
+                    const newObj = {...contentObject};
                     // 將複製的物件推進陣列
                     contentArray.value.push(newObj);
+                    tempPlugin.value.contentArr = contentArray.value;
                     submitButton.value.disabled = false; // 添加 disabled 属性
                     clearEditPage();
                 } else {
@@ -395,6 +400,7 @@ export default {
                 // 沒有變更才換頁
                 pageIndex = index;
                 isPageNew.value = false;
+                // tempPlugin.value.content = tempPlugin.value.contentArr[index].content;
                 contentObject.title = item.title;
                 editorData.value = item.content;
             }
