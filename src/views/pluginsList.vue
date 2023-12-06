@@ -256,7 +256,8 @@ export default {
         // 監聽pluginIndex改變tempPlugin
         watch(
             pluginIndex, (newValue) => {
-                const item = currentPageData.value[newValue];
+                console.log(newValue);
+                const item = filterPlugin.value[newValue];
                 pluginContent(newValue, item);
             }
         );
