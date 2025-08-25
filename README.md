@@ -1,7 +1,53 @@
-# Vue 3 + Vite
+## 主要功能
+1. **插件列表與搜尋**
+   - 使用者可瀏覽、搜尋 FF14 相關插件。
+   - 支援依分類篩選、分頁顯示。
+   - 點擊插件可查看詳細內容。
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+2. **插件新增/編輯/審核**
+   - 登入後可新增或編輯插件資料。
+   - 新增或編輯後，資料會進入審核流程（`editPlugin` 路徑）。
+   - 管理員審核通過後，插件資料會移至正式庫（`plugins` 或 `thirdPlugins` 路徑）。
 
-## Recommended IDE Setup
+3. **第三方插件介紹**
+   - 提供第三方插件的專屬頁面與分類。
+   - 支援多分頁內容編輯（如教學、說明等）。
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+4. **使用者系統**
+   - 註冊、登入、登出。
+   - 使用者可編輯個人資料（名稱、網站、遊戲名稱）。
+   - 個人頁面可顯示公開資訊。
+
+5. **留言板/評論**
+   - 插件詳細頁面支援留言（Disqus）。
+
+6. **響應式設計**
+   - 支援手機、平板、桌機瀏覽。
+   - 選單、彈窗等元件根據螢幕大小自動調整。
+
+## 資料流程
+1. **使用者註冊/登入**
+   - 透過 Firebase Auth 驗證。
+   - 登入後取得 `userID`，並於資料庫建立/更新使用者資料。
+
+2. **插件資料管理**
+   - 新增/編輯插件時，資料暫存於 `editPlugin` 路徑。
+   - 審核通過後，資料移至 `plugins` 或 `thirdPlugins`，並刪除 `editPlugin` 資料。
+   - 插件資料包含：名稱、分類、描述、內容、作者、分頁內容等。
+
+3. **使用者資料管理**
+   - 使用者可編輯個人資料，更新至 `users/{userID}` 路徑。
+   - 變更後即時反映於個人頁面。
+
+4. **前端互動流程**
+   - Vue 組件（如 pluginsList.vue、plugnModel.vue）負責資料顯示、編輯、彈窗控制。
+   - 路由管理頁面切換與標題更新。
+   - 資料變動時自動刷新列表與內容。
+
+5. **留言/評論**
+   - 透過 Disqus 進行第三方留言，依插件 ID 產生唯一討論串。
+
+## 補充
+- 網站使用 Vue3 + Vite + Firebase。
+- 插件資料、使用者資料皆存於 Firebase Realtime Database。
+- 主要頁面：首頁、插件列表、第三方插件、個人資料、審核列表、404。
