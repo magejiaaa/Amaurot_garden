@@ -10,17 +10,24 @@
                 <p class="my-5 font-light text-xl">
                     所有插件的基底，功能包含快速啟動與更新、第三方插件管理、記憶多組帳號密碼、上傳交易板價格資料至Universalis等多項功能
                 </p>
-                <div class="flex flex-col justify-center w-full mx-auto mb-6 text-xl font-light
+                <div class="flex flex-col flex-wrap justify-center w-full mx-auto mb-6 text-xl font-light
                     md:flex-row md:w-auto">
                     <!-- 下載 -->
-                    <div class="relative w-full md:w-auto mb-2 md:mr-6 md:mb-0">
-                        <a type="button" class="btn downloadBtn w-full 
+                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                        <a type="button" class="btn downloadBtn 
                             lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(github)</a>
                     </div>
-                    <div class="relative w-full md:w-auto">
-                        <a type="button" class="btn downloadBtn w-full
+                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                        <a type="button" class="btn downloadBtn
                             lg:m-1 lg:w-auto | cn" href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6" target="_blank">CN版介紹</a>
                     </div>
+                    <!-- discord -->
+                    <div class="relative md:mr-6 md:mb-0">
+                        <a type="button" class="btn downloadBtn
+                            lg:m-1 lg:w-auto | discord" href="https://discord.gg/EfjR2Km524" target="_blank">加入繁中插件DC社群
+                        </a>
+                    </div>
+                    <p class="text-sm mt-1">目前繁中無插件可用，僅提供交流平台，如果已經有人創群再麻煩通知，這邊連結會替換過去</p>
                 </div>
                 <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
@@ -36,7 +43,7 @@
                     <font-awesome-icon icon="fa-brands fa-twitter" />更新的內容
                 </a>
                 <p class="mt-3 font-light">
-                    獨立作業更新緩慢跟bug很多請見諒🥺
+                    目前國際服已AFK一陣子，網站暫停更新，繁中服等開發社區穩定後會再重新啟動
                 </p>
             </div>
         </div>
