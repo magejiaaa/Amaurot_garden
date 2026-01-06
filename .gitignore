@@ -13,6 +13,7 @@ node_modules
 .vscode
 dist
 dist-ssr
+public
 *.local
 .env.development
 .env.production
