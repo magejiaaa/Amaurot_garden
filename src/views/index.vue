@@ -27,7 +27,6 @@
                             lg:m-1 lg:w-auto | discord" href="https://discord.gg/KtGprs493S" target="_blank">加入繁中插件DC社群
                         </a>
                     </div>
-                    <p class="text-sm mt-1">目前繁中無插件可用，僅提供交流平台，如果已經有人創群再麻煩通知，這邊連結會替換過去</p>
                 </div>
                 <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />

@@ -80,11 +80,6 @@
                     {{ user.name }}
                 </button>
             </div>
-
-            <section class='comments' aria-labelledby="comment">
-                <h2 id="comment">Comments</h2>
-                <Disqus :shortname="shortname" :pageConfig="pageConfig" :key="tempPlugin.ID" />
-            </section>
         </div>
         <!-- 有登入的可編輯內容 -->
         <div v-else>
@@ -175,12 +170,10 @@ import { useStateStore } from "../stores/stateStore";
 import TinycmeEditor from "../components/TinyMce.vue"; // 不能刪
 import { useRouter, useRoute } from "vue-router";
 import Swal from 'sweetalert2';
-import { Disqus } from 'vue-disqus'
 
 export default {
     components: {
         TinycmeEditor,
-        Disqus
     },
     props: {
         plugin: {
@@ -250,8 +243,6 @@ export default {
         };
         // 傳入外層指定資料
         const tempPlugin = ref(props.plugin);
-        // 留言板
-        const disqusRef = ref(null);
         const shortname = 'amaroutPlugins';
         let pageConfig = ref({
             identifier: tempPlugin.value.ID,
@@ -267,7 +258,6 @@ export default {
                     pageConfig.value.identifier = tempPlugin.value.ID;
                     pageConfig.value.url = 'https://amaurot-garden.web.app' + tempPlugin.value.url;
                 }
-                console.log(pageConfig.value.url);
             }
         );
 
@@ -460,7 +450,6 @@ export default {
                         imgTags.forEach((img) => {
                             isLoading.value = true;
                             img.onload = () => {
-                                // console.log("所有圖片已加載完成");
                                 isLoading.value = false; // 隱藏 loading 畫面
                             };
                         });
@@ -503,8 +492,7 @@ export default {
             submitButton,
             multiText,
             pageConfig,
-            shortname,
-            disqusRef
+            shortname
         };
     },
 };

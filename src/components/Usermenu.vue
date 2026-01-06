@@ -64,15 +64,6 @@ export default {
         const router = useRouter();
         const stateStore = useStateStore();
         stateStore.login();
-        // 測試登入
-        function loginPush() {
-            if (props.isLogin === true) {
-                console.log('已登入');
-            } else {
-                console.log('未登入');
-            }
-        }
-        loginPush();
         function getUserID() {
             const id = stateStore.userID;
             router.push(`/dashboard/user/${id}`);
@@ -101,7 +92,6 @@ export default {
 
 
         return {
-            loginPush,
             stateStore,
             getUserID,
             mobileMenuShow,

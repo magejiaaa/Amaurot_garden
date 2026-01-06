@@ -63,9 +63,7 @@ export const useStateStore = defineStore("user", () => {
         const postData = tempUserObj;
         const userUid = userID.value;
         updates["/users/" + userUid] = postData;
-        console.log(updates);
         return update(refData(database), updates).then(() => {
-            console.log("更新成功");
             alert("更新成功");
         });
     }

@@ -7,8 +7,6 @@
                 <input type="text" id="userName" v-model="localUser.name" />
                 <label for="userWeb">個人網站</label>
                 <input type="url" id="userWeb" v-model="localUser.website" />
-                <label for="userGame">遊戲名稱</label>
-                <input type="text" id="userGame" v-model="localUser.gameName" />
                 <button type="button" class="btn border mt-4" @click.prevent="userSubmit(localUser)">
                     確認修改
                 </button>
@@ -24,7 +22,7 @@
 </template>
 
 <script>
-import { useStateStore } from "../stores/stateStore";
+import { useStateStore } from "../stores/stateStore.js";
 import { ref, toRaw } from "vue";
 import { database } from "../stores/firebasedb.js";
 import { onValue, ref as refData, update } from "firebase/database";
@@ -58,7 +56,6 @@ export default {
             const updates = {};
             const postData = tempUserObj;
             updates["/users/" + userUid] = postData;
-            console.log(updates);
             return update(refData(database), updates).then(() => {
                 Swal.fire({
                     title: "更新成功",

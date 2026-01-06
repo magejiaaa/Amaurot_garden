@@ -125,7 +125,6 @@ export default {
             pluginStore.reviewPlugin(item);
             closeModal();
             window.location.reload();
-            console.log("審核成功");
         }
 
         // 讓 Modal 判定是否為 review

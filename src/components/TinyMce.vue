@@ -74,7 +74,6 @@ const init = reactive({
         var fileRef = storageRef(storage, 'pluginUpload/' + filename);
         uploadBytes(fileRef, blobInfo.blob())
             .then((snapshot) => {
-                console.log(snapshot);
                 getDownloadURL(storageRef(storage, 'pluginUpload/' + filename))
                     .then((url) => {
                         success(url);

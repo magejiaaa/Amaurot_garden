@@ -256,7 +256,6 @@ export default {
         // 監聽pluginIndex改變tempPlugin
         watch(
             pluginIndex, (newValue) => {
-                console.log(newValue);
                 let item;
                 if (newValue > 10) {
                     item = filterPlugin.value[newValue];

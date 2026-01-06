@@ -56,7 +56,7 @@ const routes = [
             {
                 path: "user/:uid",
                 name: "user",
-                component: () => import("../views/user.vue"),
+                component: () => import("../views/userView.vue"),
                 meta: {
                     title: "個人資料 - 亞馬屋羅提後花園2.0",
                 },

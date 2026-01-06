@@ -98,7 +98,6 @@ export default {
                     user.email,
                     user.password
                 );
-                console.log("註冊成功", authUser);
                 Swal.fire('註冊成功');
             } catch (error) {
                 console.log(error.message);
@@ -139,7 +138,6 @@ export default {
         function signIn(user) {
             signInWithEmailAndPassword(auth, user.email, user.password).then(
                 (userCredential) => {
-                    console.log(userCredential);
                     router.push({ name: "home" });
                 }
             );
