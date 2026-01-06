@@ -12,6 +12,10 @@
                         }}</button>
                     </li>
                 </ul>
+                <button type="button" class="btn w-full text-center mb-10 hover:bg-gray-300 rounded-none" @click="showCollected = !showCollected"
+                    :class="themeClasses.text800">
+                    {{showCollected ? '顯示全部插件' : '只顯示已收藏插件'}}
+                </button>
             </div>
 
             <!-- 手機分類 -->
@@ -200,8 +204,11 @@ export default {
 
         // 篩選插件種類
         const selectCategory = ref('');
+        let showCollected = ref(false);
         const filterPlugin = computed(() => {
-            const arr = [];
+            let arr = [];
+            
+            // 先根據分類篩選
             if (selectCategory.value !== '') {
                 pluginStore.plugins.forEach((item) => {
                     if (item.category.includes(selectCategory.value)) {
@@ -209,9 +216,16 @@ export default {
                     }
                 });
             } else {
-                pluginStore.plugins.forEach((item) => {
-                    arr.push(item);
-                });
+                arr = [...pluginStore.plugins];
+            }
+            
+            // 如果開啟「只顯示已收藏」,再進行收藏篩選
+            if (showCollected.value && stateStore.userContent.collectPlugins) {
+                arr = arr.filter(item => 
+                    stateStore.userContent.collectPlugins.some(
+                        collected => collected.ID === item.ID
+                    )
+                );
             }
             return [...new Set(arr)];
         });
@@ -444,6 +458,7 @@ export default {
             pluginStore,
             selectCategory,
             filterPlugin,
+            showCollected,
             isOpen,
             tempPlugin,
             pluginIndex,
