@@ -77,13 +77,21 @@
                 </div>
                 <!-- 插件列表 -->
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-8 list relative md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
                         <!-- 插件分類 -->
                         <p class="font-light text-gray-500">{{ item.category }}</p>
                         <!-- 插件簡介 -->
                         <p class="md:col-span-2">{{ item.describe }}</p>
+                        <button class="ml-auto absolute right-3 top-1/2 -translate-y-1/2 z-10 hover:text-yellow-400 transition-all"
+                        :class="{
+                            'text-yellow-400': isCollected(item.ID),
+                            'text-gray-300 hover:text-yellow-400': !isCollected(item.ID)
+                        }" 
+                        @click="pluginCollection(item)" title="收藏插件" v-if="pluginStore.isLogin">
+                            <font-awesome-icon icon="fa-solid fa-star" />
+                        </button>
                     </li>
                 </ul>
                 <!-- 沒資料畫面 -->
@@ -137,6 +145,7 @@
 
 <script>
 import { usePluginsStore } from '../stores/pluginStore';
+import { useStateStore } from '../stores/stateStore';
 import { ref, computed, watch, onMounted, watchEffect } from 'vue';
 import pluginModel from '../components/plugnModel.vue';
 import scorllToTop from '../components/scrollToTop.vue';
@@ -159,10 +168,15 @@ export default {
         pluginType: {
             type: String,
             default: 'official'
+        },
+        pluginId: {  
+            type: String,
+            default: ''
         }
     },
     setup(props) {
         const pluginStore = usePluginsStore();
+        const stateStore = useStateStore();
         watchEffect(async () => {
             pluginStore.isThirdPlugin = props.pluginType === 'third';
             await pluginStore.getPlugin();
@@ -239,6 +253,10 @@ export default {
         });
         // 獲取當前插件資料
         function pluginContent(index, item) {
+            // 點收藏按鈕的話不開啟modal
+            if (event.target.closest('button')) {
+                return;
+            }
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
             tempPlugin.value.url = route.path + '/' + item.ID;
@@ -388,6 +406,40 @@ export default {
             currentPage.value = 1; // Reset current page when search keyword changes
         });
 
+        // 收藏插件
+        function pluginCollection(plugin) {
+            // 確保 collectPlugins 陣列存在
+            if (!stateStore.userContent.collectPlugins) {
+                stateStore.userContent.collectPlugins = [];
+            }
+            
+            // 檢查是否已收藏
+            const isCollected = stateStore.userContent.collectPlugins.some(
+                item => item.ID === plugin.ID
+            );
+            
+            // 將pluginID和name寫入使用者收藏資料中
+            if (isCollected) {
+                stateStore.removeCollectPlugin(plugin.ID);
+                Swal.fire({
+                    title: "已從收藏移除",
+                    icon: 'success',
+                })
+            } else {
+                stateStore.addCollectPlugin(plugin.ID, plugin.name);
+                Swal.fire({
+                    title: "已加入收藏",
+                    icon: 'success',
+                })
+            }
+        }
+        // 檢查插件是否已收藏
+        function isCollected(pluginID) {
+            return stateStore.userContent.collectPlugins?.some(
+                plugin => plugin.ID === pluginID
+            ) || false;
+        }
+
         return {
             pluginStore,
             selectCategory,
@@ -396,6 +448,8 @@ export default {
             tempPlugin,
             pluginIndex,
             pluginContent,
+            pluginCollection,
+            isCollected,
             updateModal,
             closeModal,
             newPlugin,

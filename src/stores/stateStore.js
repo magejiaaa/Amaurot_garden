@@ -12,36 +12,46 @@ export const useStateStore = defineStore("user", () => {
     const userContent = ref({
         email: "",
         displayName: "",
-        photoURL: "",
+        collectPlugins: [],
     });
     // 驗證登入
     function login() {
         onAuthStateChanged(auth, (user) => {
-            if (user != null) {
-                pluginStore.isLogin = true;
-                userID.value = user.uid;
-                const getUserData = refData(database, "users/" + user.uid);
-                onValue(getUserData, (snapshot) => {
-                    const userData = snapshot.val();
-                    // 如果資料庫沒有該使用者路徑
-                    if (userData === null) {
-                        console.log("user");
-                        // 寫入第三方的名稱
-                        set(refData(database, "users/" + user.uid), {
-                            displayName: user.displayName,
-                            email: user.email,
-                        });
-                        userName.value = userContent.value.displayName;
-                    } else if (!userData.name) {
-                        userName.value = userData.displayName;
-                    } else {
-                        userName.value = userData.name;
-                    }
-                });
-                userContent.value = user;
-            } else {
+            if (!user) {
                 console.log("not logged in");
+                pluginStore.isLogin = false;
+                return;
             }
+
+            pluginStore.isLogin = true;
+            userID.value = user.uid;
+            
+            const getUserData = refData(database, "users/" + user.uid);
+            onValue(getUserData, async (snapshot) => {
+                let userData = snapshot.val();
+                
+                // 如果資料庫沒有該使用者,建立新使用者
+                if (!userData) {
+                    userData = {
+                        displayName: user.displayName,
+                        email: user.email,
+                        collectPlugins: []
+                    };
+                    await set(refData(database, "users/" + user.uid), userData);
+                } else {
+                    // 確保 collectPlugins 欄位存在
+                    if (!userData.collectPlugins) {
+                        userData.collectPlugins = [];
+                        const updates = {};
+                        updates[`/users/${user.uid}/collectPlugins`] = [];
+                        await update(refData(database), updates);
+                    }
+                }
+                
+                // 更新本地狀態
+                userContent.value = userData;
+                userName.value = userData.name || userData.displayName;
+            });
         });
     }
     function handleSignOut() {
@@ -68,6 +78,49 @@ export const useStateStore = defineStore("user", () => {
         });
     }
 
+    // 新增收藏 plugin
+    function addCollectPlugin(pluginId, pluginName) {
+        // 檢查是否已收藏
+        if (!userContent.value.collectPlugins) {
+            userContent.value.collectPlugins = [];
+        }
+        
+        // 檢查是否已經收藏該 plugin
+        const isExist = userContent.value.collectPlugins.some(
+            plugin => plugin.ID === pluginId
+        );
+        
+        if (!isExist) {
+            userContent.value.collectPlugins.push({
+                ID: pluginId,
+                name: pluginName
+            });
+            
+            // 更新到 Firebase
+            const updates = {};
+            updates[`/users/${userID.value}/collectPlugins`] = userContent.value.collectPlugins;
+            return update(refData(database), updates);
+        }
+    }
+
+    // 移除收藏 plugin
+    function removeCollectPlugin(pluginId) {
+        if (userContent.value.collectPlugins) {
+            const index = userContent.value.collectPlugins.findIndex(
+                plugin => plugin.ID === pluginId
+            );
+            
+            if (index > -1) {
+                userContent.value.collectPlugins.splice(index, 1);
+                
+                // 更新到 Firebase
+                const updates = {};
+                updates[`/users/${userID.value}/collectPlugins`] = userContent.value.collectPlugins;
+                return update(refData(database), updates);
+            }
+        }
+    }
+
     return {
         login,
         userID,
@@ -75,5 +128,7 @@ export const useStateStore = defineStore("user", () => {
         userContent,
         userName,
         userSubmit,
+        addCollectPlugin,
+        removeCollectPlugin,
     };
 });

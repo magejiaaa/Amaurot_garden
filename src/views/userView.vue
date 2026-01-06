@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-20 bg-gray-100">
+    <div class="mt-20 bg-gray-100 min-h-[calc(100vh-241px)]">
         <div class="w-2/3 mx-auto py-10">
             <!-- 編輯 -->
             <form action="#" method="POST" v-if="stateStore.userID === userUid">
@@ -17,6 +17,14 @@
                 <p>{{ tempUser.gameName }}</p>
                 <a :href="tempUser.website">{{ tempUser.website }}</a>
             </div>
+            <br />
+            <!-- 收藏的插件 -->
+            <p>收藏的插件</p>
+            <ul>
+                <li v-for="plugin in stateStore.userContent.collectPlugins" :key="plugin.ID">
+                    {{ plugin.name }}
+                </li>
+            </ul>
         </div>
     </div>
 </template>
