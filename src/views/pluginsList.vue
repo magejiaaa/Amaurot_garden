@@ -12,8 +12,10 @@
                         }}</button>
                     </li>
                 </ul>
-                <button type="button" class="btn w-full text-center mb-10 hover:bg-gray-300 rounded-none" @click="showCollected = !showCollected"
-                    :class="themeClasses.text800">
+                <button type="button" class="btn w-full text-center mb-10 hover:bg-gray-300 rounded-none" 
+                    @click="showCollected = !showCollected"
+                    :class="showCollected ? themeClasses.bg300 : ''"
+                >
                     {{showCollected ? '顯示全部插件' : '只顯示已收藏插件'}}
                 </button>
             </div>
@@ -232,6 +234,15 @@ export default {
         const setSelectedCategory = (category) => {
             currentPage.value = 1;
             selectCategory.value = category || '';
+            // 當前元素增加class 'bg-gray-300'
+            const categoryButtons = document.querySelectorAll('.btn.w-full');
+            categoryButtons.forEach((button) => {
+                if (button.textContent.trim() === (category || '顯示全部')) {
+                    button.classList.add('bg-gray-300');
+                } else {
+                    button.classList.remove('bg-gray-300');
+                }
+            });
         };
         // 控制 Modal 開關
         let isOpen = ref(false);
