@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import menuNav from '../components/Usermenu.vue';
+import menuNav from '../components/userMenu.vue';
 import install from '../components/InstallModal.vue';
 import footerBox from '../components/FooterBox.vue';
 import scorllToTop from '../components/scrollToTop.vue';

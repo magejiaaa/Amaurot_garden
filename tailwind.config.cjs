@@ -1,7 +1,30 @@
+/* eslint-env node */
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  safelist: [
+    // grayBlue 主題
+    'text-grayBlue-800',
+    'text-grayBlue-500',
+    'bg-grayBlue-100',
+    'bg-grayBlue-300',
+    'bg-grayBlue-500',
+    'hover:bg-grayBlue-500',
+    'focus-visible:border-grayBlue-500',
+    'border-grayBlue-500',
+    'focus:ring-grayBlue-500',
+    // blueGreen 主題
+    'text-blueGreen-800',
+    'text-blueGreen-500',
+    'bg-blueGreen-100',
+    'bg-blueGreen-300',
+    'bg-blueGreen-500',
+    'hover:bg-blueGreen-500',
+    'focus-visible:border-blueGreen-500',
+    'border-blueGreen-500',
+    'focus:ring-blueGreen-500',
+  ],
   theme: {
     extend: {
       colors: {

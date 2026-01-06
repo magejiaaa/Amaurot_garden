@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Usermenu from "../components/Usermenu.vue";
+import Usermenu from "../components/userMenu.vue";
 import footerBox from "../components/FooterBox.vue";
 // import { ref } from 'vue';
 import { usePluginsStore } from "../stores/pluginStore";

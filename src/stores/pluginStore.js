@@ -15,6 +15,7 @@ export const usePluginsStore = defineStore("plugins", {
             "戰鬥相關",
             "改善遊戲體驗",
             "座標地圖相關",
+            "採集生產",
             "成就相關",
             "金蝶房屋交易版",
             "外觀、BGM、RP友善",

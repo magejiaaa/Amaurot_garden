@@ -25,6 +25,7 @@ const routes = [
                 path: "pluginsList",
                 name: "pluginsList",
                 component: () => import("../views/pluginsList.vue"),
+                props: { themeColor: 'grayBlue', pluginType: 'official' },
                 meta: {
                     title: "插件列表 - 亞馬屋羅提後花園2.0",
                 },
@@ -33,6 +34,7 @@ const routes = [
                 path: "pluginsList/:pluginId",
                 name: "plugin",
                 component: () => import("../views/pluginsList.vue"),
+                props: (route) => ({ themeColor: 'grayBlue', pluginType: 'official', pluginId: route.params.pluginId }),
                 meta: {
                     title: "插件列表 - 亞馬屋羅提後花園2.0",
                 },
@@ -40,7 +42,8 @@ const routes = [
             {
                 path: "thirdPluginsList",
                 name: "thirdPluginsList",
-                component: () => import("../views/thirdPlugin.vue"),
+                component: () => import("../views/pluginsList.vue"),
+                props: { themeColor: 'blueGreen', pluginType: 'third' },
                 meta: {
                     title: "第三方插件 - 亞馬屋羅提後花園2.0",
                 },
@@ -48,7 +51,8 @@ const routes = [
             {
                 path: "thirdPluginsList/:pluginId",
                 name: "thirdPlugins",
-                component: () => import("../views/thirdPlugin.vue"),
+                component: () => import("../views/pluginsList.vue"),
+                props: (route) => ({ themeColor: 'blueGreen', pluginType: 'third', pluginId: route.params.pluginId }),
                 meta: {
                     title: "第三方插件 - 亞馬屋羅提後花園2.0",
                 },

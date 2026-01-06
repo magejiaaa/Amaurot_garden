@@ -3,7 +3,7 @@
         <div class="bg-gray-100 flex flex-col md:flex-row">
             <!-- PC分類列表 -->
             <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
-                <ul class="mx-auto my-8 text-grayBlue-800">
+                <ul class="mx-auto my-8" :class="themeClasses.text800">
                     <li>
                         <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory()">顯示全部</button>
                     </li>
@@ -18,8 +18,9 @@
             <Listbox v-model="selectCategory" v-else>
                 <div class="relative mt-10 w-11/12 mx-auto">
                     <ListboxButton
-                        class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border border-gray-300 text-grayBlue-800
-                                focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                        class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border border-gray-300
+                                focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+                        :class="[themeClasses.text800, themeClasses.focusBorder]">
                         <span class="block truncate">{{ selectCategory || '請選擇分類' }}</span>
                         <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
@@ -30,25 +31,25 @@
                         <ListboxOptions class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <ListboxOption v-slot="{ active, selected }" value="" as="template">
                                 <li :class="[
-                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                    active ? `${themeClasses.bg100} ${themeClasses.text800}` : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-10 pr-4',
                                 ]">
                                     <button>顯示全部</button>
-                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
+                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3" :class="themeClasses.text500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
                                 </li>
                             </ListboxOption>
                             <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category" :key="index" :value="item" as="template">
                                 <li :class="[
-                                    active ? 'bg-grayBlue-100 text-grayBlue-800' : 'text-gray-900',
+                                    active ? `${themeClasses.bg100} ${themeClasses.text800}` : 'text-gray-900',
                                     'relative cursor-default select-none py-2 pl-10 pr-4',
                                 ]">
                                     <span :class="[
                                         selected ? 'font-medium' : 'font-normal',
                                         'block truncate',
                                     ]">{{ item }}</span>
-                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3 text-grayBlue-500">
+                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3" :class="themeClasses.text500">
                                         <font-awesome-icon icon="fa-solid fa-check" />
                                     </span>
                                 </li>
@@ -68,9 +69,9 @@
                     <div class="flex flex-col gap-x-4 md:items-center md:flex-row">
                         <h3 class="text-2xl flex-none">插件列表</h3>
                         <!-- 搜索框 -->
-                        <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2" />
+                        <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2" :class="[themeClasses.border, themeClasses.focusRing]" />
                     </div>
-                    <button class="btn text-white bg-grayBlue-300 hover:bg-grayBlue-500" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
+                    <button class="btn text-white" :class="[themeClasses.bg300, themeClasses.hover500]" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
@@ -87,7 +88,7 @@
                 </ul>
                 <!-- 沒資料畫面 -->
                 <p v-else class="text-center">本分類下沒有插件</p>
-                <ul class="pagination">
+                <ul class="pagination" :class="{ third: pluginType === 'third' }">
                     <li v-if="currentPage !== 1">
                         <button @click="changePage('prev')"><font-awesome-icon icon="fa-solid fa-chevron-left" /></button>
                     </li>
@@ -143,7 +144,6 @@ import { Dialog, DialogPanel, TransitionRoot, TransitionChild } from '@headlessu
 import { useRouter, useRoute } from "vue-router";
 import {
     Listbox,
-    ListboxLabel,
     ListboxButton,
     ListboxOptions,
     ListboxOption,
@@ -151,11 +151,38 @@ import {
 import Swal from 'sweetalert2';
 
 export default {
-    setup() {
+    props: {
+        themeColor: {
+            type: String,
+            default: 'grayBlue'
+        },
+        pluginType: {
+            type: String,
+            default: 'official'
+        }
+    },
+    setup(props) {
         const pluginStore = usePluginsStore();
-        pluginStore.isThirdPlugin = false;
-        pluginStore.getPlugin();
+        watchEffect(async () => {
+            pluginStore.isThirdPlugin = props.pluginType === 'third';
+            await pluginStore.getPlugin();
+        });
 
+        // 根據 props 動態設定主題顏色
+        const themeClasses = computed(() => {
+            const color = props.themeColor;
+            return {
+                text800: `text-${color}-800`,
+                text500: `text-${color}-500`,
+                bg100: `bg-${color}-100`,
+                bg300: `bg-${color}-300`,
+                bg500: `bg-${color}-500`,
+                hover500: `hover:bg-${color}-500`,
+                focusBorder: `focus-visible:border-${color}-500`,
+                border: `border-${color}-500`,
+                focusRing: `focus:ring-${color}-500`
+            };
+        });
 
         // 篩選插件種類
         const selectCategory = ref('');
@@ -174,7 +201,6 @@ export default {
             }
             return [...new Set(arr)];
         });
-        // 点击时将 pluginIndex 设置为 0 并设置 selectCategory
         const setSelectedCategory = (category) => {
             currentPage.value = 1;
             selectCategory.value = category || '';
@@ -217,9 +243,10 @@ export default {
             tempPlugin.value = { ...item };
             tempPlugin.value.url = route.path + '/' + item.ID;
             isOpen.value = true;
-            // 更新URL中的ID
+            // 根據插件類型更新URL中的ID
             const pluginId = tempPlugin.value.ID;
-            router.replace({ name: 'plugin', params: { pluginId } });
+            const routeName = props.pluginType === 'third' ? 'thirdPlugins' : 'plugin';
+            router.replace({ name: routeName, params: { pluginId } });
         }
         // 監聽路由變化更新網頁標題
         router.beforeEach((to, from, next) => {
@@ -270,8 +297,10 @@ export default {
             isOpen.value = false;
             isNew.value = false;
             isEdit.value = false;
-            tempPlugin.value = {};
-            router.push({ name: 'pluginsList' });
+            tempPlugin.value = {};    
+            // 根據插件類型返回對應的列表頁面
+            const listRouteName = props.pluginType === 'third' ? 'thirdPluginsList' : 'pluginsList';
+            router.push({ name: listRouteName });
         }
         // 更新插件資料
         function updateModal(item) {
@@ -384,7 +413,8 @@ export default {
             changePage,
             searchKeyword,
             filteredData,
-            setSelectedCategory
+            setSelectedCategory,
+            themeClasses
         }
     },
     components: {
@@ -394,7 +424,6 @@ export default {
         TransitionRoot,
         TransitionChild,
         Listbox,
-        ListboxLabel,
         ListboxButton,
         ListboxOptions,
         ListboxOption,

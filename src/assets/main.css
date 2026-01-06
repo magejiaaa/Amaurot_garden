@@ -97,7 +97,13 @@
     .pagination button {
         @apply border border-solid border-grayBlue-500 px-4 py-2 rounded-md text-grayBlue-500;
     }
+    .pagination.third button {
+        @apply border border-solid border-blueGreen-500 px-4 py-2 rounded-md text-blueGreen-500;
+    }
     .pagination button.active {
         @apply bg-grayBlue-500 text-white;
+    }
+    .pagination.third button.active {
+        @apply bg-blueGreen-500 text-white;
     }
 }
