@@ -2,8 +2,9 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { auth, database } from "../stores/firebasedb";
 import { onAuthStateChanged, signOut } from "@firebase/auth";
-import { ref as refData, onValue, update, set } from "firebase/database";
+import { ref as refData, onValue, update, set, get } from "firebase/database";
 import { usePluginsStore } from "../stores/pluginStore";
+import Swal from 'sweetalert2';
 
 export const useStateStore = defineStore("user", () => {
     const pluginStore = usePluginsStore();
@@ -16,10 +17,12 @@ export const useStateStore = defineStore("user", () => {
     });
     // 驗證登入
     function login() {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {  // 加上 async
             if (!user) {
-                console.log("not logged in");
                 pluginStore.isLogin = false;
+                userID.value = "";
+                userContent.value = {};
+                userName.value = "";
                 return;
             }
 
@@ -27,30 +30,28 @@ export const useStateStore = defineStore("user", () => {
             userID.value = user.uid;
             
             const getUserData = refData(database, "users/" + user.uid);
-            onValue(getUserData, async (snapshot) => {
-                let userData = snapshot.val();
-                
-                // 如果資料庫沒有該使用者,建立新使用者
-                if (!userData) {
-                    userData = {
-                        displayName: user.displayName,
-                        email: user.email,
-                        collectPlugins: []
-                    };
-                    await set(refData(database, "users/" + user.uid), userData);
-                } else {
-                    // 確保 collectPlugins 欄位存在
-                    if (!userData.collectPlugins) {
-                        userData.collectPlugins = [];
-                        const updates = {};
-                        updates[`/users/${user.uid}/collectPlugins`] = [];
-                        await update(refData(database), updates);
-                    }
-                }
-                
-                // 更新本地狀態
+            // 先讀取一次,初始化資料
+            const snapshot = await get(getUserData);
+            let userData = snapshot.val();
+
+            if (!userData) {
+                userData = {
+                    displayName: user.displayName,
+                    email: user.email,
+                    collectPlugins: []
+                };
+                await set(refData(database, "users/" + user.uid), userData);
+            } else if (!userData.collectPlugins) {
+                await update(refData(database), {
+                    [`/users/${user.uid}/collectPlugins`]: []
+                });
+            }
+
+            // 初始化完成後,才開始監聽
+            onValue(getUserData, (snapshot) => {
+                const userData = snapshot.val();
                 userContent.value = userData;
-                userName.value = userData.name || userData.displayName;
+                userName.value = userData?.name || userData?.displayName;
             });
         });
     }
@@ -59,7 +60,12 @@ export const useStateStore = defineStore("user", () => {
             .then(() => {
                 pluginStore.isLogin = false;
                 userID.value = "";
-                alert("登出成功");
+                userName.value = "";
+                userContent.value = {};
+                Swal.fire({
+                    title: "登出成功",
+                    icon: 'success',
+                })
             })
             .catch((error) => {
                 console.log(error);
@@ -74,7 +80,10 @@ export const useStateStore = defineStore("user", () => {
         const userUid = userID.value;
         updates["/users/" + userUid] = postData;
         return update(refData(database), updates).then(() => {
-            alert("更新成功");
+            Swal.fire({
+                title: "更新成功",
+                icon: 'success',
+            })
         });
     }
 

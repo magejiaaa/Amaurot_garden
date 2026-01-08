@@ -5,16 +5,24 @@
             <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
                 <ul class="mx-auto my-8" :class="themeClasses.text800">
                     <li>
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory()">顯示全部</button>
+                        <button 
+                            class="btn w-full hover:bg-gray-300 rounded-none" 
+                            :class="{ 'bg-gray-300': activeCategory === '' }"
+                            @click="setSelectedCategory()">
+                            顯示全部
+                        </button>
                     </li>
                     <li v-for="(item, index) in pluginStore.category" :key="index">
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory(item)">{{ item
+                        <button class="btn w-full hover:bg-gray-300 rounded-none" 
+                        :class="{ 'bg-gray-300': activeCategory === item }"
+                        @click="setSelectedCategory(item)">{{ item
                         }}</button>
                     </li>
                 </ul>
                 <button type="button" class="btn w-full text-center mb-10 hover:bg-gray-300 rounded-none" 
                     @click="showCollected = !showCollected"
                     :class="showCollected ? themeClasses.bg300 : ''"
+                    v-if="pluginStore.isLogin"
                 >
                     {{showCollected ? '顯示全部插件' : '只顯示已收藏插件'}}
                 </button>
@@ -97,13 +105,14 @@
                         <div class="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex items-center">
                             <!-- 是否支援繁中 -->
                             <font-awesome-icon v-if="item.trPluginURL" icon="fa-solid fa-circle-check" class="text-green-500" />
+                            <span v-if="item.trPluginURL" class="sr-only">支援繁體中文</span>
                             <!-- 收藏按鈕 -->
                             <button class="p-2 hover:text-yellow-400 transition-all"
                             :class="{
                                 'text-yellow-400': isCollected(item.ID),
                                 'text-gray-300 hover:text-yellow-400': !isCollected(item.ID)
                             }" 
-                            @click="pluginCollection(item)" title="收藏插件" v-if="pluginStore.isLogin">
+                            @click="pluginCollection(item)" :title="isCollected(item.ID) ? '取消收藏' : '收藏插件'" v-if="pluginStore.isLogin">
                                 <font-awesome-icon icon="fa-solid fa-star" />
                             </button>
                         </div>
@@ -128,7 +137,7 @@
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
                 <TransitionChild as="template" enter="ease-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" />
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
@@ -216,6 +225,8 @@ export default {
         // 篩選插件種類
         const selectCategory = ref('');
         let showCollected = ref(false);
+        // 添加一個變數來追蹤當前選中的分類
+        const activeCategory = ref('');
         const filterPlugin = computed(() => {
             let arr = [];
             
@@ -243,15 +254,7 @@ export default {
         const setSelectedCategory = (category) => {
             currentPage.value = 1;
             selectCategory.value = category || '';
-            // 當前元素增加class 'bg-gray-300'
-            const categoryButtons = document.querySelectorAll('.btn.w-full');
-            categoryButtons.forEach((button) => {
-                if (button.textContent.trim() === (category || '顯示全部')) {
-                    button.classList.add('bg-gray-300');
-                } else {
-                    button.classList.remove('bg-gray-300');
-                }
-            });
+            activeCategory.value = category || ''; // 更新選中狀態
         };
         // 控制 Modal 開關
         let isOpen = ref(false);
@@ -465,12 +468,12 @@ export default {
             }
             
             // 檢查是否已收藏
-            const isCollected = stateStore.userContent.collectPlugins.some(
+            const alreadyCollected = stateStore.userContent.collectPlugins.some(
                 item => item.ID === plugin.ID
             );
             
             // 將pluginID和name寫入使用者收藏資料中
-            if (isCollected) {
+            if (alreadyCollected) {
                 stateStore.removeCollectPlugin(plugin.ID);
                 Swal.fire({
                     title: "已從收藏移除",
@@ -494,6 +497,7 @@ export default {
         return {
             pluginStore,
             selectCategory,
+            activeCategory,
             filterPlugin,
             showCollected,
             isOpen,
