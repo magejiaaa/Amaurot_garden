@@ -15,8 +15,8 @@
                     <!-- 下載 -->
                     <div class="relative mb-2 md:mr-6 md:mb-0">
                         <a type="button" class="btn downloadBtn 
-                            lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(github)</a>
-                    </div>
+                            lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(國際服)</a>
+                    </div> 
                     <div class="relative mb-2 md:mr-6 md:mb-0">
                         <a type="button" class="btn downloadBtn
                             lg:m-1 lg:w-auto | cn" href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6" target="_blank">CN版介紹</a>
@@ -38,12 +38,6 @@
                     class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
                     <font-awesome-icon icon="fa-brands fa-github" />預計更新的項目
                 </a>
-                <a href="https://twitter.com/NMiaohen6461" target="_blank" class="px-4 py-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
-                    <font-awesome-icon icon="fa-brands fa-twitter" />更新的內容
-                </a>
-                <p class="mt-3 font-light">
-                    目前國際服已AFK一陣子，網站暫停更新，繁中服等開發社區穩定後會再重新啟動
-                </p>
             </div>
         </div>
 

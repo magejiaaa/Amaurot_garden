@@ -5,13 +5,27 @@
             <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
                 <ul class="mx-auto my-8" :class="themeClasses.text800">
                     <li>
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory()">顯示全部</button>
+                        <button 
+                            class="btn w-full hover:bg-gray-300 rounded-none" 
+                            :class="{ 'bg-gray-300': activeCategory === '' }"
+                            @click="setSelectedCategory()">
+                            顯示全部
+                        </button>
                     </li>
                     <li v-for="(item, index) in pluginStore.category" :key="index">
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" @click="setSelectedCategory(item)">{{ item
+                        <button class="btn w-full hover:bg-gray-300 rounded-none" 
+                        :class="{ 'bg-gray-300': activeCategory === item }"
+                        @click="setSelectedCategory(item)">{{ item
                         }}</button>
                     </li>
                 </ul>
+                <button type="button" class="btn w-full text-center mb-10 hover:bg-gray-300 rounded-none" 
+                    @click="showCollected = !showCollected"
+                    :class="showCollected ? themeClasses.bg300 : ''"
+                    v-if="pluginStore.isLogin"
+                >
+                    {{showCollected ? '顯示全部插件' : '只顯示已收藏插件'}}
+                </button>
             </div>
 
             <!-- 手機分類 -->
@@ -75,15 +89,33 @@
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
+                <p class="mb-4 text-gray-600">
+                    <font-awesome-icon icon="fa-solid fa-circle-check" class="text-green-500" />
+                    有繁中可用版本或本地化
+                </p>
                 <!-- 插件列表 -->
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 list md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-16 list relative md:grid-cols-2 lg:grid-cols-4 gap-x-1" @click="pluginContent(index, item, $event)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
                         <!-- 插件分類 -->
                         <p class="font-light text-gray-500">{{ item.category }}</p>
                         <!-- 插件簡介 -->
                         <p class="md:col-span-2">{{ item.describe }}</p>
+                        <div class="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex items-center">
+                            <!-- 是否支援繁中 -->
+                            <font-awesome-icon v-if="item.trPluginURL" icon="fa-solid fa-circle-check" class="text-green-500" />
+                            <span v-if="item.trPluginURL" class="sr-only">支援繁體中文</span>
+                            <!-- 收藏按鈕 -->
+                            <button class="p-2 hover:text-yellow-400 transition-all"
+                            :class="{
+                                'text-yellow-400': isCollected(item.ID),
+                                'text-gray-300 hover:text-yellow-400': !isCollected(item.ID)
+                            }" 
+                            @click="pluginCollection(item)" :title="isCollected(item.ID) ? '取消收藏' : '收藏插件'" v-if="pluginStore.isLogin">
+                                <font-awesome-icon icon="fa-solid fa-star" />
+                            </button>
+                        </div>
                     </li>
                 </ul>
                 <!-- 沒資料畫面 -->
@@ -137,6 +169,7 @@
 
 <script>
 import { usePluginsStore } from '../stores/pluginStore';
+import { useStateStore } from '../stores/stateStore';
 import { ref, computed, watch, onMounted, watchEffect } from 'vue';
 import pluginModel from '../components/plugnModel.vue';
 import scorllToTop from '../components/scrollToTop.vue';
@@ -159,10 +192,15 @@ export default {
         pluginType: {
             type: String,
             default: 'official'
+        },
+        pluginId: {  
+            type: String,
+            default: ''
         }
     },
     setup(props) {
         const pluginStore = usePluginsStore();
+        const stateStore = useStateStore();
         watchEffect(async () => {
             pluginStore.isThirdPlugin = props.pluginType === 'third';
             await pluginStore.getPlugin();
@@ -186,8 +224,13 @@ export default {
 
         // 篩選插件種類
         const selectCategory = ref('');
+        let showCollected = ref(false);
+        // 添加一個變數來追蹤當前選中的分類
+        const activeCategory = ref('');
         const filterPlugin = computed(() => {
-            const arr = [];
+            let arr = [];
+            
+            // 先根據分類篩選
             if (selectCategory.value !== '') {
                 pluginStore.plugins.forEach((item) => {
                     if (item.category.includes(selectCategory.value)) {
@@ -195,15 +238,23 @@ export default {
                     }
                 });
             } else {
-                pluginStore.plugins.forEach((item) => {
-                    arr.push(item);
-                });
+                arr = [...pluginStore.plugins];
+            }
+            
+            // 如果開啟「只顯示已收藏」,再進行收藏篩選
+            if (showCollected.value && stateStore.userContent.collectPlugins) {
+                arr = arr.filter(item => 
+                    stateStore.userContent.collectPlugins.some(
+                        collected => collected.ID === item.ID
+                    )
+                );
             }
             return [...new Set(arr)];
         });
         const setSelectedCategory = (category) => {
             currentPage.value = 1;
             selectCategory.value = category || '';
+            activeCategory.value = category || ''; // 更新選中狀態
         };
         // 控制 Modal 開關
         let isOpen = ref(false);
@@ -225,6 +276,10 @@ export default {
                         pluginIndex.value = index;
                         tempPlugin.value.url = route.path;
                         isDataLoaded.value = false;
+                        // 不需要再次呼叫 pluginContent,直接設定即可
+                        const pluginId = item.ID;
+                        const routeName = props.pluginType === 'third' ? 'thirdPlugins' : 'plugin';
+                        router.replace({ name: routeName, params: { pluginId } });
                     }
                 });
             }
@@ -238,7 +293,11 @@ export default {
             getPluginURL();
         });
         // 獲取當前插件資料
-        function pluginContent(index, item) {
+        function pluginContent(index, item, clickEvent = null) {
+            // 點收藏按鈕的話不開啟modal
+            if (clickEvent && clickEvent.target.closest('button')) {
+                return;
+            }
             pluginIndex.value = index;
             tempPlugin.value = { ...item };
             tempPlugin.value.url = route.path + '/' + item.ID;
@@ -251,9 +310,16 @@ export default {
         // 監聽路由變化更新網頁標題
         router.beforeEach((to, from, next) => {
             const pluginTitle = tempPlugin.value.name;
+            const isThirdParty = props.pluginType === 'third';
+            // 根據插件類型設定不同的預設標題
+            const defaultTitle = isThirdParty 
+                ? '第三方插件 - 亞馬屋羅提後花園2.0' 
+                : '插件列表 - 亞馬屋羅提後花園2.0';
             // 檢查是否有設置了插件名稱，如果有就使用插件名稱作為網頁標題，否則使用預設標題
-            const title = pluginTitle || '插件列表 - 亞馬屋羅提後花園2.0';
-            if (from.name === 'pluginsList' && to.name === 'plugin') {
+            const title = pluginTitle || defaultTitle;
+            const isFromList = from.name === 'pluginsList' || from.name === 'thirdPluginsList';
+            const isToPlugin = to.name === 'plugin' || to.name === 'thirdPlugins';
+            if (isFromList && isToPlugin) {
                 document.title = `${title} - 亞馬屋羅提後花園2.0`;
             }
             next();
@@ -292,6 +358,12 @@ export default {
                 pluginContent(newValue, item);
             }
         );
+        // 監聽pluginType改變重設currentPage
+        watch(() => props.pluginType, () => {
+            currentPage.value = 1;
+            // 可選:跳至最上面
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
         // 關閉 Modal 
         function closeModal() {
             isOpen.value = false;
@@ -388,14 +460,52 @@ export default {
             currentPage.value = 1; // Reset current page when search keyword changes
         });
 
+        // 收藏插件
+        function pluginCollection(plugin) {
+            // 確保 collectPlugins 陣列存在
+            if (!stateStore.userContent.collectPlugins) {
+                stateStore.userContent.collectPlugins = [];
+            }
+            
+            // 檢查是否已收藏
+            const alreadyCollected = stateStore.userContent.collectPlugins.some(
+                item => item.ID === plugin.ID
+            );
+            
+            // 將pluginID和name寫入使用者收藏資料中
+            if (alreadyCollected) {
+                stateStore.removeCollectPlugin(plugin.ID);
+                Swal.fire({
+                    title: "已從收藏移除",
+                    icon: 'success',
+                })
+            } else {
+                stateStore.addCollectPlugin(plugin.ID, plugin.name);
+                Swal.fire({
+                    title: "已加入收藏",
+                    icon: 'success',
+                })
+            }
+        }
+        // 檢查插件是否已收藏
+        function isCollected(pluginID) {
+            return stateStore.userContent.collectPlugins?.some(
+                plugin => plugin.ID === pluginID
+            ) || false;
+        }
+
         return {
             pluginStore,
             selectCategory,
+            activeCategory,
             filterPlugin,
+            showCollected,
             isOpen,
             tempPlugin,
             pluginIndex,
             pluginContent,
+            pluginCollection,
+            isCollected,
             updateModal,
             closeModal,
             newPlugin,

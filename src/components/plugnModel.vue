@@ -52,6 +52,11 @@
                 <p v-if="plugin.thirdPluginURL" class="btn col-span-8 border py-2 break-all text-sm">
                     <span class="mr-4 text-gray-400">插件庫連結</span>{{ plugin.thirdPluginURL }}
                 </p>
+                <!-- 繁中可用版本 -->
+                <p v-if="plugin.trPluginURL" class="btn col-span-8 border py-2 break-all text-sm">
+                    <span class="mr-4 text-gray-400">繁中可用</span>
+                    <a :href="plugin.trPluginURL" target="_blank">{{ plugin.trPluginURL }}</a>
+                </p>
             </div>
             <!-- 多頁標籤顯示 -->
             <div class="col-span-2 flex justify-between" v-if="plugin.contentArr">
@@ -112,6 +117,10 @@
                 <div class="col-span-2" v-if="pluginStore.isThirdPlugin || isReview">
                     <label for="thirdPluginURL"><span class="text-red-500">*</span>第三方插件庫</label>
                     <input type="text" placeholder="請輸入第三方插件庫URL" id="thirdPluginURL" v-model="tempPlugin.thirdPluginURL" class="w-full" />
+                </div>
+                <div class="col-span-2">
+                    <label for="trPluginURL">繁中服可用版本</label>
+                    <input type="text" placeholder="請輸入繁中服可用版本" id="trPluginURL" v-model="tempPlugin.trPluginURL" class="w-full" />
                 </div>
                 <!-- 插件分頁編輯 -->
                 <div class="col-span-2 flex items-end">
@@ -390,7 +399,6 @@ export default {
                 // 沒有變更才換頁
                 pageIndex = index;
                 isPageNew.value = false;
-                // tempPlugin.value.content = tempPlugin.value.contentArr[index].content;
                 contentObject.title = item.title;
                 editorData.value = item.content;
             }
