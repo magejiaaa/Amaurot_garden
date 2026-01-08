@@ -81,23 +81,32 @@
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
+                <p class="mb-4 text-gray-600">
+                    <font-awesome-icon icon="fa-solid fa-circle-check" class="text-green-500" />
+                    有繁中可用版本或本地化
+                </p>
                 <!-- 插件列表 -->
                 <ul class="listGroup" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-8 list relative md:grid-cols-2 lg:grid-cols-4" @click="pluginContent(index, item)">
+                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-16 list relative md:grid-cols-2 lg:grid-cols-4 gap-x-1" @click="pluginContent(index, item, $event)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
                         <!-- 插件分類 -->
                         <p class="font-light text-gray-500">{{ item.category }}</p>
                         <!-- 插件簡介 -->
                         <p class="md:col-span-2">{{ item.describe }}</p>
-                        <button class="ml-auto absolute right-3 top-1/2 -translate-y-1/2 z-10 hover:text-yellow-400 transition-all"
-                        :class="{
-                            'text-yellow-400': isCollected(item.ID),
-                            'text-gray-300 hover:text-yellow-400': !isCollected(item.ID)
-                        }" 
-                        @click="pluginCollection(item)" title="收藏插件" v-if="pluginStore.isLogin">
-                            <font-awesome-icon icon="fa-solid fa-star" />
-                        </button>
+                        <div class="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex items-center">
+                            <!-- 是否支援繁中 -->
+                            <font-awesome-icon v-if="item.trPluginURL" icon="fa-solid fa-circle-check" class="text-green-500" />
+                            <!-- 收藏按鈕 -->
+                            <button class="p-2 hover:text-yellow-400 transition-all"
+                            :class="{
+                                'text-yellow-400': isCollected(item.ID),
+                                'text-gray-300 hover:text-yellow-400': !isCollected(item.ID)
+                            }" 
+                            @click="pluginCollection(item)" title="收藏插件" v-if="pluginStore.isLogin">
+                                <font-awesome-icon icon="fa-solid fa-star" />
+                            </button>
+                        </div>
                     </li>
                 </ul>
                 <!-- 沒資料畫面 -->
@@ -119,7 +128,7 @@
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
                 <TransitionChild as="template" enter="ease-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" />
+                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
@@ -264,6 +273,10 @@ export default {
                         pluginIndex.value = index;
                         tempPlugin.value.url = route.path;
                         isDataLoaded.value = false;
+                        // 不需要再次呼叫 pluginContent,直接設定即可
+                        const pluginId = item.ID;
+                        const routeName = props.pluginType === 'third' ? 'thirdPlugins' : 'plugin';
+                        router.replace({ name: routeName, params: { pluginId } });
                     }
                 });
             }
@@ -277,9 +290,9 @@ export default {
             getPluginURL();
         });
         // 獲取當前插件資料
-        function pluginContent(index, item) {
+        function pluginContent(index, item, clickEvent = null) {
             // 點收藏按鈕的話不開啟modal
-            if (event.target.closest('button')) {
+            if (clickEvent && clickEvent.target.closest('button')) {
                 return;
             }
             pluginIndex.value = index;
@@ -294,9 +307,16 @@ export default {
         // 監聽路由變化更新網頁標題
         router.beforeEach((to, from, next) => {
             const pluginTitle = tempPlugin.value.name;
+            const isThirdParty = props.pluginType === 'third';
+            // 根據插件類型設定不同的預設標題
+            const defaultTitle = isThirdParty 
+                ? '第三方插件 - 亞馬屋羅提後花園2.0' 
+                : '插件列表 - 亞馬屋羅提後花園2.0';
             // 檢查是否有設置了插件名稱，如果有就使用插件名稱作為網頁標題，否則使用預設標題
-            const title = pluginTitle || '插件列表 - 亞馬屋羅提後花園2.0';
-            if (from.name === 'pluginsList' && to.name === 'plugin') {
+            const title = pluginTitle || defaultTitle;
+            const isFromList = from.name === 'pluginsList' || from.name === 'thirdPluginsList';
+            const isToPlugin = to.name === 'plugin' || to.name === 'thirdPlugins';
+            if (isFromList && isToPlugin) {
                 document.title = `${title} - 亞馬屋羅提後花園2.0`;
             }
             next();
@@ -335,6 +355,12 @@ export default {
                 pluginContent(newValue, item);
             }
         );
+        // 監聽pluginType改變重設currentPage
+        watch(() => props.pluginType, () => {
+            currentPage.value = 1;
+            // 可選:跳至最上面
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
         // 關閉 Modal 
         function closeModal() {
             isOpen.value = false;
