@@ -1,7 +1,7 @@
 <template>
     <menuNav :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></menuNav>
 
-    <div class="container-none mx-auto pt-20">
+    <div class="container-none mx-auto pt-20 dark:text-white">
         <!-- banner -->
         <div class="text-center py-16 h-full | banner">
             <div class="w-10/12 mx-auto
@@ -10,32 +10,32 @@
                 <p class="my-5 font-light text-xl">
                     所有插件的基底，功能包含快速啟動與更新、第三方插件管理、記憶多組帳號密碼、上傳交易板價格資料至Universalis等多項功能
                 </p>
-                <div class="flex flex-col flex-wrap justify-center w-full mx-auto mb-6 text-xl font-light
+                <div class="flex flex-col gap-4 flex-wrap justify-center w-full mx-auto mb-6 text-xl font-light
                     md:flex-row md:w-auto">
                     <!-- 下載 -->
-                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                    <div class="relative mb-2 md:mb-0">
                         <a type="button" class="btn downloadBtn 
                             lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(國際服)</a>
                     </div> 
-                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                    <div class="relative mb-2 md:mb-0">
                         <a type="button" class="btn downloadBtn
                             lg:m-1 lg:w-auto | cn" href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6" target="_blank">CN版介紹</a>
                     </div>
                     <!-- discord -->
-                    <div class="relative md:mr-6 md:mb-0">
+                    <div class="relative md:mb-0">
                         <a type="button" class="btn downloadBtn
                             lg:m-1 lg:w-auto | discord" href="https://discord.gg/KtGprs493S" target="_blank">加入繁中插件DC社群
                         </a>
                     </div>
                 </div>
-                <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
+                <div class="bg-white dark:bg-gray-900 mb-4 p-4 rounded text-gray-500" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
                 <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png" class="img-fluid border rounded shadow my-4 mx-auto" alt="登陸器介面" width="700"
                     height="500">
                 <a href="https://github.com/magejiaaa/Amaurot_garden/issues/1#issue-1565685628" target="_blank"
-                    class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
+                    class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800 dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-gray-800 dark:hover:text-indigo-300">
                     <font-awesome-icon icon="fa-brands fa-github" />預計更新的項目
                 </a>
             </div>
@@ -59,19 +59,19 @@
         </div>
 
         <!-- 安裝介紹 -->
-        <div class="bg-blueGreen-800 py-14">
+        <div class="bg-blueGreen-800 dark:bg-green-900 py-14">
             <h2 class="text-center mb-5 text-5xl text-green-200 font-black text-opacity-50">安裝相關問題</h2>
             <div class="w-2/3 grid grid-cols-1 gap-6 mx-auto text-xl
                 md:grid-cols-3">
-                <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
+                <button class="btn bg-white dark:bg-green-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
                     <font-awesome-icon icon="fa-solid fa-book" class="w-12 h-12 block mx-auto p-4" />
                     安裝說明
                 </button>
-                <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('setting')">
+                <button class="btn bg-white dark:bg-green-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('setting')">
                     <font-awesome-icon icon="fa-solid fa-gears" class="w-12 h-12 block mx-auto p-4" />
                     遊戲內設定
                 </button>
-                <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('third')">
+                <button class="btn bg-white dark:bg-green-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('third')">
                     <font-awesome-icon icon="fa-solid fa-3" class="w-12 h-12 block mx-auto p-4" />
                     加載第三方插件
                 </button>

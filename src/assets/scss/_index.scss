@@ -6,6 +6,14 @@
         color: transparent;
     }
 }
+.dark .banner {
+    background-image: linear-gradient(135deg, #000000 0%, #211e6b 100%);
+    .font-bold {
+        background: linear-gradient(to left, #5887d3 , #1f65d6);
+        background-clip: text;
+        color: transparent;
+    }
+}
 
 // banner按鈕
 .downloadBtn {
@@ -16,6 +24,9 @@
     &:hover {
         color: #fff;
     }
+}
+.dark .downloadBtn {
+    background-image: linear-gradient(274deg, #153270 0%, #272392 100%);
 }
 
 .downloadBtn::before,
@@ -56,4 +67,9 @@
 
 .cn {
     background-image: linear-gradient(38deg, #c9c9c9 0%, #b1b1b1 100%);
+}
+
+.dark .card {
+    background-color: #1f1f1f;
+    border: 1px solid #333333;
 }

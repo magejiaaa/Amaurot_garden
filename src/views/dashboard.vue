@@ -1,13 +1,12 @@
 <template>
-    <Usermenu :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></Usermenu>
+    <userMenu :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></userMenu>
     <router-view></router-view>
     <footerBox></footerBox>
 </template>
 
 <script>
-import Usermenu from "../components/userMenu.vue";
+import userMenu from "../components/userMenu.vue";
 import footerBox from "../components/FooterBox.vue";
-// import { ref } from 'vue';
 import { usePluginsStore } from "../stores/pluginStore";
 import { useStateStore } from "../stores/stateStore";
 import { watch } from 'vue';
@@ -29,7 +28,7 @@ export default {
         watch(
             () => route,
             (to, from) => {
-                // 检测到路由变化时执行刷新页面的操作
+                // 檢測到路由變化時執行刷新頁面的操作
                 if (to.path !== from.path) {
                     pluginStore.getPlugin();
                 }
@@ -43,7 +42,7 @@ export default {
         };
     },
     components: {
-        Usermenu,
+        userMenu,
         footerBox,
     },
 };

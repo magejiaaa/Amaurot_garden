@@ -1,78 +1,11 @@
 <template>
     <div class="content-area pt-20">
-        <div class="bg-gray-100 flex flex-col md:flex-row">
-            <!-- PC分類列表 -->
-            <div class="max-w-xs md:border-r md:w-3/12" v-if="mobileMenuShow">
-                <ul class="mx-auto my-8" :class="themeClasses.text800">
-                    <li>
-                        <button 
-                            class="btn w-full hover:bg-gray-300 rounded-none" 
-                            :class="{ 'bg-gray-300': activeCategory === '' }"
-                            @click="setSelectedCategory()">
-                            顯示全部
-                        </button>
-                    </li>
-                    <li v-for="(item, index) in pluginStore.category" :key="index">
-                        <button class="btn w-full hover:bg-gray-300 rounded-none" 
-                        :class="{ 'bg-gray-300': activeCategory === item }"
-                        @click="setSelectedCategory(item)">{{ item
-                        }}</button>
-                    </li>
-                </ul>
-                <button type="button" class="btn w-full text-center mb-10 hover:bg-gray-300 rounded-none" 
-                    @click="showCollected = !showCollected"
-                    :class="showCollected ? themeClasses.bg300 : ''"
-                    v-if="pluginStore.isLogin"
-                >
-                    {{showCollected ? '顯示全部插件' : '只顯示已收藏插件'}}
-                </button>
-            </div>
-
-            <!-- 手機分類 -->
-            <Listbox v-model="selectCategory" v-else>
-                <div class="relative mt-10 w-11/12 mx-auto">
-                    <ListboxButton
-                        class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border border-gray-300
-                                focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
-                        :class="[themeClasses.text800, themeClasses.focusBorder]">
-                        <span class="block truncate">{{ selectCategory || '請選擇分類' }}</span>
-                        <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                            <font-awesome-icon icon="fa-solid fa-caret-down" />
-                        </span>
-                    </ListboxButton>
-
-                    <transition leave-active-class="transition duration-100 ease-in" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                        <ListboxOptions class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            <ListboxOption v-slot="{ active, selected }" value="" as="template">
-                                <li :class="[
-                                    active ? `${themeClasses.bg100} ${themeClasses.text800}` : 'text-gray-900',
-                                    'relative cursor-default select-none py-2 pl-10 pr-4',
-                                ]">
-                                    <button>顯示全部</button>
-                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3" :class="themeClasses.text500">
-                                        <font-awesome-icon icon="fa-solid fa-check" />
-                                    </span>
-                                </li>
-                            </ListboxOption>
-                            <ListboxOption v-slot="{ active, selected }" v-for="(item, index) in pluginStore.category" :key="index" :value="item" as="template">
-                                <li :class="[
-                                    active ? `${themeClasses.bg100} ${themeClasses.text800}` : 'text-gray-900',
-                                    'relative cursor-default select-none py-2 pl-10 pr-4',
-                                ]">
-                                    <span :class="[
-                                        selected ? 'font-medium' : 'font-normal',
-                                        'block truncate',
-                                    ]">{{ item }}</span>
-                                    <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3" :class="themeClasses.text500">
-                                        <font-awesome-icon icon="fa-solid fa-check" />
-                                    </span>
-                                </li>
-                            </ListboxOption>
-                        </ListboxOptions>
-                    </transition>
-                </div>
-            </Listbox>
-
+        <div class="bg-gray-100 dark:bg-gray-900 dark:text-white flex flex-col md:flex-row">
+            <pluginCategoryList 
+                :themeColor="themeColor" 
+                v-model:activeCategory="selectCategory" 
+                v-model:showCollected="showCollected"
+            ></pluginCategoryList>
             <!-- 讀取狀態 -->
             <loading-plugin :active="pluginStore.isLoading"></loading-plugin>
 
@@ -94,7 +27,7 @@
                     有繁中可用版本或本地化
                 </p>
                 <!-- 插件列表 -->
-                <ul class="listGroup" v-if="filterPlugin.length > 0">
+                <ul class="listGroup dark:bg-slate-800" v-if="filterPlugin.length > 0">
                     <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-16 list relative md:grid-cols-2 lg:grid-cols-4 gap-x-1" @click="pluginContent(index, item, $event)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
@@ -164,7 +97,7 @@
             </Dialog>
         </TransitionRoot>
     </div>
-    <scorllToTop></scorllToTop>
+    <scrollToTop></scrollToTop>
 </template>
 
 <script>
@@ -172,15 +105,10 @@ import { usePluginsStore } from '../stores/pluginStore';
 import { useStateStore } from '../stores/stateStore';
 import { ref, computed, watch, onMounted, watchEffect } from 'vue';
 import pluginModel from '../components/plugnModel.vue';
-import scorllToTop from '../components/scrollToTop.vue';
+import scrollToTop from '../components/scrollToTop.vue';
+import pluginCategoryList from '../components/pluginCategoryList.vue';
 import { Dialog, DialogPanel, TransitionRoot, TransitionChild } from '@headlessui/vue';
 import { useRouter, useRoute } from "vue-router";
-import {
-    Listbox,
-    ListboxButton,
-    ListboxOptions,
-    ListboxOption,
-} from '@headlessui/vue'
 import Swal from 'sweetalert2';
 
 export default {
@@ -221,7 +149,6 @@ export default {
                 focusRing: `focus:ring-${color}-500`
             };
         });
-
         // 篩選插件種類
         const selectCategory = ref('');
         let showCollected = ref(false);
@@ -395,12 +322,6 @@ export default {
             }
         }
 
-        // 篩選偵測視窗大小
-        let mobileMenuShow = ref(false);
-        if (window.innerWidth >= 768) {
-            mobileMenuShow.value = true;
-        }
-
         // 監聽插件視窗開啟的話背景不可捲動
         watch(isOpen, (newVal) => {
             const body = document.querySelector('body');
@@ -510,7 +431,6 @@ export default {
             closeModal,
             newPlugin,
             isNew,
-            mobileMenuShow,
             prePlugin,
             nextPlugin,
             editHandler,
@@ -524,20 +444,17 @@ export default {
             searchKeyword,
             filteredData,
             setSelectedCategory,
-            themeClasses
+            themeClasses,
         }
     },
     components: {
         pluginModel,
+        pluginCategoryList,
         Dialog,
         DialogPanel,
         TransitionRoot,
         TransitionChild,
-        Listbox,
-        ListboxButton,
-        ListboxOptions,
-        ListboxOption,
-        scorllToTop,
+        scrollToTop,
     }
 }
 </script>
