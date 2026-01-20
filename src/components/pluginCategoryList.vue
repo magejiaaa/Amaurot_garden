@@ -1,6 +1,6 @@
 <template>
   <!-- 分類列表 -->
-  <div class="md:max-w-xs mt-2 mx-auto w-11/12 md:mt-0 md:border-r md:w-3/12 dark:border-gray-500">
+  <div class="md:max-w-xs mt-2 mx-auto md:mx-0 w-11/12 md:mt-0 md:border-r md:w-3/12 dark:border-gray-500">
       <!-- 手機：顯示收闔按鈕 -->
       <button
       class="md:hidden w-full px-4 py-4 bg-gray-200 dark:bg-black rounded mb-2"

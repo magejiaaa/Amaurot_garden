@@ -1,7 +1,7 @@
 <template>
     <menuNav :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></menuNav>
 
-    <div class="container-none mx-auto pt-20 dark:text-white">
+    <div class="container-none mx-auto pt-20 dark:text-gray-100">
         <!-- banner -->
         <div class="text-center py-16 h-full | banner">
             <div class="w-10/12 mx-auto
@@ -24,11 +24,11 @@
                     <!-- discord -->
                     <div class="relative md:mb-0">
                         <a type="button" class="btn downloadBtn
-                            lg:m-1 lg:w-auto | discord" href="https://discord.gg/KtGprs493S" target="_blank">加入繁中插件DC社群
+                            lg:m-1 lg:w-auto | discord" href="https://discord.gg/KtGprs493S" target="_blank">加入繁中DC社群
                         </a>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 mb-4 p-4 rounded text-gray-500" role="alert">
+                <div class="bg-white dark:bg-gray-900 mb-4 p-4 rounded text-gray-500 dark:text-gray-300" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
@@ -45,12 +45,12 @@
         <div class="mx-auto my-8 px-4 grid grid-cols-2 gap-2
             md:grid-cols-4 md:px-8 md:my-14 md:gap-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
-                <ul class="">
-                    <li class="text-grayBlue-300 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
-                    <li class="text-sm hover:text-gray-800 group" v-for="(plugin, index) in categories(item)" :key="index">
+                <ul>
+                    <li class="text-grayBlue-300 dark:text-grayBlue-100 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
+                    <li class="text-sm hover:text-gray-800 dark:hover:text-grayBlue-300 group" v-for="(plugin, index) in categories(item)" :key="index">
                         <router-link :to="`/dashboard/pluginsList/${plugin.ID}`"
-                        class="px-6 py-2 block text-gray-500 ">
-                            <span class="block text-xs text-gray-400 transition-all group-hover:text-grayBlue-800">{{ plugin.name }}</span>
+                        class="px-6 py-2 block text-gray-500">
+                            <span class="block text-xs text-gray-400 transition-all group-hover:text-grayBlue-800 dark:group-hover:text-grayBlue-300">{{ plugin.name }}</span>
                             {{ plugin.describe }}
                         </router-link>
                     </li>
@@ -59,19 +59,19 @@
         </div>
 
         <!-- 安裝介紹 -->
-        <div class="bg-blueGreen-800 dark:bg-green-900 py-14">
+        <div class="bg-blueGreen-800 dark:bg-blueGreen-900 py-14">
             <h2 class="text-center mb-5 text-5xl text-green-200 font-black text-opacity-50">安裝相關問題</h2>
             <div class="w-2/3 grid grid-cols-1 gap-6 mx-auto text-xl
                 md:grid-cols-3">
-                <button class="btn bg-white dark:bg-green-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
+                <button class="btn bg-white dark:bg-blueGreen-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
                     <font-awesome-icon icon="fa-solid fa-book" class="w-12 h-12 block mx-auto p-4" />
                     安裝說明
                 </button>
-                <button class="btn bg-white dark:bg-green-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('setting')">
+                <button class="btn bg-white dark:bg-blueGreen-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('setting')">
                     <font-awesome-icon icon="fa-solid fa-gears" class="w-12 h-12 block mx-auto p-4" />
                     遊戲內設定
                 </button>
-                <button class="btn bg-white dark:bg-green-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('third')">
+                <button class="btn bg-white dark:bg-blueGreen-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('third')">
                     <font-awesome-icon icon="fa-solid fa-3" class="w-12 h-12 block mx-auto p-4" />
                     加載第三方插件
                 </button>
@@ -82,14 +82,14 @@
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
                 <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" @click="closeModal" />
+                    <div class="fixed inset-0 bg-gray-500 dark:bg-black dark:bg-opacity-50 bg-opacity-75 transition-opacity" aria-hidden="true" @click="closeModal" />
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
                         <TransitionChild as="template" enter="ease-out duration-500 transform" enter-from="opacity-0 -translate-y-40 sm:scale-95" enter-to="opacity-100 -translate-y-0 sm:scale-100"
                             leave="ease-in duration-200" leave-from="opacity-100 sm:scale-100" leave-to="opacity-0 sm:scale-95">
-                            <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
+                            <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white dark:bg-gray-800 dark:text-gray-300 rounded-lg
                                 md:w-8/12">
                                 <install :installType="installType" @close="closeModal"></install>
                             </DialogPanel>
