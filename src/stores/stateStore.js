@@ -15,6 +15,7 @@ export const useStateStore = defineStore("user", () => {
         displayName: "",
         collectPlugins: [],
     });
+    const darkMode = ref(true);
     // 驗證登入
     function login() {
         onAuthStateChanged(auth, async (user) => {  // 加上 async
@@ -137,6 +138,7 @@ export const useStateStore = defineStore("user", () => {
         userContent,
         userName,
         userSubmit,
+        darkMode,
         addCollectPlugin,
         removeCollectPlugin,
     };

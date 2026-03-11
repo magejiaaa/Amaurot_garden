@@ -1,3 +1,4 @@
+@import './config';
 @import './menu';
 @import './index';
 
@@ -46,7 +47,7 @@
     input,
     select,
     textarea {
-        @apply block h-9 w-full py-1 px-4 rounded-md border-0 ring-1 ring-grayBlue-300
+        @apply block h-9 w-full py-1 px-4 bg-white rounded-md border-0 ring-1 ring-grayBlue-300
         md:py-1.5 md:pl-7 md:pr-20
         focus:ring-2 focus:ring-grayBlue-500
         focus-visible:outline-none;
@@ -67,6 +68,9 @@
     }
     .pluginContent tbody > tr :hover {
         @apply bg-gray-100;
+    }
+    .dark .pluginContent tbody > tr :hover {
+        @apply bg-gray-800;
     }
     .pluginContent td {
         @apply p-2 break-all;
@@ -121,6 +125,9 @@
     }
     .list {
         @apply grid transition cursor-pointer hover:bg-gray-100 first:rounded-t last:rounded-b;
+    }
+    .dark .list {
+        @apply hover:bg-gray-800
     }
     .card {
         @apply bg-white border border-solid border-gray-100 rounded-xl divide-y pb-2;

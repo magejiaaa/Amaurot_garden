@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-20 bg-gray-100 min-h-[calc(100vh-241px)]">
+    <div class="mt-20 bg-gray-100 dark:bg-gray-800 min-h-[calc(100vh-241px)]">
         <div class="w-2/3 mx-auto py-10">
             <!-- 編輯 -->
             <form action="#" method="POST" v-if="stateStore.userID === userUid">

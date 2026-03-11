@@ -12,9 +12,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 /* import 使用的 icon */
-import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck, faChevronLeft, faChevronRight, faChevronUp, faStar, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faUserSecret, faXmark, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck, faChevronLeft, faChevronRight, faChevronUp, faStar, faCircleCheck, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle, faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
-library.add(faUserSecret, faXmark, faGoogle, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck, faChevronLeft, faChevronRight, faTwitter, faGithub, faChevronUp, faStar, faCircleCheck);
+library.add(faUserSecret, faXmark, faGoogle, faTriangleExclamation, faLink, faPenToSquare, faBook, faGears, fa3, faHandPointRight, faCaretDown, faCheck, faChevronLeft, faChevronRight, faTwitter, faGithub, faChevronUp, faStar, faCircleCheck, faMoon, faSun);
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -33,4 +33,14 @@ app.use(
 );
 app.component("loading-plugin", Loading);
 app.component("font-awesome-icon", FontAwesomeIcon);
+
+// 新增：根據 store 的 darkMode 狀態設定 <html> class
+import { useStateStore } from './stores/stateStore';
+const stateStore = useStateStore();
+if (stateStore.darkMode) {
+    document.documentElement.classList.add('dark');
+} else {
+    document.documentElement.classList.remove('dark');
+}
+
 app.mount("#app");

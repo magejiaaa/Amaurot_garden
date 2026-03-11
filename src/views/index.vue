@@ -1,7 +1,7 @@
 <template>
     <menuNav :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></menuNav>
 
-    <div class="container-none mx-auto pt-20">
+    <div class="container-none mx-auto pt-20 bg-white dark:text-gray-100">
         <!-- banner -->
         <div class="text-center py-16 h-full | banner">
             <div class="w-10/12 mx-auto
@@ -10,25 +10,25 @@
                 <p class="my-5 font-light text-xl">
                     所有插件的基底，功能包含快速啟動與更新、第三方插件管理、記憶多組帳號密碼、上傳交易板價格資料至Universalis等多項功能
                 </p>
-                <div class="flex flex-col flex-wrap justify-center w-full mx-auto mb-6 text-xl font-light
+                <div class="flex flex-col gap-4 flex-wrap justify-center w-full mx-auto mb-6 text-xl font-light
                     md:flex-row md:w-auto">
                     <!-- 下載 -->
-                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                    <div class="relative mb-2 md:mb-0">
                         <a type="button" class="btn downloadBtn 
                             lg:m-1 lg:w-auto" href="https://github.com/goatcorp/FFXIVQuickLauncher/releases" target="_blank">下載Dalamud(國際服)</a>
                     </div> 
-                    <div class="relative mb-2 md:mr-6 md:mb-0">
+                    <div class="relative mb-2 md:mb-0">
                         <a type="button" class="btn downloadBtn
                             lg:m-1 lg:w-auto | cn" href="https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6" target="_blank">CN版介紹</a>
                     </div>
                     <!-- discord -->
-                    <div class="relative md:mr-6 md:mb-0">
+                    <div class="relative md:mb-0">
                         <a type="button" class="btn downloadBtn
-                            lg:m-1 lg:w-auto | discord" href="https://discord.gg/KtGprs493S" target="_blank">加入繁中插件DC社群
+                            lg:m-1 lg:w-auto | discord" href="https://discord.gg/KtGprs493S" target="_blank">加入繁中DC社群
                         </a>
                     </div>
                 </div>
-                <div class="bg-white mb-4 p-4 rounded text-gray-500" role="alert">
+                <div class="bg-white mb-4 p-4 rounded text-gray-500 dark:text-gray-300" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
@@ -45,11 +45,11 @@
         <div class="mx-auto my-8 px-4 grid grid-cols-2 gap-2
             md:grid-cols-4 md:px-8 md:my-14 md:gap-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
-                <ul class="">
-                    <li class="text-grayBlue-300 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
+                <ul>
+                    <li class="text-grayBlue-400 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
                     <li class="text-sm hover:text-gray-800 group" v-for="(plugin, index) in categories(item)" :key="index">
                         <router-link :to="`/dashboard/pluginsList/${plugin.ID}`"
-                        class="px-6 py-2 block text-gray-500 ">
+                        class="px-6 py-2 block text-gray-500">
                             <span class="block text-xs text-gray-400 transition-all group-hover:text-grayBlue-800">{{ plugin.name }}</span>
                             {{ plugin.describe }}
                         </router-link>
@@ -60,7 +60,7 @@
 
         <!-- 安裝介紹 -->
         <div class="bg-blueGreen-800 py-14">
-            <h2 class="text-center mb-5 text-5xl text-green-200 font-black text-opacity-50">安裝相關問題</h2>
+            <h2 class="text-center mb-5 text-5xl text-blueGreen-200 font-black text-opacity-50">安裝相關問題</h2>
             <div class="w-2/3 grid grid-cols-1 gap-6 mx-auto text-xl
                 md:grid-cols-3">
                 <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
@@ -82,14 +82,14 @@
             <Dialog class="relative z-30" as="div" @close="closeModal">
                 <!-- Modal背景 -->
                 <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" @click="closeModal" />
+                    <div class="fixed inset-0 bg-gray-500 dark:bg-black dark:bg-opacity-50 bg-opacity-75 transition-opacity" aria-hidden="true" @click="closeModal" />
                 </TransitionChild>
                 <!-- Modal內容 -->
                 <div class="fixed inset-0 overflow-y-auto">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
                         <TransitionChild as="template" enter="ease-out duration-500 transform" enter-from="opacity-0 -translate-y-40 sm:scale-95" enter-to="opacity-100 -translate-y-0 sm:scale-100"
                             leave="ease-in duration-200" leave-from="opacity-100 sm:scale-100" leave-to="opacity-0 sm:scale-95">
-                            <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white rounded-lg
+                            <DialogPanel class="fixed top-20 h-5/6 overflow-y-auto w-11/12 bg-white dark:bg-gray-800 dark:text-gray-300 rounded-lg
                                 md:w-8/12">
                                 <install :installType="installType" @close="closeModal"></install>
                             </DialogPanel>

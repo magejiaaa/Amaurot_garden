@@ -1,5 +1,5 @@
 <template>
-    <footer class="py-3 text-center bg-gray-100 border-t">
+    <footer class="py-3 text-center bg-gray-100 dark:bg-gray-900 border-t dark:border-gray-700">
         <div class="mx-auto justify-content-center align-items-center w-11/12">
             <h4 class="text-xl text-blueGreen-800 font-bold my-3">免責聲明</h4>
             <p class="mb-2 text-blueGreen-800">您已知 XIVLauncher 並不符合 Square Enix 的服務條款。使用後果需自行負責。</p>

@@ -1,0 +1,90 @@
+:root {
+
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
+
+  /* grayBlue */
+  --color-grayBlue-50: 244 247 251;
+  --color-grayBlue-100: 230 235 243;
+  --color-grayBlue-200: 203 215 232;
+  --color-grayBlue-300: 159 177 204;
+  --color-grayBlue-400: 122 154 176;
+  --color-grayBlue-500: 106 134 179;
+  --color-grayBlue-600: 90 115 156;
+  --color-grayBlue-700: 74 95 130;
+  --color-grayBlue-800: 62 81 110;
+  --color-grayBlue-900: 43 55 75;
+
+  /* blueGreen */
+  --color-blueGreen-50: 244 249 248;
+  --color-blueGreen-100: 232 241 240;
+  --color-blueGreen-200: 214 231 228;
+  --color-blueGreen-300: 191 216 212;
+  --color-blueGreen-400: 160 200 194;
+  --color-blueGreen-500: 149 190 183;
+  --color-blueGreen-600: 127 168 162;
+  --color-blueGreen-700: 104 143 137;
+  --color-blueGreen-800: 94 140 133;
+  --color-blueGreen-900: 28 46 42;
+
+  /* darkYellow */
+  --color-darkYellow-50: 250 244 236;
+  --color-darkYellow-100: 243 223 200;
+  --color-darkYellow-200: 238 209 177;
+  --color-darkYellow-300: 234 195 154;
+  --color-darkYellow-400: 224 179 129;
+  --color-darkYellow-500: 216 166 110;
+  --color-darkYellow-600: 192 143 88;
+  --color-darkYellow-700: 168 120 66;
+  --color-darkYellow-800: 143 99 48;
+  --color-darkYellow-900: 111 76 35;
+
+}
+.dark {
+
+  --color-white: 0 0 0;
+  --color-black: 255 255 255;
+
+  /* grayBlue */
+  --color-grayBlue-50: 15 20 28;
+  --color-grayBlue-100: 27 34 45;
+  --color-grayBlue-200: 37 48 65;
+  --color-grayBlue-300: 47 60 82;
+  --color-grayBlue-400: 74 95 130;
+  --color-grayBlue-500: 106 134 179;
+  --color-grayBlue-600: 143 166 201;
+  --color-grayBlue-700: 175 193 222;
+  --color-grayBlue-800: 201 214 238;
+  --color-grayBlue-900: 228 236 250;
+
+  /* blueGreen */
+  --color-blueGreen-50: 15 23 22;
+  --color-blueGreen-100: 24 35 34;
+  --color-blueGreen-200: 34 49 48;
+  --color-blueGreen-300: 44 63 61;
+  --color-blueGreen-400: 61 86 83;
+  --color-blueGreen-500: 94 140 133;
+  --color-blueGreen-600: 127 168 162;
+  --color-blueGreen-700: 159 202 196;
+  --color-blueGreen-800: 184 221 215;
+  --color-blueGreen-900: 224 242 239;
+
+  /* darkYellow */
+  --color-darkYellow-50: 22 18 12;
+  --color-darkYellow-100: 43 33 23;
+  --color-darkYellow-200: 58 45 30;
+  --color-darkYellow-300: 74 56 38;
+  --color-darkYellow-400: 122 84 52;
+  --color-darkYellow-500: 216 166 110;
+  --color-darkYellow-600: 226 181 132;
+  --color-darkYellow-700: 235 198 157;
+  --color-darkYellow-800: 241 201 152;
+  --color-darkYellow-900: 246 222 194;
+
+}
+html, body {
+  color: rgb(var(--color-black));
+}
+h1, h2, h3, h4, h5, h6, label {
+  color: rgb(var(--color-black));
+}

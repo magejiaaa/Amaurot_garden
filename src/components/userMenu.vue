@@ -8,7 +8,7 @@
 
         <!-- 手機版漢堡 -->
         <button class="block w-8 h-8 mr-4
-                    lg:hidden | mobileMenu" @click="mobileMenuShow = !mobileMenuShow"
+            lg:hidden | mobileMenu" @click="mobileMenuShow = !mobileMenuShow"
             :class="{ 'is-opened': mobileMenuShow }">
             <span></span>
             <span></span>
@@ -22,8 +22,8 @@
             <div class="w-full absolute top-20 
                         lg:static lg:w-auto" v-if="mobileMenuShow">
                 <!-- 選單按鈕 -->
-                <ul class="flex flex-col bg-white text-center pb-4
-                            lg:mr-4 lg:flex-row lg:pb-0 | menulist">
+                <ul class="flex flex-col bg-white text-center items-center pb-4
+                    lg:mr-4 lg:flex-row lg:pb-0 | menulist">
                     <li>
                         <router-link to="/" class="p-4 block" @click="mobileMenuClose">Dalamud介紹</router-link>
                     </li>
@@ -42,6 +42,22 @@
                         <a class="p-4 block cursor-pointer" v-if="isLogin" @click.prevent="logOut">登出</a>
                         <router-link to="/login" class="p-4 block" v-else>登入</router-link>
                     </li>
+                    <li>
+                        <!-- 切換深色模式 -->
+                        <Switch
+                            v-model="darkMode"
+                            :class="darkMode ? 'bg-gray-600' : 'bg-gray-200'"
+                            class="relative inline-flex h-6 w-10 items-center rounded-full"
+                        >
+                            <span class="sr-only">切換深色模式</span>
+                            <span
+                            :class="darkMode ? 'translate-x-5' : 'translate-x-1'"
+                            class="inline-flex items-center h-4 w-4 transform rounded-full bg-white transition">
+                            </span>
+                            <font-awesome-icon v-if="darkMode" icon="fa-solid fa-sun" class="text-gray-200 w-2 left-2 absolute" />
+                            <font-awesome-icon v-if="!darkMode" icon="fa-solid fa-moon" class="text-gray-500 w-2 right-2 absolute" />
+                        </Switch>
+                    </li>
                 </ul>
             </div>
         </transition>
@@ -50,7 +66,8 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { computed, watch, ref } from 'vue';
+import { Switch } from '@headlessui/vue'
 import { useStateStore } from '../stores/stateStore';
 
 export default {
@@ -63,6 +80,15 @@ export default {
     setup(props, { emit }) {
         const router = useRouter();
         const stateStore = useStateStore();
+        // 直接用 computed 雙向綁定 store 的 darkMode
+        const darkMode = computed({
+            get: () => stateStore.darkMode,
+            set: (val) => { stateStore.darkMode = val }
+        });
+        // debug: 監聽 darkMode 變化
+        watch(darkMode, (val) => {
+            document.documentElement.classList.toggle('dark', val)
+        });
         stateStore.login();
         function getUserID() {
             const id = stateStore.userID;
@@ -96,8 +122,12 @@ export default {
             getUserID,
             mobileMenuShow,
             mobileMenuClose,
-            logOut
+            logOut,
+            darkMode,
         }
     },
+    components: {
+        Switch,
+    }
 }
 </script>
