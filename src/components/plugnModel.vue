@@ -24,7 +24,7 @@
                         {{ tempPlugin.category }}
                     </span>
                     <!-- 編輯按鈕 -->
-                    <button type="button" class="ml-4 text-gray-500 cursor-pointer px-3 py-1 rounded align-middle transition hover:bg-gray-200" @click="handleClick"
+                    <button type="button" class="ml-4 text-gray-500 cursor-pointer px-3 py-1 rounded align-middle transition hover:bg-gray-200 dark:hover:bg-gray-700" @click="handleClick"
                         v-if="pluginStore.isLogin && isEdit === false">
                         <font-awesome-icon icon="fa-solid fa-pen-to-square" class="w-5 h-5" />
                         編輯
@@ -37,7 +37,7 @@
         <!-- 沒登入的介紹 -->
         <div v-if="!pluginStore.isLogin || !isEdit" :class="{ 'mt-6': !isEdit }" id="pluginsContent">
             <div class="grid grid-cols-2 mb-6 items-center gap-1 md:grid-cols-6">
-                <p class="col-span-4 btn bg-gray-100 border py-2">
+                <p class="col-span-4 btn bg-gray-100 dark:bg-gray-800 border py-2">
                     {{ tempPlugin.describe }}
                 </p>
                 <a :href="tempPlugin.website" class="btn border  col-span-2 text-center cursor-pointer mt-2 py-2 md:mt-0" :class="{
@@ -91,11 +91,11 @@
             <div class="grid gap-x-6 gap-y-3 mb-6 grid-cols-2">
                 <div class="col-span-2 md:col-auto">
                     <label for="name"><span class="text-red-500">*</span>插件名稱(原文)</label>
-                    <input type="text" placeholder="請輸入插件名稱" id="name" required v-model="tempPlugin.name" class="w-full" />
+                    <input type="text" placeholder="請輸入插件名稱" id="name" required v-model="tempPlugin.name" class="w-full bg-white text-black" />
                 </div>
                 <div class="col-span-2 md:col-auto">
                     <label for="category"><span class="text-red-500">*</span>分類</label>
-                    <select id="category" v-model="tempPlugin.category" required class="w-full leading-4">
+                    <select id="category" v-model="tempPlugin.category" required class="w-full leading-4  bg-white">
                         <option value="" disabled>請選擇分類</option>
                         <option :value="item" v-for="(item, index) in pluginStore.category" :key="index">
                             {{ item }}

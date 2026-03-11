@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-white content-area">
         <!-- 審核插件 -->
         <div class="w-8/12 py-10 px-5 mx-auto">
             <div class="mb-5 flex justify-between items-center">
