@@ -1,7 +1,7 @@
 <template>
     <menuNav :isLogin="pluginStore.isLogin" @signOut="handleSignOut"></menuNav>
 
-    <div class="container-none mx-auto pt-20 dark:text-gray-100">
+    <div class="container-none mx-auto pt-20 bg-white dark:text-gray-100">
         <!-- banner -->
         <div class="text-center py-16 h-full | banner">
             <div class="w-10/12 mx-auto
@@ -28,14 +28,14 @@
                         </a>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 mb-4 p-4 rounded text-gray-500 dark:text-gray-300" role="alert">
+                <div class="bg-white mb-4 p-4 rounded text-gray-500 dark:text-gray-300" role="alert">
                     <font-awesome-icon icon="fa-solid fa-triangle-exclamation" class="h-5" />
                     國際服需至github下載，中文化後的國際服可以使用但有些人會糊糊的
                 </div>
                 <img src="https://raw.githubusercontent.com/goatcorp/FFXIVQuickLauncher/master/misc/screenshot.png" class="img-fluid border rounded shadow my-4 mx-auto" alt="登陸器介面" width="700"
                     height="500">
                 <a href="https://github.com/magejiaaa/Amaurot_garden/issues/1#issue-1565685628" target="_blank"
-                    class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800 dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-gray-800 dark:hover:text-indigo-300">
+                    class="px-4 py-2 mr-2 border border-indigo-900 text-indigo-900 rounded inline-block hover:bg-slate-100 hover:text-indigo-800">
                     <font-awesome-icon icon="fa-brands fa-github" />預計更新的項目
                 </a>
             </div>
@@ -46,11 +46,11 @@
             md:grid-cols-4 md:px-8 md:my-14 md:gap-4">
             <div class="card" v-for="(item, index) in pluginStore.category" :key="index">
                 <ul>
-                    <li class="text-grayBlue-300 dark:text-grayBlue-100 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
-                    <li class="text-sm hover:text-gray-800 dark:hover:text-grayBlue-300 group" v-for="(plugin, index) in categories(item)" :key="index">
+                    <li class="text-grayBlue-400 px-6 pt-4 pb-2 text-lg">{{ item }}</li>
+                    <li class="text-sm hover:text-gray-800 group" v-for="(plugin, index) in categories(item)" :key="index">
                         <router-link :to="`/dashboard/pluginsList/${plugin.ID}`"
                         class="px-6 py-2 block text-gray-500">
-                            <span class="block text-xs text-gray-400 transition-all group-hover:text-grayBlue-800 dark:group-hover:text-grayBlue-300">{{ plugin.name }}</span>
+                            <span class="block text-xs text-gray-400 transition-all group-hover:text-grayBlue-800">{{ plugin.name }}</span>
                             {{ plugin.describe }}
                         </router-link>
                     </li>
@@ -59,19 +59,19 @@
         </div>
 
         <!-- 安裝介紹 -->
-        <div class="bg-blueGreen-800 dark:bg-blueGreen-900 py-14">
-            <h2 class="text-center mb-5 text-5xl text-green-200 font-black text-opacity-50">安裝相關問題</h2>
+        <div class="bg-blueGreen-800 py-14">
+            <h2 class="text-center mb-5 text-5xl text-blueGreen-200 font-black text-opacity-50">安裝相關問題</h2>
             <div class="w-2/3 grid grid-cols-1 gap-6 mx-auto text-xl
                 md:grid-cols-3">
-                <button class="btn bg-white dark:bg-blueGreen-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
+                <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('install')">
                     <font-awesome-icon icon="fa-solid fa-book" class="w-12 h-12 block mx-auto p-4" />
                     安裝說明
                 </button>
-                <button class="btn bg-white dark:bg-blueGreen-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('setting')">
+                <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('setting')">
                     <font-awesome-icon icon="fa-solid fa-gears" class="w-12 h-12 block mx-auto p-4" />
                     遊戲內設定
                 </button>
-                <button class="btn bg-white dark:bg-blueGreen-800 dark:text-white text-blueGreen-800 pb-6" @click="openInstallModal('third')">
+                <button class="btn bg-white text-blueGreen-800 pb-6" @click="openInstallModal('third')">
                     <font-awesome-icon icon="fa-solid fa-3" class="w-12 h-12 block mx-auto p-4" />
                     加載第三方插件
                 </button>

@@ -1,6 +1,6 @@
 <template>
     <div class="content-area pt-20">
-        <div class="bg-gray-100 dark:bg-gray-900 dark:text-white flex flex-col md:flex-row">
+        <div class="bg-gray-100 dark:bg-gray-800 flex flex-col md:flex-row">
             <pluginCategoryList 
                 :themeColor="themeColor" 
                 v-model:activeCategory="selectCategory" 
@@ -16,23 +16,23 @@
                     <div class="flex flex-col gap-x-4 md:items-center md:flex-row">
                         <h3 class="text-2xl flex-none">插件列表</h3>
                         <!-- 搜索框 -->
-                        <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2" :class="[themeClasses.border, themeClasses.focusRing]" />
+                        <input v-model="searchKeyword" placeholder="輸入關鍵字" class="text-sm px-4 py-2 bg-white" :class="[themeClasses.border, themeClasses.focusRing]" />
                     </div>
-                    <button class="btn text-white" :class="[themeClasses.bg300, themeClasses.hover500]" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
+                    <button class="btn text-white" :class="[themeClasses.bg500, themeClasses.hover600]" @click="newPlugin()" v-if="pluginStore.isLogin">新增插件</button>
                     <!-- 沒登入顯示 -->
                     <span class="text-gray-500 text-sm" v-if="!pluginStore.isLogin">新增/編輯插件需登入</span>
                 </div>
-                <p class="mb-4 text-gray-600">
+                <p class="mb-4 text-gray-600 dark:text-gray-400">
                     <font-awesome-icon icon="fa-solid fa-circle-check" class="text-green-500" />
                     有繁中可用版本或本地化
                 </p>
                 <!-- 插件列表 -->
-                <ul class="listGroup dark:bg-slate-800" v-if="filterPlugin.length > 0">
-                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-16 list relative md:grid-cols-2 lg:grid-cols-4 gap-x-1" @click="pluginContent(index, item, $event)">
+                <ul class="listGroup dark:border-gray-500 dark:bg-slate-800" v-if="filterPlugin.length > 0">
+                    <li v-for="(item, index) in currentPageData" :key="index" class="p-4 pr-16 list relative md:grid-cols-2 lg:grid-cols-4 gap-x-1 dark:border-gray-500 dark:hover:bg-grayBlue-500" @click="pluginContent(index, item, $event)">
                         <!-- 插件名稱 -->
                         <p>{{ item.name }}</p>
                         <!-- 插件分類 -->
-                        <p class="font-light text-gray-500">{{ item.category }}</p>
+                        <p class="font-light text-gray-500 dark:text-gray-300">{{ item.category }}</p>
                         <!-- 插件簡介 -->
                         <p class="md:col-span-2">{{ item.describe }}</p>
                         <div class="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex items-center">
@@ -141,9 +141,9 @@ export default {
                 text800: `text-${color}-800`,
                 text500: `text-${color}-500`,
                 bg100: `bg-${color}-100`,
-                bg300: `bg-${color}-300`,
+                bg400: `bg-${color}-400`,
                 bg500: `bg-${color}-500`,
-                hover500: `hover:bg-${color}-500`,
+                hover600: `hover:bg-${color}-600`,
                 focusBorder: `focus-visible:border-${color}-500`,
                 border: `border-${color}-500`,
                 focusRing: `focus:ring-${color}-500`

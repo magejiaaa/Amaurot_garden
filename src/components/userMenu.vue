@@ -1,8 +1,8 @@
 <template>
-    <nav class="fixed top-0 right-0 w-full flex flex-wrap justify-between items-center bg-white dark:bg-black h-20 z-[11] | tooTop">
+    <nav class="fixed top-0 right-0 w-full flex flex-wrap justify-between items-center bg-white h-20 z-[11] | tooTop">
         <router-link to="/" class="flex items-center p-4">
             <img src="../assets/images/logo.png" alt="" class="w-16 mr-3 h-auto">
-            <h1 class="text-black dark:text-white font-light text-xl">亞馬烏羅提後花園</h1>
+            <h1 class="text-black font-light text-xl">亞馬烏羅提後花園</h1>
         </router-link>
 
 
@@ -22,7 +22,7 @@
             <div class="w-full absolute top-20 
                         lg:static lg:w-auto" v-if="mobileMenuShow">
                 <!-- 選單按鈕 -->
-                <ul class="flex flex-col bg-white dark:bg-black text-center items-center pb-4
+                <ul class="flex flex-col bg-white text-center items-center pb-4
                     lg:mr-4 lg:flex-row lg:pb-0 | menulist">
                     <li>
                         <router-link to="/" class="p-4 block" @click="mobileMenuClose">Dalamud介紹</router-link>
